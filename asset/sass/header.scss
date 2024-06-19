@@ -1,0 +1,50 @@
+.barrePub{
+    padding: 4px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    background-color: #000;
+    font-family: "Spectral", serif;
+    border-bottom: 4px solid #ffffff;
+    border-top: 2px solid #ffffff;
+}
+header{
+    padding: 20px;
+    border-bottom: 5px solid #ffffff;
+    nav{
+        display: flex;
+        gap: 500px;
+        align-items: center;
+
+        ul{
+            display: flex;
+            justify-content: space-between;
+            margin-left: 650px;
+            width: 400px;
+            li{
+                display: flex;
+                a{
+                    color: #fff;
+                    text-decoration: none;
+                    font-weight: 600;
+                    font-size: 1.2rem;
+                }
+                
+                
+            }
+           
+        }
+        .boiteIcons{
+            width: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            i{
+                font-size: 2rem;
+                color: #fff;
+            }
+           
+        }
+        
+    }
+}
