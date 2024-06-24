@@ -2,19 +2,21 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/marin.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/article.php';
+
 
 // Ajoute un Marin
 
 // Lis les informations depuis la requête HTTP
-$marin = [];
-$marin['matricule'] = $_POST['matricule'];
-$marin['nom'] = $_POST['nom'];
-$marin['prenom'] = $_POST['prenom'];
+$vehicule = [];
+$vehicule['nom'] = $_POST['nom'];
+$vehicule['marque'] = $_POST['marque'];
+$vehicule['price'] = $_POST['price'];
+$vehicule['photo_filename'] = $_FILES['file']['name'];
 
 // Crée le Marin
 $dbConnection = getConnection($dbConfig);
-$isSuccess = create($marin['matricule'], $marin['nom'], $marin['prenom'], $dbConnection);
+$isSuccess = create($vehicule['nom'], $vehicule['marque'], $vehicule['price'], $vehicule['photo_filename'], $dbConnection);
 
 // Redirige vers la liste des Marins
-header('Location: ' . '/ctrl/marin/list.php');
+header('Location: ' . '/ctrl/add-article/list.php');

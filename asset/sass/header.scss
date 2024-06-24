@@ -1,4 +1,4 @@
-.barrePub{
+.barrePub {
     padding: 4px;
     text-align: center;
     font-weight: bold;
@@ -8,43 +8,54 @@
     border-bottom: 4px solid #ffffff;
     border-top: 2px solid #ffffff;
 }
-header{
+
+header {
     padding: 20px;
     border-bottom: 5px solid #ffffff;
-    nav{
-        display: flex;
-        gap: 500px;
-        align-items: center;
 
-        ul{
+    nav {
+        display: flex;
+        align-items: center;
+        ul {
             display: flex;
             justify-content: space-between;
-            margin-left: 650px;
-            width: 400px;
-            li{
+            margin: auto;
+            width: 850px;
+
+            li {
                 display: flex;
-                a{
+
+                a {
                     color: #fff;
                     text-decoration: none;
                     font-weight: 600;
                     font-size: 1.2rem;
                 }
-                
-                
+
+
             }
-           
+
         }
-        .boiteIcons{
+
+        .boiteIcons {
             width: 75px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            i{
+            gap: 10px;
+            position: absolute;
+            right: 0;
+            margin-right: 100px;
+
+            i {
                 font-size: 2rem;
                 color: #fff;
+                cursor: pointer;
+
+
             }
-           
+
         }
-        
+
     }
 }

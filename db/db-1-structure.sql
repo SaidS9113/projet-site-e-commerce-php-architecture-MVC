@@ -23,6 +23,8 @@ CREATE TABLE user (
     ,password VARCHAR(100) NOT NULL
     ,email VARCHAR(100) NOT NULL
     ,idRole INT
+    ,photo longblob
+    ,photo_filename varchar(255)
 );
 
 CREATE TABLE vehicule (
@@ -32,6 +34,8 @@ CREATE TABLE vehicule (
     ,price DECIMAL(10,2) NOT NULL
     ,idCategorie INT
     ,idUser INT
+    ,photo longblob
+    ,photo_filename varchar(255)
 );
 
 CREATE TABLE commentaire (
@@ -61,4 +65,7 @@ ALTER TABLE commentaire
    ADD CONSTRAINT `fk_commentaire_vehicule` FOREIGN KEY(idVehicule) REFERENCES vehicule(id)
    ,ADD CONSTRAINT `fk_commentaire_user` FOREIGN KEY(idUser) REFERENCES user(id)
 ;
+
+
+
 

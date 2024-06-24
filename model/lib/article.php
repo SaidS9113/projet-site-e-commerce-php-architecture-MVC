@@ -24,14 +24,16 @@
  * @return boolean Succès ou échec. 
  * 
  */
-function create(string $matricule, string $nom, string $prenom, PDO $db) : bool
+function create(string $nom, string $marque, string $price, string $fileName, PDO $db) : bool
 {
     // Prépare la requête
-    $query = 'INSERT INTO marin (matricule, nom, prenom) VALUES (:matricule, :nom, :prenom)';
+    $query = 'INSERT INTO vehicule (nom, marque, price, photo_filename) VALUES (:nom, :marque, :price, :photo_filename)';
     $statement = $db->prepare($query);
-    $statement->bindParam(':matricule', $matricule);
     $statement->bindParam(':nom', $nom);
-    $statement->bindParam(':prenom', $prenom);
+    $statement->bindParam(':marque', $marque);
+    $statement->bindParam(':price', $price);
+    $statement->bindParam(':photo_filename', $fileName);
+
 
     // Exécute la requête
     $successOrFailure = $statement->execute();

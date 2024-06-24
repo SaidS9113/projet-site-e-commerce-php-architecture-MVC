@@ -1,0 +1,49 @@
+.title-product{
+    text-align: center;
+    font-size: 5rem;
+    color: #fff;
+    margin-top: 40px;
+}
+.container-product{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 35% 35%;
+    margin: auto !important;
+    gap: 30px;
+    margin-top: 60px;
+    padding: 40px;
+.product{
+    width: 600px;
+    height: 500px;
+    text-align: center;
+    background-color: #000;
+    a{
+        text-decoration: none;
+    }
+   
+    .image{
+        width: 600px;
+    height: 400px; 
+    cursor: pointer;
+    }
+    .title{
+        color: #fff;
+        font-size: 2rem;
+        margin-top: 10px;
+        font-family: "Spectral";
+        cursor: pointer;
+
+    }
+    .price{
+        color: #fff;
+        font-size: 1.2rem;
+        margin-top: 10px;
+        font-weight: bold;
+        font-family: "Spectral";
+    }
+}
+
+
+
+}

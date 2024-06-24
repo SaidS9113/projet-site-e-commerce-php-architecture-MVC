@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.bodyAccueil {
+  background-image: url(/asset/img/cardAccueil.webp);
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bodyArticle {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(20, 20, 20, 0.9)), url(/asset/img/cardAccueil.webp);
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 300px;
+  font-size: 4rem;
+  color: #fff;
+}
+
+.barrePub {
+  padding: 4px;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  background-color: #000;
+  font-family: "Spectral", serif;
+  border-bottom: 4px solid #ffffff;
+  border-top: 2px solid #ffffff;
+}
+
+header {
+  padding: 20px;
+  border-bottom: 5px solid #ffffff;
+}
+header nav {
+  display: flex;
+  align-items: center;
+}
+header nav ul {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 850px;
+}
+header nav ul li {
+  display: flex;
+}
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+header nav .boiteIcons {
+  width: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  right: 0;
+  margin-right: 100px;
+}
+header nav .boiteIcons i {
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.title-product {
+  text-align: center;
+  font-size: 5rem;
+  color: #fff;
+  margin-top: 40px;
+}
+
+.container-product {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 35% 35%;
+  margin: auto !important;
+  gap: 30px;
+  margin-top: 60px;
+  padding: 40px;
+}
+.container-product .product {
+  width: 600px;
+  height: 500px;
+  text-align: center;
+  background-color: #000;
+}
+.container-product .product a {
+  text-decoration: none;
+}
+.container-product .product .image {
+  width: 600px;
+  height: 400px;
+  cursor: pointer;
+}
+.container-product .product .title {
+  color: #fff;
+  font-size: 2rem;
+  margin-top: 10px;
+  font-family: "Spectral";
+  cursor: pointer;
+}
+.container-product .product .price {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  font-weight: bold;
+  font-family: "Spectral";
+}
+
+/*# sourceMappingURL=style.css.map */
