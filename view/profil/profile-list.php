@@ -1,3 +1,6 @@
+<?php
+//Verifier si l'user s'est authentifié
+$isLoggedIn = isset($_SESSION['user']); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,11 +21,12 @@
 </head>
 <body>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
+    <h4><?=$pageTitle?></h4>
     <main>
         <section id="listUser">
             <?php foreach ($listUser as $user) { ?>
                 <div>
-                    <h3><a href="/ctrl/profil/profil.php?id=<?= $user['id'] ?>">Avatar de <?= $user['id'] ?></a></h3>
+                    <h3><a href="/ctrl/profil/profil.php?id=<?= $user['id'] ?>">Photo de l'utilisateur. id = <?= $user['id'] ?></a></h3>
                     <p><img style="border-radius: 8%;" src="<?= '/upload/' . $user['photo_filename'] ?>" /></p>
                 </div>
             <?php } ?>

@@ -1,6 +1,6 @@
 <?php
 
-// Ajoute un Marin > Affiche le formulaire
+session_start();
 
 // Définit les clés de dictionnaire de la page
 $pageTitle = 'Ajout vehicule';

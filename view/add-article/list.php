@@ -1,3 +1,6 @@
+<?php
+//Verifier si l'user s'est authentifié
+$isLoggedIn = isset($_SESSION['user']); ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,9 +23,9 @@
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>nom</th>
-                    <th>marque</th>
-                    <th>price</th>
+                    <th>Nom</th>
+                    <th>Marque</th>
+                    <th>Price</th>
                 </tr>
             </thead>
 
@@ -34,8 +37,7 @@
                         <td><?= $vehicule['marque'] ?></td>
                         <td><?= $vehicule['price'] ?></td>
                         <td>
-                            <a href="/ctrl/add-article/update-display.php?id=<?= $vehicule['id'] ?>"><button class="buttonUpdate"><img class="iconeCorbeille" src="/asset/img/editer.png" alt=""></button></a>
-                            <a href="/ctrl/add-article/delete.php?id=<?= $vehicule['id'] ?>" onclick="return confirm('Confirmer la suppression')"><button class="buttonDelete"><img class="iconeCorbeille" src="/asset/img/corbeille.png" alt=""></button></a>
+                            <a href="/ctrl/add-article/delete.php?id=<?= $vehicule['id'] ?>" onclick="return confirm('Confirmer la suppression')"><button class="buttonDelete"><img class="iconeCorbeille" src="/asset/img/corbeille (3).png" alt=""></button></a>
                         </td>
                     </tr>
                 <?php } ?>

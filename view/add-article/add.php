@@ -1,3 +1,6 @@
+<?php
+//Verifier si l'user s'est authentifié
+$isLoggedIn = isset($_SESSION['user']); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,30 +16,30 @@
 </head>
 <body>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
-<h4><?= $pageTitle ?></h4>
-    <main>
-        <form action="/ctrl/add-article/add.php" method="post" enctype="multipart/form-data">
+<h4 class="titleAjtVehicule"><?= $pageTitle ?></h4>
+    <main class="mainAjtVehicule">
+        <form class="formAjtVehicule" action="/ctrl/add-article/add.php" method="post" enctype="multipart/form-data">
             <!-- Matricule -->
-            <div>
-                <label for="label">nom</label>
+            <div class="boiteAjtVehicule">
+                <label for="label">Nom</label>
                 <input type="text" name="nom" id="nom">
             </div>
             <!-- Nom -->
-            <div>
-                <label for="code">marque</label>
+            <div class="boiteAjtVehicule">
+                <label for="code">Marque</label>
                 <input type="text" name="marque" id="marque">
             </div>
             <!-- Prénom -->
-            <div>
-                <label for="code">price</label>
+            <div class="boiteAjtVehicule">
+                <label for="code">Price</label>
                 <input type="text" name="price" id="price">
             </div>
 
-            <div>
+            <div class="boiteAjtVehicule">
             <label for="file">Fichier d'image d'article</label>
             <input type="file" id="file" name="file">
         </div>
-            <div class="submit">
+            <div class="boiteAjtVehicule">
                 <button type="submit">Valider</button>
             </div>
         </form>

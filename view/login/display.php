@@ -18,8 +18,8 @@
 </head>
 <body>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
-    <h4>Login authentification</h4>
-    <form action="/ctrl/login/login.php" method="post">
+    <h4 class="titleLogin"><?= $titlePage ?></h4>
+    <form class="login" action="/ctrl/login/login.php" method="post">
         <div>
             <label for="code">Identifiant</label>
             <input type="text" name="email" id="code">

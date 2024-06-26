@@ -1,0 +1,61 @@
+.titleAjtVehicule{
+    text-align: center;
+    font-size: 4rem;
+    color: #fff;
+    margin-top: 40px;
+    font-family: 'Spectral';
+}
+.mainAjtVehicule {
+   
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-family: 'Spectral';
+
+    .formAjtVehicule {
+       
+        display: inline-block;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px;
+        flex-direction: column;
+        padding: 70px 120px;
+        background-color: rgba(0, 0, 0, 0.635);
+
+
+        .boiteAjtVehicule {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+        
+            color: #fff;
+
+            label {
+                font-size: 1.5rem;
+
+            }
+
+            input {
+                width: 300px;
+                height: 30px;
+                border-radius: 3px;
+                border: none;
+                background-color: #ffffff5e;
+
+            }
+            button{
+                width: 150px;
+                height: 35px;
+                margin-top: 40px;
+                color: #000;
+                border-radius: 4px;
+                font-weight: bold;
+                border: none;
+                font-size: 1.2rem;
+                cursor: pointer;
+                font-family: 'Spectral';
+            }
+        }
+    }
+}

@@ -1,5 +1,5 @@
 <?php
-$titrePage = "login";
+$titlePage = "login d'authentification";
 
 session_start();
 

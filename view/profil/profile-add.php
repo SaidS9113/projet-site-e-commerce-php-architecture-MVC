@@ -1,3 +1,6 @@
+<?php
+//Verifier si l'user s'est authentifié
+$isLoggedIn = isset($_SESSION['user']); ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,11 +23,11 @@
 <body>
     
 <main>
-    <form action="/ctrl/profil/profile-add.php" method="post" enctype="multipart/form-data">
+    <form class="AjtImgProfil" action="/ctrl/profil/profile-add.php" method="post" enctype="multipart/form-data">
 
         <!-- fichier à 'uploader' -->
         <div>
-            <label for="file">Fichier d'avatar</label>
+            <label for="file">Ajout de photo d'utilisateur</label>
             <input type="file" id="file" name="file">
         </div>
 

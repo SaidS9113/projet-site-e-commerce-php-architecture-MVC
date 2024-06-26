@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 * {
   margin: 0;
@@ -13,6 +14,14 @@
 }
 
 .bodyArticle {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(20, 20, 20, 0.9)), url(/asset/img/cardAccueil.webp);
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bodyArticleDetail {
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(20, 20, 20, 0.9)), url(/asset/img/cardAccueil.webp);
   height: 100%;
   background-size: cover;
@@ -48,9 +57,15 @@ header nav {
 }
 header nav ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: auto;
-  width: 850px;
+  width: 950px;
+  gap: 50px;
+}
+header nav ul .flexNav {
+  display: flex;
+  justify-content: space-between;
+  width: 210px;
 }
 header nav ul li {
   display: flex;
@@ -121,6 +136,289 @@ header nav .boiteIcons i {
   margin-top: 10px;
   font-weight: bold;
   font-family: "Spectral";
+}
+
+.titleAjtVehicule {
+  text-align: center;
+  font-size: 4rem;
+  color: #fff;
+  margin-top: 40px;
+  font-family: "Spectral";
+}
+
+.mainAjtVehicule {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-family: "Spectral";
+}
+.mainAjtVehicule .formAjtVehicule {
+  display: inline-block;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  flex-direction: column;
+  padding: 70px 120px;
+  background-color: rgba(0, 0, 0, 0.635);
+}
+.mainAjtVehicule .formAjtVehicule .boiteAjtVehicule {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  color: #fff;
+}
+.mainAjtVehicule .formAjtVehicule .boiteAjtVehicule label {
+  font-size: 1.5rem;
+}
+.mainAjtVehicule .formAjtVehicule .boiteAjtVehicule input {
+  width: 300px;
+  height: 30px;
+  border-radius: 3px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.368627451);
+}
+.mainAjtVehicule .formAjtVehicule .boiteAjtVehicule button {
+  width: 150px;
+  height: 35px;
+  margin-top: 40px;
+  color: #000;
+  border-radius: 4px;
+  font-weight: bold;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-family: "Spectral";
+}
+
+.nameProfilUser {
+  position: absolute;
+  top: 45px;
+  display: flex;
+  justify-content: center;
+}
+.nameProfilUser .nameUser {
+  font-weight: bold;
+  margin-left: 50px;
+  text-transform: uppercase;
+}
+.nameProfilUser img {
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+}
+
+.btnLog {
+  position: absolute;
+  margin-left: 50px;
+  text-decoration: none;
+  color: #0b8000;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.btnLog2 {
+  position: absolute;
+  margin-left: 100px;
+  text-decoration: none;
+  color: #ff0000;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.titleLogin {
+  margin-top: 80px;
+  font-size: 4.5rem;
+}
+
+/* Style du formulaire */
+.login {
+  max-width: 400px;
+  /* margin: 0 auto; */
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7215686275);
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  margin: auto;
+  margin-top: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Style des étiquettes */
+.login label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Style des champs de texte */
+.login input {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style du bouton */
+.login button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2e5830;
+}
+
+table {
+  width: 100%;
+}
+
+thead > tr > th {
+  padding: 8px;
+  background-color: #f0f0f4;
+  font-weight: bold;
+  text-align: left;
+  text-align: center;
+}
+
+tbody > tr > td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px dashed;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6039215686);
+  font-weight: bold;
+}
+tbody > tr > td a {
+  width: 20px;
+  height: 40px;
+}
+tbody > tr > td a img {
+  width: 30px;
+  cursor: pointer;
+}
+
+h4 {
+  text-align: center;
+  color: #fff;
+  font-size: 4rem;
+  margin-top: 40px;
+}
+
+#listUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid red;
+}
+#listUser div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5529411765);
+}
+#listUser div a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 2.5rem;
+  color: rgb(179, 255, 0);
+}
+#listUser div img {
+  width: 450px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 80px;
+  margin-top: 150px;
+}
+main .AjtImgProfil {
+  padding: 40px 80px;
+  display: inline-block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6549019608);
+}
+main .AjtImgProfil div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2px;
+  font-size: 2rem;
+  font-family: "Spectral";
+}
+main .AjtImgProfil div button {
+  width: 150px;
+  height: 35px;
+  margin-top: 40px;
+  color: #000;
+  border-radius: 4px;
+  font-weight: bold;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-family: "Spectral";
+}
+
+.mt-5 {
+  font-family: "Spectral";
+}
+
+.arboPageDetail {
+  color: #fff;
+}
+
+.product-title {
+  color: #fff;
+}
+
+.price {
+  color: #fff;
+}
+
+.boiteSaisieCommentaire {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+.boiteSaisieCommentaire label {
+  color: #fff;
+  font-size: 1.4rem;
+  font-family: "Spectral";
+}
+.boiteSaisieCommentaire textarea {
+  width: 700px;
+  height: 200px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.5058823529);
+  padding: 10px;
+}
+
+.container-commentaire {
+  text-align: center;
+  margin-top: 40px;
+  padding: 5px;
+}
+.container-commentaire .commentaire {
+  color: #fff;
+  font-family: "Spectral";
+  font-size: 1.2rem;
 }
 
 /*# sourceMappingURL=style.css.map */

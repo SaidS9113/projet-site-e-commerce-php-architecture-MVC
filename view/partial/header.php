@@ -8,12 +8,27 @@ $isLoggedIn = isset($_SESSION['user']); ?>
         <p>Découvrez nos voitures de sport</p>
     </div>
     <header>
-        <nav>
+        <?php if ($isLoggedIn) : ?>
 
+            <div class="nameProfilUser">
+            
+                    <img src="<?= '/upload/' . $_SESSION['user']['photo_filename'] ?>" width="50" />
+                    <span class="nameUser"><?= ($_SESSION['user']['email']) ?></span>
+            </div>
+           
+            <a href="/ctrl/login/logout.php" class="btnLog2">Deconnexion</a>
+            
+        <?php else : ?>
+          
+           
+            
+        <?php endif; ?>
+        <nav>
             <ul>
+                <div class="flexNav">
                 <li><a href="/ctrl/accueil.php">Accueil</a></li>
                 <li><a href="/ctrl/article.php">Véhicules</a></li>
-
+                </div>
                 <?php if ($isLoggedIn && $_SESSION['user']['idRole'] == '10') : ?> <!-- cache le lien Gestion Aministrateur si l'utilisateur n'a pas le role admin -->
                     <li><a href="/ctrl/add-article/add-display.php">AjoutVehicule</a></li>
                 <?php endif; ?>
@@ -34,17 +49,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
         </nav>
 
     </header>
-    <?php if ($isLoggedIn) : ?>
-        <div class="boiteDeconnexion">
-            <p id="helloUser">
-                <img src="<?= '/upload/' . $_SESSION['user']['photo_filename'] ?>" width="50" />
-                <?= ($_SESSION['user']['email']) ?>
-            </p>
-        </div>
-        <a href="/ctrl/login/logout.php" class="btnLog2">Deconnexion</a>
-    <?php else : ?>
-        <a href="/ctrl/login/display.php" class="btnLog">Connexion</a>
-    <?php endif; ?>
+
 </body>
 
 </html>

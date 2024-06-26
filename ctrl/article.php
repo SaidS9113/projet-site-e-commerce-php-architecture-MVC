@@ -4,7 +4,7 @@ $titreSite = "SportCard";
 session_start();
 
 // Définit les clés de dictionnaire de la page
-$pageTitle = 'Boutique';
+$pageTitle = 'Article des véhicules';
 
 // Ouvre une connexion à la BDD
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';

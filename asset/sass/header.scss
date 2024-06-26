@@ -12,31 +12,31 @@
 header {
     padding: 20px;
     border-bottom: 5px solid #ffffff;
-
     nav {
         display: flex;
         align-items: center;
         ul {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             margin: auto;
-            width: 850px;
-
+            width: 950px;
+            gap: 50px;
+            .flexNav {
+                display: flex;
+                justify-content: space-between;
+                width: 210px;
+               
+            }
             li {
                 display: flex;
-
                 a {
                     color: #fff;
                     text-decoration: none;
                     font-weight: 600;
                     font-size: 1.2rem;
                 }
-
-
             }
-
         }
-
         .boiteIcons {
             width: 75px;
             display: flex;

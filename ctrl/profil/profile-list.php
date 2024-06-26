@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
 
 session_start();
 
-$pageTitle = 'Liste des profils';
+$pageTitle = "Liste des photos d'utlisateur ";
 
 $db = getConnection($dbConfig);
 $query = 'SELECT * FROM user';
@@ -16,3 +16,4 @@ $listUser = $statement->fetchAll(PDO::FETCH_ASSOC);
 include $_SERVER['DOCUMENT_ROOT'] . '/view//header.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/view/profil/profile-list.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/footer.php';
+

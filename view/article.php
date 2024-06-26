@@ -28,8 +28,8 @@ $filteredVehicules = array_filter($listVehicule, function($vehicule) use ($selec
 <section class="container-product">
 <?php foreach ($filteredVehicules as $vehicule) { ?>
     <article class="product">
-        <a href="/ctrl/articleDetail.php"><img class="image" src="../upload/<?= $vehicule['photo_filename'] ?>" alt=""></a>
-        <a href="/ctrl/articleDetail.php"><h3 class="title"><?= $vehicule['nom'] ?></h3></a>
+        <a href="/ctrl/pageDetail.php"><img class="image" src="../upload/<?= $vehicule['photo_filename'] ?>" alt=""></a>
+        <a href="/ctrl/pageDetail.php"><h3 class="title"><?= $vehicule['nom'] ?></h3></a>
         <span class="price"><?= $vehicule['price'] ?>€</span>
     </article>
 <?php } ?>
