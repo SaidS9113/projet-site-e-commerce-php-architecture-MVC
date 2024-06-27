@@ -13,6 +13,7 @@
     color: #fff;
 }
 
+.formCommentaire{
 .boiteSaisieCommentaire {
    
     display: flex;
@@ -36,11 +37,35 @@
     
 }
 
+.boiteAjtCommentaire{
+    text-align: center;
+    button{
+        width: 150px;
+        height: 35px;
+        margin-top: 20px;
+        color: #000;
+        border-radius: 4px;
+        font-weight: bold;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        font-family: 'Spectral';
+    }
+}
+
+}
 .container-commentaire{
    
     text-align: center;
     margin-top: 40px;
     padding: 5px;
+
+    .user-commentaire{
+        color: #ff0000;
+    }
+    .date-commentaire{
+        color: #fff;
+    }
 .commentaire{
     color: #fff;
     font-family: 'Spectral';

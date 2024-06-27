@@ -390,18 +390,18 @@ main .AjtImgProfil div button {
   color: #fff;
 }
 
-.boiteSaisieCommentaire {
+.formCommentaire .boiteSaisieCommentaire {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 5px;
 }
-.boiteSaisieCommentaire label {
+.formCommentaire .boiteSaisieCommentaire label {
   color: #fff;
   font-size: 1.4rem;
   font-family: "Spectral";
 }
-.boiteSaisieCommentaire textarea {
+.formCommentaire .boiteSaisieCommentaire textarea {
   width: 700px;
   height: 200px;
   border: none;
@@ -409,11 +409,32 @@ main .AjtImgProfil div button {
   background-color: rgba(255, 255, 255, 0.5058823529);
   padding: 10px;
 }
+.formCommentaire .boiteAjtCommentaire {
+  text-align: center;
+}
+.formCommentaire .boiteAjtCommentaire button {
+  width: 150px;
+  height: 35px;
+  margin-top: 20px;
+  color: #000;
+  border-radius: 4px;
+  font-weight: bold;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-family: "Spectral";
+}
 
 .container-commentaire {
   text-align: center;
   margin-top: 40px;
   padding: 5px;
+}
+.container-commentaire .user-commentaire {
+  color: #ff0000;
+}
+.container-commentaire .date-commentaire {
+  color: #fff;
 }
 .container-commentaire .commentaire {
   color: #fff;

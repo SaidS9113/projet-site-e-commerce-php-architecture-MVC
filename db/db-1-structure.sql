@@ -41,7 +41,7 @@ CREATE TABLE vehicule (
 CREATE TABLE commentaire (
     id INT PRIMARY KEY AUTO_INCREMENT
     ,contenu TEXT NOT NULL
-    ,date DATETIME NOT NULL
+    ,date TIMESTAMP NOT NULL
     ,idVehicule INT
     ,idUser INT
 );

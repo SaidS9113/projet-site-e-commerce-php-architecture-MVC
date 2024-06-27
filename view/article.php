@@ -16,7 +16,7 @@
 
     <?php
 // Définir les IDs des véhicules que vous voulez afficher
-$selectedIds = [6, 5, 4]; // Remplacez par les IDs des véhicules que vous voulez afficher
+$selectedIds = [28 , 6, 5, 4]; // Remplacez par les IDs des véhicules que vous voulez afficher
 
 // Filtrer la liste des véhicules pour ne garder que ceux avec les IDs spécifiés
 $filteredVehicules = array_filter($listVehicule, function($vehicule) use ($selectedIds) {
@@ -25,11 +25,12 @@ $filteredVehicules = array_filter($listVehicule, function($vehicule) use ($selec
 ?>
 
 <h1 class="title-product"><?= $pageTitle ?></h1>
+
 <section class="container-product">
 <?php foreach ($filteredVehicules as $vehicule) { ?>
     <article class="product">
-        <a href="/ctrl/pageDetail.php"><img class="image" src="../upload/<?= $vehicule['photo_filename'] ?>" alt=""></a>
-        <a href="/ctrl/pageDetail.php"><h3 class="title"><?= $vehicule['nom'] ?></h3></a>
+        <a href="/ctrl/add-commentaire/pageDetail.php"><img class="image" src="../upload/<?= $vehicule['photo_filename'] ?>" alt=""></a>
+        <a href="/ctrl/add-commentaire/pageDetail.php"><h3 class="title"><?= $vehicule['nom'] ?></h3></a>
         <span class="price"><?= $vehicule['price'] ?>€</span>
     </article>
 <?php } ?>

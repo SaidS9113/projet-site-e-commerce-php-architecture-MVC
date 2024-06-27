@@ -11,7 +11,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="stylesheet" href="../../asset/css/style.css">
     <title><?= $titreSite ?>| Article</title>
 </head>
 </head>
@@ -29,9 +29,9 @@
     ?>
     <section class="container sproduct my-5 pt-0">
         <?php foreach ($filteredVehicules as $vehicule) { ?>
-            <div class="row mt-5">
+            <div style="border-bottom: 2px solid #fff" class="row mt-5">
                 <div class="col-lg-5 col-md-12 col-12">
-                    <img class="img-fluid w-100" src="../upload/<?= $vehicule['photo_filename'] ?>" class="small-img" alt="">
+                    <img class="img-fluid w-100" src="../../upload/<?= $vehicule['photo_filename'] ?>" class="small-img" alt="">
 
                     <div class="small-img-group">
                         <div class="small-img-col">
@@ -58,25 +58,29 @@
 
                 </div>
 
-
+                <?php } ?>
 
             </div>
             <h4 class="mt-5 mb-5">Commentaire</h4>
-            <form action="">
+            
+            <form class="formCommentaire" action="/ctrl/add-commentaire/add.php" method="post" enctype="multipart/form-data">
             <div class="boiteSaisieCommentaire">
                 <label for="label">Donnez votre avis sur le véhicule</label>
                 
-                <textarea name="commentaire" id="" cols="30" rows="10" placeholder="Veuillez saisir un commentaire"></textarea>
+                <textarea  type="text" name="contenu" id="contenu" cols="30" rows="10" placeholder="Veuillez saisir un commentaire"></textarea>
             </div>
+            <div class="boiteAjtCommentaire">
+                <button type="submit">Valider</button>
+            </div>
+
             </form>
+            <?php foreach ($listCommentaire as $commentaire) { ?>
             <div class="container-commentaire">
-            <span class="commentaire">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, sint. Nobis ipsam est, autem voluptates id dolorem eaque? Nam repellat totam et. Nesciunt, iure voluptatibus ab enim neque alias at. Ipsum aliquam dolorem eius tempore repellendus, porro libero, officiis illum non facere ipsa. Commodi perspiciatis quos, quisquam fuga maiores, dignissimos officiis, rem et nobis porro incidunt illum consequuntur aperiam iure. Ratione impedit harum ad obcaecati, nobis alias fuga facilis architecto quaerat. Maiores, explicabo est. Omnis accusantium repellendus autem ad harum aliquid sint voluptas exercitationem, quas, provident iusto nostrum in libero?</span>
-            </div>
-            </div>
+                <h5 class="user-commentaire"><?=$commentaire ['idUser']?> <span class="date-commentaire"> <?= $commentaire['date'] ?></span><span></span></h5>
+                <p class="commentaire"><?= $commentaire['contenu'] ?></p>
             </div>
         <?php } ?>
     </section>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 </body>
 
