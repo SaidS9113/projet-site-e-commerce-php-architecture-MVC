@@ -47,4 +47,3 @@ function getRole(string $code, PDO $db): ?array
     // Si aucun rôle n'est trouvé, retourne null
     return $role ?: null;
 }
-?>

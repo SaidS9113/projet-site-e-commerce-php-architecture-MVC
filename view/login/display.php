@@ -32,28 +32,6 @@
         <div class="submit">
             <button class="btn-connexion" type="submit">Connexion</button>
         </div>
-        <div style="margin-top: 15px;" class="inscription">
-            <a href="/ctrl/inscription/add-display.php" style="text-decoration: none"><button class="btn-inscription" type="button">Inscription</button></a>
-        </div>
-        <div class="error-message">
-            <?php
-            session_start(); // ca initialise une session et la stock ou la reprend si elle existe déja dans les cookies. c'est grace à cette fonction qu'on peut utiliser la variable session
-            // message du formulaire de login ca affiche le contenue de "error"
-            if (isset($_SESSION['error'])) { // isset verifie si ($_SESSION['error']) est pas null
-                echo '<p class= "error-message">' . $_SESSION['error'] . '</p>';
-                unset($_SESSION['error']); // unset ca retire ($_SESSION['error']) de la session pour supprimer le message d'érreur de la session
-            }
-
-            // message du formulaire d'inscription ca affiche le contenu de "sucess" ou "error"
-            if (isset($_SESSION['success'])) { // ca verifie s'il y a le message de succès dans la session
-                echo '<p class="messageInscription">' . $_SESSION['success'] . '</p>'; // afiche
-                unset($_SESSION['success']); // supprime le message de succès de la session
-            } elseif (isset($_SESSION['error'])) { // ca vérifie s'il y a un message d'erreur dans la session
-                echo '<p class="error-message">' . $_SESSION['error'] . '</p>'; // affiche
-                unset($_SESSION['error']); // supprime le message d'erreur de la session
-            }
-            ?>
-        </div>
     </form>
 </body>
 

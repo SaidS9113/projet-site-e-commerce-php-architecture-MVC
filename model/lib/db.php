@@ -8,6 +8,7 @@
  * 
  * @return PDO Connexion à la base.
  */
+ //Function de connexion
 function getConnection(array $params) : PDO
 {
     $dataSourceName = 'mysql:host=' . $params['host'] . ';port=' . $params['port'] . ';dbname=' . $params['dbname'];

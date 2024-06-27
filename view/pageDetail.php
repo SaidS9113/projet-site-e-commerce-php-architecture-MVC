@@ -17,7 +17,7 @@
 </head>
 
 <body class="bodyArticleDetail">
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/headerBootstraps.php' ?>
     <?php
     // Définir les IDs des véhicules que vous voulez afficher
     $selectedIds = [4]; // Remplacez par les IDs des véhicules que vous voulez afficher
@@ -35,16 +35,16 @@
 
                     <div class="small-img-group">
                         <div class="small-img-col">
-                            <img src="image1b/MielRose.jpg" width="100%" class="small-img" alt="">
+                            <img src="" width="100%" class="small-img" alt="">
                         </div>
                         <div class="small-img-col">
-                            <img src="image1b/MielRose.jpg" width="100%" class="small-img" alt="">
+                            <img src="" width="100%" class="small-img" alt="">
                         </div>
                         <div class="small-img-col">
-                            <img src="image1b/MielRose.jpg" width="100%" class="small-img" alt="">
+                            <img src="" width="100%" class="small-img" alt="">
                         </div>
                         <div class="small-img-col">
-                            <img src="image1b/MielRose.jpg" width="100%" class="small-img" alt="">
+                            <img src="" width="100%" class="small-img" alt="">
                         </div>
                     </div>
                 </div>

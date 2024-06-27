@@ -1,29 +1,16 @@
 <?php
-
-// Liste les Marins
-
-// function list($id, $matricule, $nom, $prenom, PDO $db) : bool
-// {
-//     // Prépare la requête
-// $query = ' SELECT marin.id, marin.matricule, marin.nom, marin.prenom';
-// $query .= ' FROM marin';
-// $statement = $dbConnection->prepare($query);
-
-// // Exécute la requête
-// $successOrFailure = $statement->execute();
-// $listMarin = $statement->fetchAll(PDO::FETCH_ASSOC);
-// return $successOrFailure;
-// }
 /**
- * Crée un Marin.
+ * Crée un Véhicule.
  * 
- * @param string matricule Matricule.
- * @param string nom Nom de famille, corse de préférence.
- * @param string prenom Prénom.
+ * @param string nom.
+ * @param string marque.
+ * @param string price.
  * @param PDO db Connexion à la BDD.
  * @return boolean Succès ou échec. 
  * 
  */
+
+ //Function pour crée un véhicule
 function create(string $nom, string $marque, string $price, string $fileName, PDO $db) : bool
 {
     // Prépare la requête

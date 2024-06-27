@@ -4,13 +4,13 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 
 <body class="bodyAccueil">
 
-    <div class="barrePub">
+    <div class="barrePubBootstraps">
         <p>Découvrez nos voitures de sport</p>
     </div>
     <header>
         <?php if ($isLoggedIn) : ?>
 
-            <div class="nameProfilUser">
+            <div class="nameProfilUserBootstraps">
             
                     <img src="<?= '/upload/' . $_SESSION['user']['photo_filename'] ?>" width="50" />
                     <span class="nameUser"><?= ($_SESSION['user']['email']) ?></span>

@@ -1,9 +1,10 @@
 <?php
+// Sauvegarde de maintenance de session
+session_start();
+
 include $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/model/lib/user.php';
-
-session_start();
 
 // Lis les informations saisies dans le formulaire
 $form = [];
@@ -38,7 +39,7 @@ if ($user == null) {
     // Modifie la redirection selon que l'Utilisateur soit admin ou pas
     $isAdmin = $_SESSION['user']['idRole'] == 10;
     if ($isAdmin) {
-        header('Location: ' . '/ctrl/login/welcomeAdmin.php');
+        header('Location: ' . '/ctrl/add-article/list.php');
         exit();
     }
     header('Location: ' . '/ctrl/accueil.php');

@@ -1,10 +1,11 @@
 <?php
+// Sauvegarde de maintenance de session
+session_start();
 
+//Ouvre une connexion à  la base de données
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/article.php';
-
-// Ajoute un Marin
 
 // Lis les informations depuis la requête HTTP
 $vehicule = [];
@@ -13,21 +14,17 @@ $vehicule['marque'] = $_POST['marque'];
 $vehicule['price'] = $_POST['price'];
 $vehicule['photo_filename'] = $_FILES['file']['name'];
 
-// Crée le Marin
+// Crée une colonne dans la table voiture
 $dbConnection = getConnection($dbConfig);
 $isSuccess = create($vehicule['nom'], $vehicule['marque'], $vehicule['price'], $vehicule['photo_filename'], $dbConnection);
 
-
-
-session_start();
-
-
-
+//Pour les messages d'erreurs
 $_SESSION['msg']['info'] = [];
 $_SESSION['msg']['error'] = [];
 
 $uploadDirectory = $_SERVER['DOCUMENT_ROOT'] . '/upload/';
 
+//Déclaration pour mettre la liste des formats images acceptées pour uppload
 const MY_IMG_PNG = 'image/png';
 const MY_IMG_JPG = 'image/jpg';
 const MY_IMG_SVG = 'image/svg+xml';
@@ -61,7 +58,7 @@ if ($hasErrors) {
 
 
 
-// Prépare la requête SQL pour insérer un nouvel utilisateur
+// Prépare la requête SQL pour insérer une nouvelle colonne dans la table véhicule
 $db = getConnection($dbConfig);
 $query = 'INSERT INTO vehicule (nom, marque, price, idCategorie, idUser, photo_filename) VALUES (:nom, :marque, :price, :idCategorie, :idUser, :photo_filename)';
 $statement = $db->prepare($query);
@@ -91,14 +88,11 @@ $statement->bindParam(':photo_filename', $fileName);
 // $successOrFailure = $statement->execute();
 // $id = $db->lastInsertId();
 
-
 // Copie aussi le fichier d'avatar dans un répertoire
 $uploadPath = $uploadDirectory . basename($fileName);
 $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 // Ajoute un flash-message
 $_SESSION['msg']['info'][] = 'Le véhicule a été ajouté.';
-
-
 
 // Rends la vue
 include $_SERVER['DOCUMENT_ROOT'] . '/view/uploadImage.php';

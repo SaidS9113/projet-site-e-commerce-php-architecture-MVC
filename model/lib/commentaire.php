@@ -1,19 +1,4 @@
 <?php
-
-// Liste les Marins
-
-// function list($id, $matricule, $nom, $prenom, PDO $db) : bool
-// {
-//     // Prépare la requête
-// $query = ' SELECT marin.id, marin.matricule, marin.nom, marin.prenom';
-// $query .= ' FROM marin';
-// $statement = $dbConnection->prepare($query);
-
-// // Exécute la requête
-// $successOrFailure = $statement->execute();
-// $listMarin = $statement->fetchAll(PDO::FETCH_ASSOC);
-// return $successOrFailure;
-// }
 /**
  * Crée un Marin.
  * 
@@ -24,6 +9,7 @@
  * @return boolean Succès ou échec. 
  * 
  */
+ //Function pour crée un véhicule
 function create(string $contenu, string $date, $idUser, PDO $db) : bool
 {
     // Prépare la requête
@@ -32,9 +18,6 @@ function create(string $contenu, string $date, $idUser, PDO $db) : bool
     $statement->bindParam(':contenu', $contenu);
     $statement->bindParam(':date', $date);
     $statement->bindParam(':idUser', $idUser);
-   
-   
-
     // Exécute la requête
     $successOrFailure = $statement->execute();
 

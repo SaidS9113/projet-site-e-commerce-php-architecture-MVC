@@ -19,22 +19,22 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 <h4 class="titleAjtVehicule"><?= $pageTitle ?></h4>
     <main class="mainAjtVehicule">
         <form class="formAjtVehicule" action="/ctrl/add-article/add.php" method="post" enctype="multipart/form-data">
-            <!-- Matricule -->
+             <!-- Nom -->
             <div class="boiteAjtVehicule">
                 <label for="label">Nom</label>
                 <input type="text" name="nom" id="nom">
             </div>
-            <!-- Nom -->
+        <!-- Matricule -->
             <div class="boiteAjtVehicule">
                 <label for="code">Marque</label>
                 <input type="text" name="marque" id="marque">
             </div>
-            <!-- Prénom -->
+            <!-- Price -->
             <div class="boiteAjtVehicule">
                 <label for="code">Price</label>
                 <input type="text" name="price" id="price">
             </div>
-
+         <!-- Update une image -->
             <div class="boiteAjtVehicule">
             <label for="file">Fichier d'image d'article</label>
             <input type="file" id="file" name="file">

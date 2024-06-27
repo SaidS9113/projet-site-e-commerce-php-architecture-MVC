@@ -19,7 +19,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     <link rel="stylesheet" href="/asset/css/style.css">
     <title>Site e-commerce | login</title>
 </head>
-<body>
+<body class="bodyProfilList">
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
     <h4><?=$pageTitle?></h4>
     <main>

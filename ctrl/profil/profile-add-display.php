@@ -1,10 +1,11 @@
 <?php
-
+// Sauvegarde de maintenance de session
 session_start();
 
-// Liste les clés de dictionnaire de la page
+//Variable du titre
 $pageTitle = 'Ajouter un nouveau profil';
 
+//Rends la vu
 include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/view/profil/profile-add.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/view/_footer.php';
+

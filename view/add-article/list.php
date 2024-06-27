@@ -19,7 +19,6 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
     <main>
         <table>
-            <!-- Entêtes de colonne écrites 'en dur' -->
             <thead>
                 <tr>
                     <th>id</th>
@@ -43,9 +42,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
                 <?php } ?>
             </tbody>
         </table>
-    </main>
-
- 
+                </main>
 </body>
 
 </html>

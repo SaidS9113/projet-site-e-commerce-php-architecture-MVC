@@ -1,6 +1,6 @@
 <?php
-// Supprime un marin
-// Lis les informations depuis la requête HTTP (id du Marin)
+// Supprime un véhicule
+// Lis les informations depuis la requête HTTP (id du véhicule)
 $idVehicule = $_GET['id'];
 // Ouvre une connexion à la Base de données
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';

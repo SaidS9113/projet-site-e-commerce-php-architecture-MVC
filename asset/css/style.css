@@ -29,6 +29,14 @@
   background-repeat: no-repeat;
 }
 
+.bodyProfilList {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(20, 20, 20, 0.9)), url(/asset/img/cardAccueil.webp);
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 h2 {
   text-align: center;
   margin-top: 300px;
@@ -45,6 +53,64 @@ h2 {
   font-family: "Spectral", serif;
   border-bottom: 4px solid #ffffff;
   border-top: 2px solid #ffffff;
+}
+
+header {
+  padding: 20px;
+  border-bottom: 5px solid #ffffff;
+}
+header nav {
+  display: flex;
+  align-items: center;
+}
+header nav ul {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 950px;
+  gap: 50px;
+}
+header nav ul .flexNav {
+  display: flex;
+  justify-content: space-between;
+  width: 210px;
+}
+header nav ul li {
+  display: flex;
+}
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+header nav .boiteIcons {
+  width: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  right: 0;
+  margin-right: 100px;
+}
+header nav .boiteIcons i {
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.barrePubBootstraps {
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  background-color: #000;
+  font-family: "Spectral", serif;
+  border-bottom: 4px solid #ffffff;
+  border-top: 2px solid #ffffff;
+}
+.barrePubBootstraps p {
+  margin-top: 10px;
 }
 
 header {
@@ -138,6 +204,52 @@ header nav .boiteIcons i {
   font-family: "Spectral";
 }
 
+@media only screen and (min-width: 1024px) {
+  .title-product {
+    text-align: center;
+    font-size: 5rem;
+    color: #fff;
+    margin-top: 40px;
+  }
+  .container-product {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 35% 35%;
+    margin: auto !important;
+    gap: 30px;
+    margin-top: 60px;
+    padding: 40px;
+  }
+  .container-product .product {
+    width: 500px;
+    height: 400px;
+    text-align: center;
+    background-color: #000;
+  }
+  .container-product .product a {
+    text-decoration: none;
+  }
+  .container-product .product .image {
+    width: 500px;
+    height: 300px;
+    cursor: pointer;
+  }
+  .container-product .product .title {
+    color: #fff;
+    font-size: 2rem;
+    margin-top: 10px;
+    font-family: "Spectral";
+    cursor: pointer;
+  }
+  .container-product .product .price {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    font-weight: bold;
+    font-family: "Spectral";
+  }
+}
 .titleAjtVehicule {
   text-align: center;
   font-size: 4rem;
@@ -203,6 +315,23 @@ header nav .boiteIcons i {
   text-transform: uppercase;
 }
 .nameProfilUser img {
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+}
+
+.nameProfilUserBootstraps {
+  position: absolute;
+  top: 65px;
+  display: flex;
+  justify-content: center;
+}
+.nameProfilUserBootstraps .nameUser {
+  font-weight: bold;
+  margin-left: 50px;
+  text-transform: uppercase;
+}
+.nameProfilUserBootstraps img {
   border-radius: 100%;
   width: 50px;
   height: 50px;

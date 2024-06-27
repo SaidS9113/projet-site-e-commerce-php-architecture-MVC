@@ -21,7 +21,7 @@ INSERT INTO categorie(nom) VALUES
 INSERT INTO vehicule(nom, marque, price, idCategorie, idUser) VALUES
    (' McLaren Artura Spider', 'McLaren', 248800.00, 1, 80)
    ,(' Tesla Model X Plaid', 'Tesla', 114990.00, 2, 90)
-   ,('Porsche Taycan Turbo S Sport Turismo', 'Porche', 216197.00, 3, 100)
+   ,('Porsche Taycan Turbo S', 'Porche', 216197.00, 3, 100)
 ;     
 
 INSERT INTO commentaire (contenu, date, idVehicule, idUser) VALUES

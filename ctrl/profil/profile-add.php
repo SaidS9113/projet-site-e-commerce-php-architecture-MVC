@@ -1,15 +1,17 @@
 <?php
+// Sauvegarde de maintenance de session
+session_start();
 
+//Connexion à la BDD
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
-
-session_start();
 
 $_SESSION['msg']['info'] = [];
 $_SESSION['msg']['error'] = [];
 
 $uploadDirectory = $_SERVER['DOCUMENT_ROOT'] . '/upload/';
 
+//Déclaration pour mettre la liste des formats images acceptées pour uppload
 const MY_IMG_PNG = 'image/png';
 const MY_IMG_JPG = 'image/jpeg';
 const MY_IMG_SVG = 'image/svg+xml';
@@ -74,4 +76,4 @@ $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 $_SESSION['msg']['info'][] = 'Le Profil a été créé.';
 
 // Redirige vers le détail du Profil créé
-header('Location: ' . '/ctrl/profil/profile.php?id=' . $_SESSION['user']['id']);
+header('Location: ' . '/ctrl/profil/profile-list.php');
