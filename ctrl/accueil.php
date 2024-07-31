@@ -3,7 +3,7 @@
 session_start();
 
 //Variable du titre
-$titreSite = "SportCard";
+$titreSite = "MielNaturel";
 
 // Rends la vue
 include $_SERVER['DOCUMENT_ROOT'] . '/view/accueil.php';

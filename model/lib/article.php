@@ -11,13 +11,13 @@
  */
 
  //Function pour crée un véhicule
-function create(string $nom, string $marque, string $price, string $fileName, PDO $db) : bool
+function create(string $name, string $description, string $price, string $fileName, PDO $db) : bool
 {
     // Prépare la requête
-    $query = 'INSERT INTO vehicule (nom, marque, price, photo_filename) VALUES (:nom, :marque, :price, :photo_filename)';
+    $query = 'INSERT INTO product (name, description, price, photo_filename) VALUES (:name, :description, :price, :photo_filename)';
     $statement = $db->prepare($query);
-    $statement->bindParam(':nom', $nom);
-    $statement->bindParam(':marque', $marque);
+    $statement->bindParam(':name', $name);
+    $statement->bindParam(':description', $description);
     $statement->bindParam(':price', $price);
     $statement->bindParam(':photo_filename', $fileName);
 

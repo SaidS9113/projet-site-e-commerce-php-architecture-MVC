@@ -8,15 +8,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/article.php';
 
 // Lis les informations depuis la requête HTTP
-$vehicule = [];
-$vehicule['nom'] = $_POST['nom'];
-$vehicule['marque'] = $_POST['marque'];
-$vehicule['price'] = $_POST['price'];
-$vehicule['photo_filename'] = $_FILES['file']['name'];
+$product = [];
+$product['name'] = $_POST['nom'];
+$product['description'] = $_POST['marque'];
+$product_option['price'] = $_POST['price'];
+$product['photo_filename'] = $_FILES['file']['name'];
 
 // Crée une colonne dans la table voiture
 $dbConnection = getConnection($dbConfig);
-$isSuccess = create($vehicule['nom'], $vehicule['marque'], $vehicule['price'], $vehicule['photo_filename'], $dbConnection);
+$isSuccess = create($product['name'], $product['description'], $product_option['price'], $product['photo_filename'], $dbConnection);
 
 //Pour les messages d'erreurs
 $_SESSION['msg']['info'] = [];
@@ -60,14 +60,14 @@ if ($hasErrors) {
 
 // Prépare la requête SQL pour insérer une nouvelle colonne dans la table véhicule
 $db = getConnection($dbConfig);
-$query = 'INSERT INTO vehicule (nom, marque, price, idCategorie, idUser, photo_filename) VALUES (:nom, :marque, :price, :idCategorie, :idUser, :photo_filename)';
+$query = 'INSERT INTO product (name, description, price, idProduct_option, idUser, photo_filename) VALUES (:name, :description, :price, :idProduct_option, :idUser, :photo_filename)';
 $statement = $db->prepare($query);
 
 // Lie les paramètres à la requête préparée
-$statement->bindParam(':nom', $nom);
-$statement->bindParam(':marque', $marque);
+$statement->bindParam(':name', $nom);
+$statement->bindParam(':description', $marque);
 $statement->bindParam(':price', $price);
-$statement->bindParam(':idCategorie', $idCategorie);
+$statement->bindParam(':idproduct_option', $idCategorie);
 $statement->bindParam(':idUser', $idUser);
 $statement->bindParam(':photo_filename', $fileName);
 
@@ -92,7 +92,7 @@ $statement->bindParam(':photo_filename', $fileName);
 $uploadPath = $uploadDirectory . basename($fileName);
 $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 // Ajoute un flash-message
-$_SESSION['msg']['info'][] = 'Le véhicule a été ajouté.';
+$_SESSION['msg']['info'][] = 'Le produit a été ajouté.';
 
 // Rends la vue
 include $_SERVER['DOCUMENT_ROOT'] . '/view/uploadImage.php';

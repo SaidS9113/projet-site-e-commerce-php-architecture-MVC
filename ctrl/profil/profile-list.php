@@ -7,7 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
 
 //Variable pour le titre
-$pageTitle = "Liste des photos d'utlisateur ";
+$pageTitle = "Liste des photos des utilisateurs ";
 
 // Prépare la requête en selectionnant toute les colonnes dans la table user
 $db = getConnection($dbConfig);

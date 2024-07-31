@@ -1,9 +1,4 @@
--- - Supprime la base de données si elle existe déjà
--- - Crée la base de données
--- - Mentionne le nom de la base de données à utiliser pour exécuter les commandes SQL qui suivent
-DROP DATABASE IF EXISTS `ECF-SportCard-SSD`;
-CREATE DATABASE IF NOT EXISTS `ECF-SportCard-SSD`;
-USE `ECF-SportCard-SSD`;
+
 -- -------------
 -- TABLES
 -- -------------
@@ -13,10 +8,6 @@ CREATE TABLE role (
     ,label VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE categorie (
-    id INT PRIMARY KEY AUTO_INCREMENT
-    ,nom VARCHAR(100) NOT NULL
-);
 
 CREATE TABLE user (
     id INT PRIMARY KEY AUTO_INCREMENT
@@ -27,24 +18,33 @@ CREATE TABLE user (
     ,photo_filename varchar(255)
 );
 
-CREATE TABLE vehicule (
-    id INT PRIMARY KEY AUTO_INCREMENT
-    ,nom VARCHAR(100) NOT NULL
-    ,marque VARCHAR(100) NOT NULL
-    ,price DECIMAL(10,2) NOT NULL
-    ,idCategorie INT
-    ,idUser INT
-    ,photo longblob
-    ,photo_filename varchar(255)
+
+
+
+CREATE TABLE product (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    image VARCHAR(50),
+    name VARCHAR(250),
+    description TEXT,
 );
 
-CREATE TABLE commentaire (
-    id INT PRIMARY KEY AUTO_INCREMENT
-    ,contenu TEXT NOT NULL
-    ,date TIMESTAMP NOT NULL
-    ,idVehicule INT
-    ,idUser INT
+-- Création de la table options_products
+CREATE TABLE product_option (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idProduct INT NOT NULL,
+    quantity VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL
 );
+
+CREATE TABLE avis (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    content TEXT NOT NULL,
+    date DATETIME NOT NULL,
+    idProduct INT NOT NULL,
+    idUser INT NOT NULL
+);
+
+
 
 ALTER TABLE role
    ADD CONSTRAINT `u_role_code` UNIQUE(code)
@@ -56,15 +56,16 @@ ALTER TABLE user
    ,ADD CONSTRAINT `fk_user_role` FOREIGN KEY(idRole) REFERENCES role(id)
 ;
 
-ALTER TABLE vehicule
-   ADD CONSTRAINT `fk_vehicule_categorie` FOREIGN KEY(idCategorie) REFERENCES categorie(id)
-   ,ADD CONSTRAINT `fk_vehicule_user` FOREIGN KEY(idUser) REFERENCES user(id)
+ALTER TABLE product_option
+   ADD CONSTRAINT `fk_product_option_product` FOREIGN KEY(idProduct) REFERENCES Product(id)
+   ,ADD CONSTRAINT `fk_product_user` FOREIGN KEY(idUser) REFERENCES user(id)
 ;
 
-ALTER TABLE commentaire
-   ADD CONSTRAINT `fk_commentaire_vehicule` FOREIGN KEY(idVehicule) REFERENCES vehicule(id)
-   ,ADD CONSTRAINT `fk_commentaire_user` FOREIGN KEY(idUser) REFERENCES user(id)
+ALTER TABLE avis
+   ADD CONSTRAINT `fk_avis_product` FOREIGN KEY(idProduct) REFERENCES product(id)
+   ,ADD CONSTRAINT `fk_avis_user` FOREIGN KEY(idUser) REFERENCES user(id)
 ;
+
 
 
 
