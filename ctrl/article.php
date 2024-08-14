@@ -6,7 +6,7 @@ session_start();
 $titreSite = "MielNaturel";
 
 // Définit les clés de dictionnaire de la page
-$pageTitle = 'Article des véhicules';
+$pageTitle = 'Boutique';
 
 // Ouvre une connexion à la BDD
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
@@ -14,8 +14,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
 $dbConnection = getConnection($dbConfig);
 
 // Prépare la requête en selectionnant les colonnes dans la table véhicule
-$query = ' SELECT product.id, product.name, product.description, product_option.price, product.photo_filename, product.idProduct_option, product.idUser ';
+$query = ' SELECT product.id, product.name, product.description, product.photo_filename, product.idUser ';
 $query .= ' FROM product';
+$query .= ' LEFT JOIN product_option ON product.id = product_option.idProduct'; // Jointure avec product_option pour obtenir le prix
+
 $statement = $dbConnection->prepare($query);
 
 // Exécute la requête

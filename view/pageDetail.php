@@ -23,12 +23,12 @@
     $selectedIds = [4]; // Remplacez par les IDs des véhicules que vous voulez afficher
 
     // Filtrer la liste des véhicules pour ne garder que ceux avec les IDs spécifiés
-    $filteredVehicules = array_filter($listVehicule, function ($vehicule) use ($selectedIds) {
-        return in_array($vehicule['id'], $selectedIds);
+    $filteredProducts = array_filter($listProduct, function ($product) use ($selectedIds) {
+        return in_array($product['id'], $selectedIds);
     });
     ?>
     <section class="container sproduct my-5 pt-0">
-        <?php foreach ($filteredVehicules as $vehicule) { ?>
+        <?php foreach ($filteredProducts as $product) { ?>
             <div style="border-bottom: 2px solid #fff" class="row mt-5">
                 <div class="col-lg-5 col-md-12 col-12">
                     <img class="img-fluid w-100" src="../../upload/<?= $vehicule['photo_filename'] ?>" class="small-img" alt="">
@@ -53,8 +53,8 @@
 
                 <div class="col-lg-6 col-md-12 col-12">
                     <h6 class="arboPageDetail">Accueil / Véhicule / McLaren</h6>
-                    <h3 class="product-title"><?= $vehicule['nom'] ?></h3>
-                    <h5 class="price" ><?= $vehicule['price'] ?>€</h5>
+                    <h3 class="product-title"><?= $product['nom'] ?></h3>
+                    <h5 class="price" ><?= $product['price'] ?>€</h5>
 
                 </div>
 
@@ -74,10 +74,10 @@
             </div>
 
             </form>
-            <?php foreach ($listCommentaire as $commentaire) { ?>
+            <?php foreach ($listAvis as $avis) { ?>
             <div class="container-commentaire">
-                <h5 class="user-commentaire"><?=$commentaire ['idUser']?> <span class="date-commentaire"> <?= $commentaire['date'] ?></span><span></span></h5>
-                <p class="commentaire"><?= $commentaire['contenu'] ?></p>
+                <h5 class="user-commentaire"><?=$avis ['idUser']?> <span class="date-commentaire"> <?= $avis['date'] ?></span><span></span></h5>
+                <p class="commentaire"><?= $avis['content'] ?></p>
             </div>
         <?php } ?>
     </section>

@@ -26,7 +26,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
             </div>
         <!-- Matricule -->
             <div class="boiteAjtVehicule">
-                <label for="code">Marque</label>
+                <label for="code">Description</label>
                 <input type="text" name="marque" id="marque">
             </div>
             <!-- Price -->

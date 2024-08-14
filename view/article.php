@@ -19,19 +19,19 @@
 $selectedIds = [5 , 7, 4]; // Remplacez par les IDs des véhicules que vous voulez afficher
 
 // Filtrer la liste des véhicules pour ne garder que ceux avec les IDs spécifiés
-$filteredVehicules = array_filter($listVehicule, function($vehicule) use ($selectedIds) {
-    return in_array($vehicule['id'], $selectedIds);
+$filteredProducts = array_filter($listProduct, function($product) use ($selectedIds) {
+    return in_array($product['id'], $selectedIds);
 });
 ?>
 
 <h1 class="title-product"><?= $pageTitle ?></h1>
 
 <section class="container-product">
-<?php foreach ($filteredVehicules as $vehicule) { ?>
+<?php foreach ($filteredProducts as $product) { ?>
     <article class="product">
-        <a href="/ctrl/add-commentaire/pageDetailDisplayList.php"><img class="image" src="../upload/<?= $vehicule['photo_filename'] ?>" alt=""></a>
-        <a href="/ctrl/add-commentaire/pageDetail.php"><h3 class="title"><?= $vehicule['nom'] ?></h3></a>
-        <span class="price"><?= $vehicule['price'] ?>€</span>
+        <a href="/ctrl/add-commentaire/pageDetailDisplayList.php"><img class="image" src="../upload/<?= $product['photo_filename'] ?>" alt=""></a>
+        <a href="/ctrl/add-commentaire/pageDetail.php"><h3 class="title"><?= $product['name'] ?></h3></a>
+        <span class="price"><?= $product_option['price'] ?>€</span>
     </article>
 <?php } ?>
     </article>

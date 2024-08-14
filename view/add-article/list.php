@@ -29,14 +29,14 @@ $isLoggedIn = isset($_SESSION['user']); ?>
             </thead>
 
             <tbody>
-                <?php foreach ($listVehicule as $vehicule) { ?>
+                <?php foreach ($listProduct as $product) { ?>
                     <tr>
-                        <td> <?= $vehicule['id'] ?> </td>
-                        <td><?= $vehicule['nom'] ?></td>
-                        <td><?= $vehicule['marque'] ?></td>
-                        <td><?= $vehicule['price'] ?></td>
+                        <td> <?= $product['id'] ?> </td>
+                        <td><?= $product['nom'] ?></td>
+                        <td><?= $product['marque'] ?></td>
+                        <td><?= $product['price'] ?></td>
                         <td>
-                            <a href="/ctrl/add-article/delete.php?id=<?= $vehicule['id'] ?>" onclick="return confirm('Confirmer la suppression')"><button class="buttonDelete"><img class="iconeCorbeille" src="/asset/img/corbeille (3).png" alt=""></button></a>
+                            <a href="/ctrl/add-article/delete.php?id=<?= $product['id'] ?>" onclick="return confirm('Confirmer la suppression')"><button class="buttonDelete"><img class="iconeCorbeille" src="/asset/img/corbeille (3).png" alt=""></button></a>
                         </td>
                     </tr>
                 <?php } ?>

@@ -15,7 +15,7 @@ function create(string $content, string $date, $idUser, PDO $db) : bool
     // Prépare la requête
     $query = 'INSERT INTO avis (content, date, idUser) VALUES (:contenu, :date, :idUser)';
     $statement = $db->prepare($query);
-    $statement->bindParam(':content', $contenu);
+    $statement->bindParam(':content', $content);
     $statement->bindParam(':date', $date);
     $statement->bindParam(':idUser', $idUser);
     // Exécute la requête

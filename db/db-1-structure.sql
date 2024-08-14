@@ -1,4 +1,9 @@
-
+-- - Supprime la base de données si elle existe déjà
+-- - Crée la base de données
+-- - Mentionne le nom de la base de données à utiliser pour exécuter les commandes SQL qui suivent
+DROP DATABASE IF EXISTS `site-e-commerce-examen-SAID`;
+CREATE DATABASE IF NOT EXISTS `site-e-commerce-examen-SAID`;
+USE `site-e-commerce-examen-SAID`;
 -- -------------
 -- TABLES
 -- -------------
@@ -22,29 +27,31 @@ CREATE TABLE user (
 
 
 CREATE TABLE product (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    image VARCHAR(50),
-    name VARCHAR(250),
-    description TEXT,
+     id INT AUTO_INCREMENT PRIMARY KEY
+     ,name VARCHAR(250)
+     ,description TEXT
+    ,idUser INT
+    ,photo longblob
+    ,photo_filename varchar(255)
 );
 
 -- Création de la table options_products
 CREATE TABLE product_option (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    idProduct INT NOT NULL,
-    quantity VARCHAR(255) NOT NULL,
-    price DECIMAL(10, 2) NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY
+    ,price DECIMAL(10, 2) NOT NULL
+    ,quantity VARCHAR(255) NOT NULL
+    ,idProduct INT NOT NULL
+    
+   
 );
 
 CREATE TABLE avis (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    content TEXT NOT NULL,
-    date DATETIME NOT NULL,
-    idProduct INT NOT NULL,
-    idUser INT NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY
+    ,content TEXT NOT NULL
+    ,date DATETIME NOT NULL
+    ,idProduct INT NOT NULL
+    ,idUser INT NOT NULL
 );
-
-
 
 ALTER TABLE role
    ADD CONSTRAINT `u_role_code` UNIQUE(code)
@@ -56,9 +63,12 @@ ALTER TABLE user
    ,ADD CONSTRAINT `fk_user_role` FOREIGN KEY(idRole) REFERENCES role(id)
 ;
 
+ALTER TABLE product
+   ADD CONSTRAINT `fk_product_user` FOREIGN KEY(idUser) REFERENCES user(id)
+;
+
 ALTER TABLE product_option
    ADD CONSTRAINT `fk_product_option_product` FOREIGN KEY(idProduct) REFERENCES Product(id)
-   ,ADD CONSTRAINT `fk_product_user` FOREIGN KEY(idUser) REFERENCES user(id)
 ;
 
 ALTER TABLE avis
