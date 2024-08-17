@@ -16,7 +16,7 @@
 
     <?php
 // Définir les IDs des véhicules que vous voulez afficher
-$selectedIds = [5 , 7, 4]; // Remplacez par les IDs des véhicules que vous voulez afficher
+$selectedIds = [5]; // Remplacez par les IDs des véhicules que vous voulez afficher
 
 // Filtrer la liste des véhicules pour ne garder que ceux avec les IDs spécifiés
 $filteredProducts = array_filter($listProduct, function($product) use ($selectedIds) {
@@ -31,10 +31,25 @@ $filteredProducts = array_filter($listProduct, function($product) use ($selected
     <article class="product">
         <a href="/ctrl/add-commentaire/pageDetailDisplayList.php"><img class="image" src="../upload/<?= $product['photo_filename'] ?>" alt=""></a>
         <a href="/ctrl/add-commentaire/pageDetail.php"><h3 class="title"><?= $product['name'] ?></h3></a>
-        <span class="price"><?= $product_option['price'] ?>€</span>
+        <div>
+            <p class="description"><?= $product['description'] ?></p>
+        <label for="option">Option</label>
+        <select name="idProduct" id="option" onchange="updatePrice()">
+            <?php foreach ($listProduct as $product) { 
+                // Vérification si la quantité et le prix sont valides
+                if (!empty($product['quantity']) && !empty($product['price'])) { ?>
+                    <option value="<?= $product['price'] ?>" data-quantity="<?= $product['quantity'] ?>">
+                        Quantité : <?= $product['quantity'] ?> 
+                    </option>
+                <?php } 
+            } ?>
+        </select>
+        <span id="price-display" class="price-display">Prix : 0€</span>
+    </div>
     </article>
 <?php } ?>
     </article>
     </section>
+    <script src="/asset/js/selectedOption.js"></script>
 </body>
 </html>

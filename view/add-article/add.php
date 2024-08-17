@@ -22,18 +22,36 @@ $isLoggedIn = isset($_SESSION['user']); ?>
              <!-- Nom -->
             <div class="boiteAjtVehicule">
                 <label for="label">Nom</label>
-                <input type="text" name="nom" id="nom">
+                <input type="text" name="name" id="name">
             </div>
         <!-- Matricule -->
             <div class="boiteAjtVehicule">
                 <label for="code">Description</label>
-                <input type="text" name="marque" id="marque">
+                <input type="text" name="description" id="description">
             </div>
             <!-- Price -->
             <div class="boiteAjtVehicule">
-                <label for="code">Price</label>
-                <input type="text" name="price" id="price">
-            </div>
+    <label for="add_250g">
+        <input type="checkbox" id="add_250g" name="add_250g" value="250g">
+        Ajouter 250g
+    </label>
+    <label for="price_250g">Prix pour 250g :</label>
+    <input type="text" id="price_250g" name="price_250g" step="0.01">
+
+    <label for="add_500g">
+        <input type="checkbox" id="add_500g" name="add_500g" value="500g">
+        Ajouter 500g
+    </label>
+    <label for="price_500g">Prix pour 500g :</label>
+    <input type="text" id="price_500g" name="price_500g" step="0.01">
+
+    <label for="add_1kg">
+        <input type="checkbox" id="add_1kg" name="add_1kg" value="1kg">
+        Ajouter 1kg
+    </label>
+    <label for="price_1kg">Prix pour 1kg :</label>
+    <input type="text" id="price_1kg" name="price_1kg" step="0.01">
+</div>
          <!-- Update une image -->
             <div class="boiteAjtVehicule">
             <label for="file">Fichier d'image d'article</label>

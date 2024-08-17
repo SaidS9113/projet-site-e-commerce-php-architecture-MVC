@@ -23,7 +23,8 @@ $isLoggedIn = isset($_SESSION['user']); ?>
                 <tr>
                     <th>id</th>
                     <th>Nom</th>
-                    <th>Marque</th>
+                    <th>Description</th>
+                    <th>Quantité</th>
                     <th>Price</th>
                 </tr>
             </thead>
@@ -32,11 +33,12 @@ $isLoggedIn = isset($_SESSION['user']); ?>
                 <?php foreach ($listProduct as $product) { ?>
                     <tr>
                         <td> <?= $product['id'] ?> </td>
-                        <td><?= $product['nom'] ?></td>
-                        <td><?= $product['marque'] ?></td>
+                        <td><?= $product['name'] ?></td>
+                        <td><?= $product['description'] ?></td>
+                        <td><?= $product['quantity'] ?></td>
                         <td><?= $product['price'] ?></td>
                         <td>
-                            <a href="/ctrl/add-article/delete.php?id=<?= $product['id'] ?>" onclick="return confirm('Confirmer la suppression')"><button class="buttonDelete"><img class="iconeCorbeille" src="/asset/img/corbeille (3).png" alt=""></button></a>
+                            <a href="/ctrl/add-article/delete.php?id=<?= $product['id'] ?>" onclick="return confirm('Confirmer la suppression')"><button class="buttonDelete"><img class="iconeCorbeille" src="/asset/img/corbeille.png" alt=""></button></a>
                         </td>
                     </tr>
                 <?php } ?>

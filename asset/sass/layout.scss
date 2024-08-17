@@ -4,7 +4,7 @@
     padding: 0;
 }
 .bodyAccueil {
-    background-image: url(/asset/img/cardAccueil.webp);
+    background-image: url(/asset/img/photoPrincipale.jpg);
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -13,7 +13,7 @@
 }
 
 .bodyArticle {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(20, 20, 20, 0.9)), url(/asset/img/cardAccueil.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(20, 20, 20, 0.9)), url(/asset/img/photoPrincipale.jpg);
     height: 100%;
     background-size: cover;
     background-position: center;
@@ -21,14 +21,14 @@
 }
 
 .bodyArticleDetail {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(20, 20, 20, 0.9)), url(/asset/img/cardAccueil.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(20, 20, 20, 0.9)), url(/asset/img/photoPrincipale.jpg);
     height: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 .bodyProfilList {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(20, 20, 20, 0.9)), url(/asset/img/cardAccueil.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(20, 20, 20, 0.9)),url(/asset/img/photoPrincipale.jpg);
     height: 100%;
     background-size: cover;
     background-position: center;

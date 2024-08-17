@@ -1,23 +1,47 @@
 <?php
-// Sauvegarde de maintenance de session
-session_start();
 
-//Ouvre une connexion à  la base de données
+// Traitement du formulaire
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/article.php';
 
-// Lis les informations depuis la requête HTTP
+// Lire les informations depuis la requête HTTP
 $product = [];
-$product['name'] = $_POST['nom'];
-$product['description'] = $_POST['marque'];
-$product_option['price'] = $_POST['price'];
+$product['name'] = $_POST['name'];
+$product['description'] = $_POST['description'];
 $product['photo_filename'] = $_FILES['file']['name'];
 
-// Crée une colonne dans la table voiture
+// Crée une connexion à la base de données
 $dbConnection = getConnection($dbConfig);
-$isSuccess = create($product['name'], $product['description'], $product_option['price'], $product['photo_filename'], $dbConnection);
 
+// Crée ou récupère l'ID du produit
+$productId = createOrGetProductId($product['name'], $product['description'], $product['photo_filename'], $dbConnection);
+
+// Lire les informations depuis la requête HTTP pour les options
+$options = [];
+if (isset($_POST['add_250g'])) {
+    $options['250g'] = isset($_POST['price_250g']) && $_POST['price_250g'] !== '' ? (float)$_POST['price_250g'] : null;
+}
+if (isset($_POST['add_500g'])) {
+    $options['500g'] = isset($_POST['price_500g']) && $_POST['price_500g'] !== '' ? (float)$_POST['price_500g'] : null;
+}
+if (isset($_POST['add_1kg'])) {
+    $options['1kg'] = isset($_POST['price_1kg']) && $_POST['price_1kg'] !== '' ? (float)$_POST['price_1kg'] : null;
+}
+
+// Crée ou met à jour les options dans la base de données
+if ($productId) {
+    $isSuccess = createOrUpdateOption($productId, $options, $dbConnection);
+
+    if ($isSuccess) {
+        echo 'Produit et options ajoutés ou mis à jour avec succès !';
+    } else {
+        echo 'Erreur lors de l\'ajout ou de la mise à jour des options du produit.';
+    }
+} else {
+    echo 'Erreur lors de l\'ajout du produit.';
+}
 //Pour les messages d'erreurs
 $_SESSION['msg']['info'] = [];
 $_SESSION['msg']['error'] = [];
@@ -55,21 +79,6 @@ if ($hasErrors) {
     header('Location: ' . '/ctrl/add-article/add-display.php');
     exit();
 }
-
-
-
-// Prépare la requête SQL pour insérer une nouvelle colonne dans la table véhicule
-$db = getConnection($dbConfig);
-$query = 'INSERT INTO product (name, description, price, idProduct_option, idUser, photo_filename) VALUES (:name, :description, :price, :idProduct_option, :idUser, :photo_filename)';
-$statement = $db->prepare($query);
-
-// Lie les paramètres à la requête préparée
-$statement->bindParam(':name', $nom);
-$statement->bindParam(':description', $marque);
-$statement->bindParam(':price', $price);
-$statement->bindParam(':idproduct_option', $idCategorie);
-$statement->bindParam(':idUser', $idUser);
-$statement->bindParam(':photo_filename', $fileName);
 
 // Exécute la requête et retourne le succès ou l'échec
 

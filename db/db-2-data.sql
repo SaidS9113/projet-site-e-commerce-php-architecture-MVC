@@ -14,18 +14,47 @@ INSERT INTO user(id, idRole, password, email) VALUES
 
 INSERT INTO product (name, description, idUser) VALUES
     ("Miel d'Oranger", 'description...',80)
-   ,("Miel blanc de Corse",'description...',90)
-   ,("Miel d'Acacia de France",'description...',100)
-   ,("Miel de Lavande de Corse",'description...',110)
 ;
 
 
-INSERT INTO product_option (idProduct, quantity, price) VALUES
-   (1, '250g', 20.00)
-   ,(1, '500g', 40.00)
-   ,(1, '1kg', 80.00)
-;
+DELIMITER $$
+
+CREATE PROCEDURE add_product_options(
+    IN p_idProduct INT,
+    IN p_price_250g DECIMAL(10, 2),
+    IN p_price_500g DECIMAL(10, 2),
+    IN p_price_1kg DECIMAL(10, 2)
+)
+BEGIN
+    -- Déclaration des variables pour stocker les conditions
+    DECLARE v_quantity VARCHAR(10);
+
+    -- Insertion conditionnelle pour 250g
+    IF p_price_250g IS NOT NULL AND p_price_250g > 0 THEN
+        SET v_quantity = '250g';
+        INSERT INTO product_option (idProduct, quantity, price) 
+        VALUES (p_idProduct, v_quantity, p_price_250g);
+    END IF;
+
+    -- Insertion conditionnelle pour 500g
+    IF p_price_500g IS NOT NULL AND p_price_500g > 0 THEN
+        SET v_quantity = '500g';
+        INSERT INTO product_option (idProduct, quantity, price) 
+        VALUES (p_idProduct, v_quantity, p_price_500g);
+    END IF;
+
+    -- Insertion conditionnelle pour 1kg
+    IF p_price_1kg IS NOT NULL AND p_price_1kg > 0 THEN
+        SET v_quantity = '1kg';
+        INSERT INTO product_option (idProduct, quantity, price) 
+        VALUES (p_idProduct, v_quantity, p_price_1kg);
+    END IF;
+END$$
+
+DELIMITER ;
+
+
+
 INSERT INTO avis (content, date, idProduct, idUser) VALUES
    ('Délicieux miaam', '2023-01-01 10:00:00', 1, 80)
-   ,('Très bon miammmm.', '2023-01-02 12:00:00', 2, 90)
 ;

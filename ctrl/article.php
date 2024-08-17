@@ -14,7 +14,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
 $dbConnection = getConnection($dbConfig);
 
 // Prépare la requête en selectionnant les colonnes dans la table véhicule
-$query = ' SELECT product.id, product.name, product.description, product.photo_filename, product.idUser ';
+$query = ' SELECT product.id, product.name, product.description, product.photo_filename, product.idUser, product_option.quantity, product_option.price ';
 $query .= ' FROM product';
 $query .= ' LEFT JOIN product_option ON product.id = product_option.idProduct'; // Jointure avec product_option pour obtenir le prix
 
@@ -24,6 +24,9 @@ $statement = $dbConnection->prepare($query);
 $successOrFailure = $statement->execute();
 //Variable de bouclage foreach pour recuperer les informations
 $listProduct = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+
 
 // Rends la vue
 include $_SERVER['DOCUMENT_ROOT'] . '/view/article.php';
