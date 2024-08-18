@@ -24,22 +24,31 @@ $isLoggedIn = isset($_SESSION['user']); ?>
                     <th>id</th>
                     <th>Nom</th>
                     <th>Description</th>
-                    <th>Quantité</th>
+                    <th>Poids</th>
                     <th>Price</th>
+                    <th>Quantité</th>
                 </tr>
             </thead>
 
             <tbody>
                 <?php foreach ($listProduct as $product) { ?>
                     <tr>
-                        <td> <?= $product['id'] ?> </td>
+                        <td><?= $product['id'] ?> </td>
                         <td><?= $product['name'] ?></td>
                         <td><?= $product['description'] ?></td>
-                        <td><?= $product['quantity'] ?></td>
+                        <td><?= $product['poids'] ?></td>
                         <td><?= $product['price'] ?></td>
+                        <td><?= $product['quantity'] ?></td>
                         <td>
-                            <a href="/ctrl/add-article/delete.php?id=<?= $product['id'] ?>" onclick="return confirm('Confirmer la suppression')"><button class="buttonDelete"><img class="iconeCorbeille" src="/asset/img/corbeille.png" alt=""></button></a>
-                        </td>
+    <a href="/ctrl/add-article/delete.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>" 
+       onclick="return confirm('Confirmer la suppression de cette option (<?= $product['poids'] ?>) ?')">
+       <button class="buttonDelete">
+           <img class="iconeCorbeille" src="/asset/img/corbeille.png" alt="">
+       </button>
+    </a>
+</td>
+
+
                     </tr>
                 <?php } ?>
             </tbody>

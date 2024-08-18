@@ -23,9 +23,6 @@ CREATE TABLE user (
     ,photo_filename varchar(255)
 );
 
-
-
-
 CREATE TABLE product (
      id INT AUTO_INCREMENT PRIMARY KEY
      ,name VARCHAR(250)
@@ -36,13 +33,12 @@ CREATE TABLE product (
 );
 
 -- Création de la table options_products
-CREATE TABLE product_option (
+CREATE TABLE product_stock (
     id INT AUTO_INCREMENT PRIMARY KEY
+    ,poids VARCHAR(50) NOT NULL
     ,price DECIMAL(10, 2) NOT NULL
-    ,quantity VARCHAR(255) NOT NULL
+    ,quantity INT NOT NULL
     ,idProduct INT NOT NULL
-    
-   
 );
 
 CREATE TABLE avis (
@@ -67,8 +63,8 @@ ALTER TABLE product
    ADD CONSTRAINT `fk_product_user` FOREIGN KEY(idUser) REFERENCES user(id)
 ;
 
-ALTER TABLE product_option
-   ADD CONSTRAINT `fk_product_option_product` FOREIGN KEY(idProduct) REFERENCES Product(id)
+ALTER TABLE product_stock
+   ADD CONSTRAINT `fk_product_stock_product` FOREIGN KEY(idProduct) REFERENCES Product(id)
 ;
 
 ALTER TABLE avis

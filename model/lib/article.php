@@ -39,7 +39,7 @@ function createOrGetProductId(string $name, string $description, string $photo_f
  * Crée ou met à jour les options de produit.
  * 
  * @param int $productId ID du produit pour lequel ajouter ou mettre à jour les options.
- * @param array $options Tableau associatif où la clé est la quantité et la valeur est le prix.
+ * @param array $options Tableau associatif où la clé est le poids et la valeur est le prix.
  * @param PDO $db Connexion à la base de données.
  * @return bool Retourne true en cas de succès, false en cas d'échec.
  */
@@ -48,34 +48,40 @@ function createOrUpdateOption(int $productId, array $options, PDO $db)
     try {
         $db->beginTransaction();
 
-        foreach ($options as $quantity => $price) {
+        foreach ($options as $poids => $details) {
+            $price = $details['price'] ?? null;
+            $quantity = isset($details['quantity']) ? (int)$details['quantity'] : 0;
+
+            // Debugging: Affiche les valeurs avant l'exécution des requêtes
+            echo "Poids: $poids, Prix: $price, Quantité: $quantity\n";
+
             if ($price !== null && $price > 0) {
-                // Vérifie si l'option existe déjà
-                $checkOptionsQuery = 'SELECT quantity FROM product_option WHERE idProduct = :idProduct AND quantity = :quantity';
+                // Vérifie si le poids existe déjà
+                $checkOptionsQuery = 'SELECT COUNT(*) FROM product_stock WHERE idProduct = :idProduct AND poids = :poids';
                 $checkOptionsStatement = $db->prepare($checkOptionsQuery);
                 $checkOptionsStatement->bindParam(':idProduct', $productId);
-                $checkOptionsStatement->bindParam(':quantity', $quantity);
+                $checkOptionsStatement->bindParam(':poids', $poids);
                 $checkOptionsStatement->execute();
-                $exists = $checkOptionsStatement->rowCount() > 0;
+                $exists = $checkOptionsStatement->fetchColumn() > 0;
 
                 if ($exists) {
-                    // Met à jour l'option existante
-                    $updateOptionQuery = 'UPDATE product_option SET price = :price WHERE idProduct = :idProduct AND quantity = :quantity';
+                    // Met à jour du poids existant
+                    $updateOptionQuery = 'UPDATE product_stock SET price = :price, quantity = :quantity WHERE idProduct = :idProduct AND poids = :poids';
                     $updateOptionStatement = $db->prepare($updateOptionQuery);
-                    $updateOptionStatement->execute([
-                        ':idProduct' => $productId,
-                        ':quantity' => $quantity,
-                        ':price' => $price
-                    ]);
+                    $updateOptionStatement->bindParam(':idProduct', $productId);
+                    $updateOptionStatement->bindParam(':poids', $poids);
+                    $updateOptionStatement->bindParam(':price', $price);
+                    $updateOptionStatement->bindParam(':quantity', $quantity, PDO::PARAM_INT);
+                    $updateOptionStatement->execute();
                 } else {
-                    // Insère une nouvelle option
-                    $insertOptionQuery = 'INSERT INTO product_option (idProduct, quantity, price) VALUES (:idProduct, :quantity, :price)';
+                    // Insère une nouvelle entrée
+                    $insertOptionQuery = 'INSERT INTO product_stock (idProduct, poids, price, quantity) VALUES (:idProduct, :poids, :price, :quantity)';
                     $insertOptionStatement = $db->prepare($insertOptionQuery);
-                    $insertOptionStatement->execute([
-                        ':idProduct' => $productId,
-                        ':quantity' => $quantity,
-                        ':price' => $price
-                    ]);
+                    $insertOptionStatement->bindParam(':idProduct', $productId);
+                    $insertOptionStatement->bindParam(':poids', $poids);
+                    $insertOptionStatement->bindParam(':price', $price);
+                    $insertOptionStatement->bindParam(':quantity', $quantity, PDO::PARAM_INT);
+                    $insertOptionStatement->execute();
                 }
             }
         }

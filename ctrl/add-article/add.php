@@ -18,20 +18,48 @@ $dbConnection = getConnection($dbConfig);
 // Crée ou récupère l'ID du produit
 $productId = createOrGetProductId($product['name'], $product['description'], $product['photo_filename'], $dbConnection);
 
-// Lire les informations depuis la requête HTTP pour les options
 $options = [];
-if (isset($_POST['add_250g'])) {
-    $options['250g'] = isset($_POST['price_250g']) && $_POST['price_250g'] !== '' ? (float)$_POST['price_250g'] : null;
-}
-if (isset($_POST['add_500g'])) {
-    $options['500g'] = isset($_POST['price_500g']) && $_POST['price_500g'] !== '' ? (float)$_POST['price_500g'] : null;
-}
-if (isset($_POST['add_1kg'])) {
-    $options['1kg'] = isset($_POST['price_1kg']) && $_POST['price_1kg'] !== '' ? (float)$_POST['price_1kg'] : null;
+
+// Fonction pour obtenir un prix ou une quantité avec une valeur par défaut
+function getPostValue($key, $type = 'float', $default = null) {
+    if (isset($_POST[$key]) && $_POST[$key] !== '') {
+        if ($type === 'float') {
+            return (float)$_POST[$key];
+        } elseif ($type === 'int') {
+            return (int)$_POST[$key];
+        }
+    }
+    return $default;
 }
 
-// Crée ou met à jour les options dans la base de données
-if ($productId) {
+// Ajouter ou mettre à jour les options en fonction des données POST
+if (isset($_POST['add_250g'])) {
+    $options['250g'] = [
+        'price' => getPostValue('price_250g', 'float', null),
+        'quantity' => getPostValue('quantity_250g', 'int', 0)
+    ];
+}
+if (isset($_POST['add_500g'])) {
+    $options['500g'] = [
+        'price' => getPostValue('price_500g', 'float', null),
+        'quantity' => getPostValue('quantity_500g', 'int', 0)
+    ];
+}
+if (isset($_POST['add_1kg'])) {
+    $options['1kg'] = [
+        'price' => getPostValue('price_1kg', 'float', null),
+        'quantity' => getPostValue('quantity_1kg', 'int', 0)
+    ];
+}
+
+// Debugging: Affiche les valeurs du tableau options
+echo '<pre>';
+print_r($options);
+echo '</pre>';
+
+// Vérifier si $productId et $dbConnection sont définis
+if (isset($productId) && isset($dbConnection)) {
+    // Crée ou met à jour les options dans la base de données
     $isSuccess = createOrUpdateOption($productId, $options, $dbConnection);
 
     if ($isSuccess) {
@@ -40,8 +68,9 @@ if ($productId) {
         echo 'Erreur lors de l\'ajout ou de la mise à jour des options du produit.';
     }
 } else {
-    echo 'Erreur lors de l\'ajout du produit.';
+    echo 'Erreur : Identifiant de produit ou connexion à la base de données manquants.';
 }
+
 //Pour les messages d'erreurs
 $_SESSION['msg']['info'] = [];
 $_SESSION['msg']['error'] = [];

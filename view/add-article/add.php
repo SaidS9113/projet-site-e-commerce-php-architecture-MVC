@@ -21,12 +21,12 @@ $isLoggedIn = isset($_SESSION['user']); ?>
         <form class="formAjtVehicule" action="/ctrl/add-article/add.php" method="post" enctype="multipart/form-data">
              <!-- Nom -->
             <div class="boiteAjtVehicule">
-                <label for="label">Nom</label>
+                <label for="name">Nom</label>
                 <input type="text" name="name" id="name">
             </div>
         <!-- Matricule -->
             <div class="boiteAjtVehicule">
-                <label for="code">Description</label>
+                <label for="description">Description</label>
                 <input type="text" name="description" id="description">
             </div>
             <!-- Price -->
@@ -52,6 +52,19 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     <label for="price_1kg">Prix pour 1kg :</label>
     <input type="text" id="price_1kg" name="price_1kg" step="0.01">
 </div>
+ <!-- Matricule -->
+            <div class="boiteAjtVehicule">
+                <label for="quantity_250g">Quantité pour 250g</label>
+                <input type="text" name="quantity_250g" id="quantity_250g">
+            </div>
+            <div class="boiteAjtVehicule">
+                <label for="quantity_250g">Quantité pour 500g</label>
+                <input type="text" name="quantity_500g" id="quantity_500g">
+            </div>
+            <div class="boiteAjtVehicule">
+                <label for="quantity_250g">Quantité pour 1kg</label>
+                <input type="text" name="quantity_1kg" id="quantity_1kg">
+            </div>
          <!-- Update une image -->
             <div class="boiteAjtVehicule">
             <label for="file">Fichier d'image d'article</label>

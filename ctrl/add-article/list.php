@@ -11,9 +11,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
 $dbConnection = getConnection($dbConfig);
 // Prépare la requête en selectionnant les colonnes dans la table véhicule
-$query = ' SELECT product.id, product.name, product.description, product_option.quantity, product_option.price, product.idUser';
+$query = ' SELECT product.id, product.name, product.description, product_stock.poids, product_stock.price, product_stock.quantity, product.idUser';
 $query .= ' FROM product';
-$query .= ' LEFT JOIN product_option ON product.id = product_option.idProduct';
+$query .= ' LEFT JOIN product_stock ON product.id = product_stock.idProduct';
 $statement = $dbConnection->prepare($query);
 // Exécute la requête
 $successOrFailure = $statement->execute();
