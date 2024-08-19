@@ -22,6 +22,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
             <thead>
                 <tr>
                     <th>id</th>
+                    <th>Image</th>
                     <th>Nom</th>
                     <th>Description</th>
                     <th>Poids</th>
@@ -34,6 +35,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
                 <?php foreach ($listProduct as $product) { ?>
                     <tr>
                         <td><?= $product['id'] ?> </td>
+                        <td><img class="image" src="../../upload/<?= $product['photo_filename'] ?>" alt=""></td>
                         <td><?= $product['name'] ?></td>
                         <td><?= $product['description'] ?></td>
                         <td><?= $product['poids'] ?></td>

@@ -8,32 +8,34 @@
  * @param PDO $db Connexion à la base de données.
  * @return int|false Retourne l'ID du produit créé ou existant en cas de succès, false en cas d'échec.
  */
-function createOrGetProductId(string $name, string $description, string $photo_fileName, PDO $db)
+function createInsertProduct(string $name, string $description, string $photo_fileName, PDO $db)
 {
     // Vérifie si le produit existe déjà
-    $checkProductQuery = 'SELECT id FROM product WHERE name = :name';
-    $checkProductStatement = $db->prepare($checkProductQuery);
-    $checkProductStatement->bindParam(':name', $name);
-    $checkProductStatement->execute();
+    $querySelectProduct = 'SELECT id FROM product WHERE name = :name';
+    $statementSelectProduct = $db->prepare($querySelectProduct);
+    $statementSelectProduct->bindParam(':name', $name);
+    $statementSelectProduct->execute();
     
-    if ($checkProductStatement->rowCount() > 0) {
+    if ($statementSelectProduct->rowCount() > 0) {
         // Le produit existe déjà, retourne l'ID existant
-        return $checkProductStatement->fetchColumn();
+        return $statementSelectProduct->fetchColumn();
     } else {
         // Le produit n'existe pas, l'insère et retourne le nouvel ID
-        $insertProductQuery = 'INSERT INTO product (name, description, photo_filename) VALUES (:name, :description, :photo_filename)';
-        $insertProductStatement = $db->prepare($insertProductQuery);
-        $insertProductStatement->bindParam(':name', $name);
-        $insertProductStatement->bindParam(':description', $description);
-        $insertProductStatement->bindParam(':photo_filename', $photo_fileName);
+        $queryInsertProduct = 'INSERT INTO product (name, description, photo_filename) VALUES (:name, :description, :photo_filename)';
+        $statementInsertProduct = $db->prepare($queryInsertProduct);
+        $statementInsertProduct->bindParam(':name', $name);
+        $statementInsertProduct->bindParam(':description', $description);
+        $statementInsertProduct->bindParam(':photo_filename', $photo_fileName);
         
-        if ($insertProductStatement->execute()) {
+        if ($statementInsertProduct->execute()) {
             return $db->lastInsertId();
         } else {
             return false;
         }
     }
 }
+
+
 
 /**
  * Crée ou met à jour les options de produit.
@@ -43,7 +45,7 @@ function createOrGetProductId(string $name, string $description, string $photo_f
  * @param PDO $db Connexion à la base de données.
  * @return bool Retourne true en cas de succès, false en cas d'échec.
  */
-function createOrUpdateOption(int $productId, array $options, PDO $db)
+function createInsertProduct_stock(int $productId, array $options, PDO $db)
 {
     try {
         $db->beginTransaction();
@@ -52,27 +54,20 @@ function createOrUpdateOption(int $productId, array $options, PDO $db)
             $price = $details['price'] ?? null;
             $quantity = isset($details['quantity']) ? (int)$details['quantity'] : 0;
 
-            // Debugging: Affiche les valeurs avant l'exécution des requêtes
-            echo "Poids: $poids, Prix: $price, Quantité: $quantity\n";
-
             if ($price !== null && $price > 0) {
-                // Vérifie si le poids existe déjà
-                $checkOptionsQuery = 'SELECT COUNT(*) FROM product_stock WHERE idProduct = :idProduct AND poids = :poids';
-                $checkOptionsStatement = $db->prepare($checkOptionsQuery);
-                $checkOptionsStatement->bindParam(':idProduct', $productId);
-                $checkOptionsStatement->bindParam(':poids', $poids);
-                $checkOptionsStatement->execute();
-                $exists = $checkOptionsStatement->fetchColumn() > 0;
+                // Vérifie si le poids existe déjà pour ce produit
+                $querySelectProduct_stock = 'SELECT COUNT(*) FROM product_stock WHERE idProduct = :idProduct AND poids = :poids';
+                $statementSelectProduct_stock = $db->prepare($querySelectProduct_stock);
+                $statementSelectProduct_stock->bindParam(':idProduct', $productId);
+                $statementSelectProduct_stock->bindParam(':poids', $poids);
+                $statementSelectProduct_stock->execute();
+                $exists = $statementSelectProduct_stock->fetchColumn() > 0;
 
                 if ($exists) {
-                    // Met à jour du poids existant
-                    $updateOptionQuery = 'UPDATE product_stock SET price = :price, quantity = :quantity WHERE idProduct = :idProduct AND poids = :poids';
-                    $updateOptionStatement = $db->prepare($updateOptionQuery);
-                    $updateOptionStatement->bindParam(':idProduct', $productId);
-                    $updateOptionStatement->bindParam(':poids', $poids);
-                    $updateOptionStatement->bindParam(':price', $price);
-                    $updateOptionStatement->bindParam(':quantity', $quantity, PDO::PARAM_INT);
-                    $updateOptionStatement->execute();
+                    // Si le produit existe déjà, on ne fait rien
+                    // Tu peux ajouter un message ici si tu souhaites notifier que le produit existe déjà
+                    echo "Le produit avec le poids $poids existe déjà pour le produit ID $productId.\n";
+                    continue; // On passe au prochain produit sans mise à jour ni insertion
                 } else {
                     // Insère une nouvelle entrée
                     $insertOptionQuery = 'INSERT INTO product_stock (idProduct, poids, price, quantity) VALUES (:idProduct, :poids, :price, :quantity)';

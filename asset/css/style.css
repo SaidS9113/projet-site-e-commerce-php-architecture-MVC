@@ -421,12 +421,17 @@ thead > tr > th {
 }
 
 tbody > tr > td {
-  padding: 8px;
+  padding: 3px;
   text-align: left;
   border-bottom: 1px dashed;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.6039215686);
   font-weight: bold;
+}
+tbody > tr > td img {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
 }
 tbody > tr > td a {
   width: 20px;
@@ -434,6 +439,7 @@ tbody > tr > td a {
 }
 tbody > tr > td a img {
   width: 30px;
+  height: 32px;
   cursor: pointer;
 }
 
