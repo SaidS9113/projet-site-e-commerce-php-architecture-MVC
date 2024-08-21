@@ -42,6 +42,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
                         <td><?= $product['price'] ?></td>
                         <td><?= $product['quantity'] ?></td>
                         <td>
+                        <a href="/ctrl/add-article/update-display.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>" ><button class="buttonUpdate"><img class="iconeCorbeille" src="/asset/img/editer.png" alt=""></button></a>
     <a href="/ctrl/add-article/delete.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>" 
        onclick="return confirm('Confirmer la suppression de cette option (<?= $product['poids'] ?>) ?')">
        <button class="buttonDelete">
