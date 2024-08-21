@@ -13,16 +13,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
 $dbConnection = getConnection($dbConfig);
 
-// Prépare la requête en selectionnant les colonnes dans la table véhicule pour affichier ses informations
-$query = ' SELECT product.id, product.nom, product.marque, option_product.price, product.photo_filename, product.idProduct_option, product.idUser ';
-$query .= ' FROM product';
-
-$statement = $dbConnection->prepare($query);
-// Exécute la requête
-$successOrFailure = $statement->execute();
-//Variable pour boucler pour recuperer les informations
-$listVehicule = $statement->fetchAll(PDO::FETCH_ASSOC);
-
 // Prépare la requête en selectionnant les colonnes dans la table commentaire pour affichier ses informations
 $query = ' SELECT avis.id, avis.contenu, avis.date, avis.idUser';
 $query .= ' FROM avis';

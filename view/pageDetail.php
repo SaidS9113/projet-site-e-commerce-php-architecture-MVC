@@ -18,21 +18,15 @@
 
 <body class="bodyArticleDetail">
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/headerBootstraps.php' ?>
-    <?php
-    // Définir les IDs des véhicules que vous voulez afficher
-    $selectedIds = [4]; // Remplacez par les IDs des véhicules que vous voulez afficher
-
-    // Filtrer la liste des véhicules pour ne garder que ceux avec les IDs spécifiés
-    $filteredProducts = array_filter($listProduct, function ($product) use ($selectedIds) {
-        return in_array($product['id'], $selectedIds);
-    });
-    ?>
+   
+   
+   <?php foreach ($listProduc as $produc) { ?>
     <section class="container sproduct my-5 pt-0">
-        <?php foreach ($filteredProducts as $product) { ?>
+        <?php foreach ($listProduct as $product) { ?>
             <div style="border-bottom: 2px solid #fff" class="row mt-5">
                 <div class="col-lg-5 col-md-12 col-12">
-                    <img class="img-fluid w-100" src="../../upload/<?= $vehicule['photo_filename'] ?>" class="small-img" alt="">
-
+                    <img class="img-fluid w-100" src="../../upload/<?= $product['photo_filename'] ?>" class="small-img" alt="">
+                    <?php } ?>
                     <div class="small-img-group">
                         <div class="small-img-col">
                             <img src="" width="100%" class="small-img" alt="">
@@ -49,17 +43,13 @@
                     </div>
                 </div>
 
-
-
                 <div class="col-lg-6 col-md-12 col-12">
                     <h6 class="arboPageDetail">Accueil / Véhicule / McLaren</h6>
-                    <h3 class="product-title"><?= $product['nom'] ?></h3>
+                    <h3 class="product-title"><?= $product['name'] ?></h3>
                     <h5 class="price" ><?= $product['price'] ?>€</h5>
-
                 </div>
 
                 <?php } ?>
-
             </div>
             <h4 class="mt-5 mb-5">Commentaire</h4>
             
