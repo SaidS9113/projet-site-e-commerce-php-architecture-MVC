@@ -21,15 +21,15 @@
 <section class="container-product">
 <?php foreach ($listProduct as $product) { ?>
     <article class="product">
-        <a href="/ctrl/pageDetail.php"><img class="image" src="../upload/<?= $product['photo_filename'] ?>" alt=""></a>
-        <a href="/ctrl/pageDetail.php"><h3 class="title"><?= $product['name'] ?></h3></a>
+    <a href="<?= $productUrls[$product['id']] ?>"><img class="image" src="../upload/<?= $product['photo_filename'] ?>" alt=""></a>
+    <a href="<?= $productUrls[$product['id']] ?>"><h3 class="title"><?= $product['name'] ?></h3></a>
+        <div>
         <div>
             <p class="description"><?= $product['description'] ?></p>
-        <span id="price" class="price"><?= $product['price'] ?></span>
+        <span class="price"><?= $product['price'] ?></span>
     </div>
     </article>
 <?php } ?>
-    </article>
     </section>
     <script src="/asset/js/selectedOption.js"></script>
 </body>
