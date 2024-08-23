@@ -53,12 +53,12 @@
     <select name="poids" id="poids">
         <?php foreach ($productPoids as $poids): ?>
             <option value="<?= $poids['poids'] ?>" data-price="<?= $poids['price'] ?>" data-quantity="<?= $poids['quantity'] ?>">
-                <?= $poids['poids'] ?>g
+                <?= $poids['poids'] ?>
             </option>
         <?php endforeach; ?>
     </select>
 
-    <p id="price-display">Prix: <?= number_format($productPoids[0]['price'], 2) ?> €</p>
+    <p id="price-display">Prix: <?= number_format($productPoids[0]['price'], 2) ?>€</p>
     <p id="quantity-display">Quantité disponible: <?= $productPoids[0]['quantity'] ?></p>
 </div>
 
