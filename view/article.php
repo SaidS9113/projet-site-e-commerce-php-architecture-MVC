@@ -31,6 +31,5 @@
     </article>
 <?php } ?>
     </section>
-    <script src="/asset/js/selectedOption.js"></script>
 </body>
 </html>

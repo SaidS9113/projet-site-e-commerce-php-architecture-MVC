@@ -1,9 +1,22 @@
-function updatePrice() {
-    const selectElement = document.getElementById('option');
-    const selectedOption = selectElement.options[selectElement.selectedIndex];
-    const price = selectedOption.value;
-    document.getElementById('price-display').innerText = `Prix : ${price}€`;
-}
+document.addEventListener('DOMContentLoaded', function() {
+    const poidsSelect = document.getElementById('poids');
+    const priceDisplay = document.getElementById('price-display');
+    const quantityDisplay = document.getElementById('quantity-display');
 
-// Initialiser l'affichage du prix au chargement de la page
-document.addEventListener('DOMContentLoaded', updatePrice);
+    // Mettre à jour le prix et la quantité lors du chargement initial
+    updateDisplay();
+
+    // Mettre à jour le prix et la quantité lorsqu'un nouvel élément est sélectionné
+    poidsSelect.addEventListener('change', function() {
+        updateDisplay();
+    });
+
+    function updateDisplay() {
+        const selectedOption = poidsSelect.options[poidsSelect.selectedIndex];
+        const selectedPrice = selectedOption.getAttribute('data-price');
+        const selectedQuantity = selectedOption.getAttribute('data-quantity');
+        
+        priceDisplay.textContent = 'Prix: ' + parseFloat(selectedPrice).toFixed(2) + ' €';
+        quantityDisplay.textContent = 'Quantité disponible: ' + selectedQuantity;
+    }
+});

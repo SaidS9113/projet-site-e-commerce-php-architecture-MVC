@@ -17,6 +17,7 @@ $dbConnection = getConnection($dbConfig);
 $query = 'SELECT product.id, product.name, product.description, product.photo_filename, product_stock.poids, product_stock.price, product_stock.quantity';
 $query .= ' FROM product';
 $query .= ' LEFT JOIN product_stock ON product.id = product_stock.idProduct'; // Jointure avec product_stock pour obtenir le prix
+$query .= ' GROUP BY product.id';
 
 $statement = $dbConnection->prepare($query);
 

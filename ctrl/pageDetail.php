@@ -2,7 +2,7 @@
 // Sauvegarde de maintenance de session
 session_start();
 
-//Variable pour le titre
+// Variable pour le titre
 $titreSite = "MielNaturel";
 
 // Définit les clés de dictionnaire de la page
@@ -18,23 +18,23 @@ if (isset($_GET['id'])) {
 
     // Valider l'ID du produit
     if (is_numeric($productId)) {
-        // Préparer la requête pour obtenir les détails du produit
-        $query = 'SELECT product.id, product.name, product.description, product.photo_filename, product_stock.poids, product_stock.price, product_stock.quantity';
-        $query .= ' FROM product';
-        $query .= ' LEFT JOIN product_stock ON product.id = product_stock.idProduct';
-        $query .= ' WHERE product.id = :id';
 
-        $statement = $dbConnection->prepare($query);
-        $statement->bindParam(':id', $productId, PDO::PARAM_INT);
+        // 1. Requête pour récupérer les informations du produit
+        $queryProduct = 'SELECT id, name, description, photo_filename FROM product WHERE id = :id';
+        $statementProduct = $dbConnection->prepare($queryProduct);
+        $statementProduct->bindParam(':id', $productId, PDO::PARAM_INT);
+        $statementProduct->execute();
+        $product = $statementProduct->fetch(PDO::FETCH_ASSOC);
 
-        // Exécuter la requête
-        $statement->execute();
-
-        // Récupérer le produit
-        $product = $statement->fetch(PDO::FETCH_ASSOC);
-
+        // 2. Requête pour récupérer les poids et prix disponibles
+        $queryPoids = 'SELECT poids, price, quantity FROM product_stock WHERE idProduct = :id';
+        $statementPoids = $dbConnection->prepare($queryPoids);
+        $statementPoids->bindParam(':id', $productId, PDO::PARAM_INT);
+        $statementPoids->execute();
+        $productPoids = $statementPoids->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+
 
 // Prépare la requête en selectionnant les colonnes dans la table commentaire pour affichier ses informations
 $query = ' SELECT avis.id, avis.contenu, avis.date, avis.idUser';

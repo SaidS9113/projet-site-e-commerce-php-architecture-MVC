@@ -44,10 +44,25 @@
                 </div>
 
                 <div class="col-lg-6 col-md-12 col-12">
-                    <h6 class="arboPageDetail">Accueil / Produit / Miel ...</h6>
-                    <h3 class="product-title"><?= $product['name'] ?></h3>
-                    <h5 class="price" ><?= $product['price'] ?>€</h5>
-                </div>
+    <h6 class="arboPageDetail">Accueil / Produit / Miel ...</h6>
+    <h3 class="product-title"><?= $product['name'] ?></h3>
+    
+    <p class="description"><?= $product['description'] ?></p>
+
+    <label for="poids">Choisissez le poids :</label>
+    <select name="poids" id="poids">
+        <?php foreach ($productPoids as $poids): ?>
+            <option value="<?= $poids['poids'] ?>" data-price="<?= $poids['price'] ?>" data-quantity="<?= $poids['quantity'] ?>">
+                <?= $poids['poids'] ?>g
+            </option>
+        <?php endforeach; ?>
+    </select>
+
+    <p id="price-display">Prix: <?= number_format($productPoids[0]['price'], 2) ?> €</p>
+    <p id="quantity-display">Quantité disponible: <?= $productPoids[0]['quantity'] ?></p>
+</div>
+
+
 
                
             </div>
@@ -72,6 +87,7 @@
         <?php } ?>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="/asset/js/selectedOption.js"></script>
 </body>
 
 </html>
