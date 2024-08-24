@@ -136,4 +136,4 @@ $_SESSION['msg']['info'][] = 'Le produit a été ajouté.';
 include $_SERVER['DOCUMENT_ROOT'] . '/view/uploadImage.php';
 
 // Redirige vers la liste des Marins
-header('Location: ' . '/ctrl/add-article/list.php');
+header('Location: ' . '/ctrl/product/list.php');

@@ -39,4 +39,4 @@ foreach ($listProduct as $product) {
 }
 
 // Rends la vue
-include $_SERVER['DOCUMENT_ROOT'] . '/view/article.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/view/catalogue.php';

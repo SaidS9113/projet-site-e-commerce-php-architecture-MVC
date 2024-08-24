@@ -19,7 +19,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
     <main>
 
-    <form class="formUpdate" action="/ctrl/add-article/update.php" method="post">
+    <form class="formUpdate" action="/ctrl/product/update.php" method="post">
     <!-- ID du produit -->
     <input type="hidden" name="id" value="<?= $product['id'] ?? '' ?>">
 

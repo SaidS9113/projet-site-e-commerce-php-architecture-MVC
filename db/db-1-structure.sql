@@ -41,6 +41,33 @@ CREATE TABLE product_stock (
     ,idProduct INT NOT NULL
 );
 
+CREATE TABLE cart_product (
+    id INT AUTO_INCREMENT PRIMARY KEY
+    ,idUser INT NOT NULL
+    ,idProduct INT NOT NULL
+    ,poids VARCHAR(50) NOT NULL
+    ,quantity INT NOT NULL
+    ,date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE commande_info (
+    id INT AUTO_INCREMENT PRIMARY KEY
+    ,idUser INT NOT NULL
+    ,order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ,total DECIMAL(10, 2) NOT NULL
+    ,status VARCHAR(50) DEFAULT 'Pending'
+);
+
+CREATE TABLE commande_product (
+    id INT AUTO_INCREMENT PRIMARY KEY
+    ,idCommande_info INT NOT NULL
+    ,idProduct INT NOT NULL
+    ,poids VARCHAR(50) NOT NULL
+    ,quantity INT NOT NULL
+   ,price DECIMAL(10, 2) NOT NULL
+);
+
+
 CREATE TABLE avis (
     id INT AUTO_INCREMENT PRIMARY KEY
     ,content TEXT NOT NULL
@@ -72,7 +99,19 @@ ALTER TABLE avis
    ,ADD CONSTRAINT `fk_avis_user` FOREIGN KEY(idUser) REFERENCES user(id)
 ;
 
+ALTER TABLE cart_product
+   ADD CONSTRAINT `fk_cart_product_product` FOREIGN KEY(idProduct) REFERENCES product(id)
+   ,ADD CONSTRAINT `fk_cart_product_user` FOREIGN KEY(idUser) REFERENCES user(id)
+;
 
+ALTER TABLE commande_info
+   ADD CONSTRAINT `fk_commande_info_user` FOREIGN KEY(idUser) REFERENCES user(id)
+;
+
+ALTER TABLE commande_product
+   ADD CONSTRAINT `fk_commande_product_product` FOREIGN KEY(idProduct) REFERENCES product(id)
+   ,ADD CONSTRAINT `fk_commande_product_commande_info` FOREIGN KEY(idCommande_info) REFERENCES commande_product(id)
+;
 
 
 

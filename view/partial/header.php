@@ -27,13 +27,13 @@ $isLoggedIn = isset($_SESSION['user']); ?>
             <ul>
                 <div class="flexNav">
                 <li><a href="/ctrl/accueil.php">Accueil</a></li>
-                <li><a href="/ctrl/article.php">Produits</a></li>
+                <li><a href="/ctrl/catalogue.php">Produits</a></li>
                 </div>
                 <?php if ($isLoggedIn && $_SESSION['user']['idRole'] == '10') : ?> <!-- cache le lien Gestion Aministrateur si l'utilisateur n'a pas le role admin -->
-                    <li><a href="/ctrl/add-article/add-display.php">AjoutVehicule</a></li>
+                    <li><a href="/ctrl/product/add-display.php">AjoutVehicule</a></li>
                 <?php endif; ?>
                 <?php if ($isLoggedIn && $_SESSION['user']['idRole'] == '10') : ?> <!-- cache le lien Gestion Aministrateur si l'utilisateur n'a pas le role admin -->
-                    <li><a href="/ctrl/add-article/list.php">ListProduits</a></li>
+                    <li><a href="/ctrl/product/list.php">ListProduits</a></li>
                 <?php endif; ?>
            
                     <li><a href="/ctrl/profil/profile-list.php">ProfilImageList</a></li>

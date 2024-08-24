@@ -20,4 +20,4 @@ $successOrFailure = $statement->execute();
 //Variable pour boucler pour recuperer les informations
 $listProduct = $statement->fetchAll(PDO::FETCH_ASSOC);
 // Rends la vue
-include $_SERVER['DOCUMENT_ROOT'] . '/view/add-article/list.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/view/product/list.php';

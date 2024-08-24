@@ -5,5 +5,5 @@ session_start();
 $pageTitle = 'Ajout product';
 
 // Rends la vue
-include $_SERVER['DOCUMENT_ROOT'] . '/view/add-article/add.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/view/product/add.php';
 

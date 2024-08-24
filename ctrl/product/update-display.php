@@ -32,4 +32,4 @@ $statementStock->execute();
 $stockInfo = $statementStock->fetchAll(PDO::FETCH_ASSOC);
 
 // Passe les données à la vue pour affichage dans le formulaire
-include $_SERVER['DOCUMENT_ROOT'] . '/view/add-article/update.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/view/product/update.php';

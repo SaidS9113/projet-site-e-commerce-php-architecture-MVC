@@ -24,6 +24,21 @@ INSERT INTO product_stock (idProduct, poids, price, quantity) VALUES
       ,(1, '1kg', 60, 5)
 ;
 
+INSERT INTO cart_product (idUser, idProduct, poids, quantity, date_added)
+VALUES 
+      (80, 1, '250g', 5, '2024-08-23 10:05:00')
+;
+
+INSERT INTO commande_info (id, idUser, order_date, total, status)
+VALUES 
+      (1, 80, '2024-08-23 11:00:00', 19.00, 'Pending')
+;
+
+INSERT INTO commande_product (idCommande_info, idProduct, poids, quantity, price)
+VALUES 
+      (1, 1, '250g', 5, 20)
+;
+
 
 
 INSERT INTO avis (content, date, idProduct, idUser) VALUES

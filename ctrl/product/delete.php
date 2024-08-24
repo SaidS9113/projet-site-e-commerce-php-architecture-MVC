@@ -58,7 +58,7 @@ try {
     $dbConnection->commit();
 
     // Redirige vers la liste des produits après la suppression
-    header('Location: ' . '/ctrl/add-article/list.php');
+    header('Location: ' . '/ctrl/product/list.php');
     exit;
 
 } catch (PDOException $e) {

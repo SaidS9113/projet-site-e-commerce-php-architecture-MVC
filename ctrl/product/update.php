@@ -53,5 +53,5 @@ if (!$successStock) {
 }
 
 // Redirige vers la liste des articles
-header('Location: /ctrl/add-article/list.php?id=' . $product['id']);
+header('Location: /ctrl/product/list.php?id=' . $product['id']);
 exit(); // Assurez-vous d'appeler exit() après une redirection pour arrêter l'exécution du script

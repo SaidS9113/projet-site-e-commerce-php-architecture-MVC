@@ -60,10 +60,7 @@
 
     <p id="price-display">Prix: <?= number_format($productPoids[0]['price'], 2) ?>€</p>
     <p id="quantity-display">Quantité disponible: <?= $productPoids[0]['quantity'] ?></p>
-</div>
-
-
-
+        </div>
                
             </div>
             <h4 class="mt-5 mb-5">Commentaire</h4>

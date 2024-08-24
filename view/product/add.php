@@ -18,7 +18,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 <h4 class="titleAjtVehicule"><?= $pageTitle ?></h4>
     <main class="mainAjtVehicule">
-        <form class="formAjtVehicule" action="/ctrl/add-article/add.php" method="post" enctype="multipart/form-data">
+        <form class="formAjtVehicule" action="/ctrl/product/add.php" method="post" enctype="multipart/form-data">
              <!-- Nom -->
             <div class="boiteAjtVehicule">
                 <label for="name">Nom</label>
