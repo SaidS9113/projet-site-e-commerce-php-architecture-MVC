@@ -3,20 +3,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const priceDisplay = document.getElementById('price-display');
     const quantityDisplay = document.getElementById('quantity-display');
 
-    // Mettre à jour le prix et la quantité lors du chargement initial
-    updateDisplay();
+    // Function to update URL
+    function updateUrl(poids, price) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('poids', poids);
+        url.searchParams.set('price', price);
+        window.history.replaceState({}, '', url);
+    }
 
-    // Mettre à jour le prix et la quantité lorsqu'un nouvel élément est sélectionné
     poidsSelect.addEventListener('change', function() {
-        updateDisplay();
+        const selectedOption = poidsSelect.options[poidsSelect.selectedIndex];
+        const poids = selectedOption.value;
+        const price = selectedOption.getAttribute('data-price');
+        const quantity = selectedOption.getAttribute('data-quantity');
+
+        // Update the price and quantity display
+        priceDisplay.textContent = 'Prix: ' + parseFloat(price).toFixed(2) + '€';
+        quantityDisplay.textContent = 'Quantité disponible: ' + quantity;
+
+        // Update the URL
+        updateUrl(poids, price);
     });
 
-    function updateDisplay() {
-        const selectedOption = poidsSelect.options[poidsSelect.selectedIndex];
-        const selectedPrice = selectedOption.getAttribute('data-price');
-        const selectedQuantity = selectedOption.getAttribute('data-quantity');
-        
-        priceDisplay.textContent = 'Prix: ' + parseFloat(selectedPrice).toFixed(2) + ' €';
-        quantityDisplay.textContent = 'Quantité disponible: ' + selectedQuantity;
+    // Set initial URL based on the default selection
+    const initialOption = poidsSelect.options[poidsSelect.selectedIndex];
+    if (initialOption) {
+        const poids = initialOption.value;
+        const price = initialOption.getAttribute('data-price');
+        updateUrl(poids, price);
     }
 });

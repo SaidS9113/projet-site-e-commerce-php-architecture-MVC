@@ -48,6 +48,7 @@ CREATE TABLE cart_product (
     ,poids VARCHAR(50) NOT NULL
     ,quantity INT NOT NULL
     ,date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ,sessionId INT NOT NULL
 );
 
 CREATE TABLE commande_info (
@@ -110,7 +111,7 @@ ALTER TABLE commande_info
 
 ALTER TABLE commande_product
    ADD CONSTRAINT `fk_commande_product_product` FOREIGN KEY(idProduct) REFERENCES product(id)
-   ,ADD CONSTRAINT `fk_commande_product_commande_info` FOREIGN KEY(idCommande_info) REFERENCES commande_product(id)
+   ,ADD CONSTRAINT `fk_commande_product_commande_info` FOREIGN KEY(idCommande_info) REFERENCES commande_info(id)
 ;
 
 

@@ -8,7 +8,7 @@
  * @param PDO $db Connexion à la base de données.
  * @return int|false Retourne l'ID du produit créé ou existant en cas de succès, false en cas d'échec.
  */
-function createInsertProduct(string $name, string $description, string $photo_fileName, PDO $db)
+function createProduct(string $name, string $description, string $photo_fileName, PDO $db)
 {
     // Vérifie si le produit existe déjà
     $querySelectProduct = 'SELECT id FROM product WHERE name = :name';
@@ -45,7 +45,7 @@ function createInsertProduct(string $name, string $description, string $photo_fi
  * @param PDO $db Connexion à la base de données.
  * @return bool Retourne true en cas de succès, false en cas d'échec.
  */
-function createInsertProduct_stock(int $productId, array $options, PDO $db)
+function createProductStock(int $productId, array $options, PDO $db)
 {
     try {
         $db->beginTransaction();

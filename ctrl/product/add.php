@@ -16,7 +16,7 @@ $product['photo_filename'] = $_FILES['file']['name'];
 $dbConnection = getConnection($dbConfig);
 
 // Crée ou récupère l'ID du produit
-$productId = createInsertProduct($product['name'], $product['description'], $product['photo_filename'], $dbConnection);
+$productId = createProduct($product['name'], $product['description'], $product['photo_filename'], $dbConnection);
 
 $options = [];
 
@@ -60,7 +60,7 @@ echo '</pre>';
 // Vérifier si $productId et $dbConnection sont définis
 if (isset($productId) && isset($dbConnection)) {
     // Crée ou met à jour les options dans la base de données
-    $isSuccess = createInsertProduct_stock($productId, $options, $dbConnection);
+    $isSuccess = createProductStock($productId, $options, $dbConnection);
 
     if ($isSuccess) {
         echo 'Produit et options ajoutés ou mis à jour avec succès !';

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,46 +23,90 @@
    
   
     <section class="container sproduct my-5 pt-0">
-       
-            <div style="border-bottom: 2px solid #fff" class="row mt-5">
-                <div class="col-lg-5 col-md-12 col-12">
-                    <img class="img-fluid w-100" src="../../upload/<?= $product['photo_filename'] ?>" class="small-img" alt="">
-                    
-                    <div class="small-img-group">
-                        <div class="small-img-col">
-                            <img src="" width="100%" class="small-img" alt="">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="" width="100%" class="small-img" alt="">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="" width="100%" class="small-img" alt="">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="" width="100%" class="small-img" alt="">
-                        </div>
-                    </div>
+    <div style="border-bottom: 2px solid #fff" class="row mt-5">
+        <div class="col-lg-5 col-md-12 col-12">
+            <img class="img-fluid w-100" src="../../upload/<?= htmlspecialchars($product['photo_filename']) ?>" alt="">
+            <div class="small-img-group">
+                <!-- Small images -->
+                <div class="small-img-col">
+                    <img src="" width="100%" class="small-img" alt="">
                 </div>
-
-                <div class="col-lg-6 col-md-12 col-12">
-    <h6 class="arboPageDetail">Accueil / Produit / Miel ...</h6>
-    <h3 class="product-title"><?= $product['name'] ?></h3>
-    
-    <p class="description"><?= $product['description'] ?></p>
-
-    <label for="poids">Choisissez le poids :</label>
-    <select name="poids" id="poids">
-        <?php foreach ($productPoids as $poids): ?>
-            <option value="<?= $poids['poids'] ?>" data-price="<?= $poids['price'] ?>" data-quantity="<?= $poids['quantity'] ?>">
-                <?= $poids['poids'] ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-
-    <p id="price-display">Prix: <?= number_format($productPoids[0]['price'], 2) ?>€</p>
-    <p id="quantity-display">Quantité disponible: <?= $productPoids[0]['quantity'] ?></p>
+                <div class="small-img-col">
+                    <img src="" width="100%" class="small-img" alt="">
+                </div>
+                <div class="small-img-col">
+                    <img src="" width="100%" class="small-img" alt="">
+                </div>
+                <div class="small-img-col">
+                    <img src="" width="100%" class="small-img" alt="">
+                </div>
+            </div>
         </div>
-               
+
+        <div class="col-lg-6 col-md-12 col-12">
+            <h6 class="arboPageDetail">Accueil / Produit / Miel ...</h6>
+            <h3 class="product-title"><?= htmlspecialchars($product['name']) ?></h3>
+            <p class="description"><?= htmlspecialchars($product['description']) ?></p>
+
+            <!-- Formulaire pour sélectionner le poids -->
+            <form action="" method="get">
+                <input type="hidden" name="id" value="<?= htmlspecialchars($product['id']) ?>">
+                <label for="poids">Choisissez le poids :</label>
+                <select name="poids" id="poids" onchange="this.form.submit()">
+                    <?php foreach ($productPoids as $poids): ?>
+                        <option value="<?= htmlspecialchars($poids['poids']) ?>"
+                                <?= (isset($_GET['poids']) && $_GET['poids'] == $poids['poids']) ? 'selected' : '' ?>
+                                data-price="<?= htmlspecialchars($poids['price']) ?>"
+                                data-quantity="<?= htmlspecialchars($poids['quantity']) ?>">
+                            <?= htmlspecialchars($poids['poids']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </form>
+
+            <?php
+            // Affichage des informations du produit basé sur la sélection
+            if (isset($_GET['poids'])) {
+                $selectedPoids = $_GET['poids'];
+                $selectedProduct = array_filter($productPoids, function ($item) use ($selectedPoids) {
+                    return $item['poids'] == $selectedPoids;
+                });
+                $selectedProduct = reset($selectedProduct);
+                if ($selectedProduct) {
+                    echo '<p id="price-display">Prix: ' . number_format($selectedProduct['price'], 2) . '€</p>';
+                    echo '<p id="quantity-display">Quantité disponible: ' . $selectedProduct['quantity'] . '</p>';
+                } else {
+                    echo '<p id="price-display">Prix: Non disponible</p>';
+                    echo '<p id="quantity-display">Quantité disponible: Non disponible</p>';
+                }
+            } else {
+                echo '<p id="price-display">Prix: ' . number_format($productPoids[0]['price'], 2) . '€</p>';
+                echo '<p id="quantity-display">Quantité disponible: ' . $productPoids[0]['quantity'] . '</p>';
+            }
+            ?>
+        </div>
+    </div>
+
+
+
+
+         <!-- Formulaire d'ajout au panier -->
+<form action="/ctrl/cart/add.php" method="get">
+    <!-- Champs cachés pour envoyer les données -->
+    <input type="hidden" name="idProduct" value="<?= htmlspecialchars($_GET['id'] ?? $product['id']) ?>">
+    <input type="hidden" name="poids" value="<?= htmlspecialchars($_GET['poids'] ?? $productPoids[0]['poids']) ?>">
+    <input type="hidden" name="price" value="<?= htmlspecialchars($_GET['price'] ?? $productPoids[0]['price']) ?>">
+     <!-- Identifiant de la session pour les utilisateurs non connectés -->
+     <input type="hidden" name="sessionId" value="<?= htmlspecialchars($_GET['sessionId'] ?? $sessionId['sessionId']) ?>">
+    <!-- Quantité à ajouter au panier -->
+    <label for="quantity">Quantité :</label>
+    <input type="number" id="quantity" name="quantity" value="1" min="1">
+
+
+    <!-- Bouton d'ajout au panier -->
+    <button type="submit">Ajouter au panier</button>
+</form>
+
             </div>
             <h4 class="mt-5 mb-5">Commentaire</h4>
             

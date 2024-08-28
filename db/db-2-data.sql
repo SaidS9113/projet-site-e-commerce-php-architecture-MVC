@@ -24,9 +24,9 @@ INSERT INTO product_stock (idProduct, poids, price, quantity) VALUES
       ,(1, '1kg', 60, 5)
 ;
 
-INSERT INTO cart_product (idUser, idProduct, poids, quantity, date_added)
+INSERT INTO cart_product (idUser, idProduct, poids, quantity, date_added, sessionId)
 VALUES 
-      (80, 1, '250g', 5, '2024-08-23 10:05:00')
+      (80, 1, 1, '250g', '2024-08-23 10:05:00', 1)
 ;
 
 INSERT INTO commande_info (id, idUser, order_date, total, status)
