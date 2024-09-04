@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $statementProduct = $dbConnection->prepare($queryProduct);
     $statementProduct->bindParam(':name', $_POST['name']);
     $statementProduct->bindParam(':description', $_POST['description']);
-    $statementProduct->bindParam(':id', $_POST['id'], PDO::PARAM_INT);
+    $statementProduct->bindParam(':id', $_POST['id']);
     
     $successProduct = $statementProduct->execute();
     

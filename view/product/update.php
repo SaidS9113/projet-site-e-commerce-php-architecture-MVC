@@ -21,7 +21,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 
     <form class="formUpdate" action="/ctrl/product/update.php" method="post">
     <!-- ID du produit -->
-    <input type="hidden" name="id" value="<?= $product['id'] ?? '' ?>">
+    <input type="hidden" name="id" value="<?= $productInfo['id'] ?? '' ?>">
 
     <!-- Nom -->
     <div>

@@ -43,7 +43,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
             </ul>
             <div class="boiteIcons">
                 <a href="/ctrl/login/display.php"><i class='bx bx-user'></i></a>
-                <a href=""><i class='bx bx-cart'></i></a>
+                <a href="/ctrl/cart/cart.php"><i class='bx bx-cart'></i></a>
             </div>
         </nav>
 

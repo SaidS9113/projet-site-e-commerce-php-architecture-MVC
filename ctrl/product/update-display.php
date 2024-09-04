@@ -12,7 +12,7 @@ $dbConnection = getConnection($dbConfig);
 
 $idProduct = $_GET['id'];
 // Charge l'article à modifier
-$queryProduct = 'SELECT name, description FROM product WHERE id = :idProduct';
+$queryProduct = 'SELECT id, name, description FROM product WHERE id = :idProduct';
 $statementProduct = $dbConnection->prepare($queryProduct);
 $statementProduct->bindParam(':idProduct', $idProduct, PDO::PARAM_INT);
 $statementProduct->execute();

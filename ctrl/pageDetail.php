@@ -41,12 +41,20 @@ if (isset($_GET['id'])) {
                 exit;
             }
 
-            // 2. Requête pour récupérer les poids et prix disponibles
+            // 2. Requête pour récupérer les poids, prix et quantité disponibles
             $queryPoids = 'SELECT poids, price, quantity FROM product_stock WHERE idProduct = :id';
             $statementPoids = $dbConnection->prepare($queryPoids);
             $statementPoids->bindParam(':id', $productId, PDO::PARAM_INT);
             $statementPoids->execute();
             $productPoids = $statementPoids->fetchAll(PDO::FETCH_ASSOC);
+
+            // Vérifie si des poids ont été trouvés
+            if ($productPoids === false) {
+                // Gérer l'erreur si aucun poids n'est trouvé pour le produit
+                http_response_code(500); // Internal Server Error
+                echo "Erreur lors de la récupération des poids du produit.";
+                exit;
+            }
 
         } catch (PDOException $e) {
             // Gère les erreurs de la base de données
@@ -66,6 +74,9 @@ if (isset($_GET['id'])) {
     echo "Aucun ID de produit fourni.";
     exit;
 }
+
+
+
 
 
 // Prépare la requête en selectionnant les colonnes dans la table commentaire pour affichier ses informations

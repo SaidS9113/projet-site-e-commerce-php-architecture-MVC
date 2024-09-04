@@ -48,64 +48,77 @@
             <h3 class="product-title"><?= htmlspecialchars($product['name']) ?></h3>
             <p class="description"><?= htmlspecialchars($product['description']) ?></p>
 
-            <!-- Formulaire pour sélectionner le poids -->
-            <form action="" method="get">
-                <input type="hidden" name="id" value="<?= htmlspecialchars($product['id']) ?>">
-                <label for="poids">Choisissez le poids :</label>
-                <select name="poids" id="poids" onchange="this.form.submit()">
-                    <?php foreach ($productPoids as $poids): ?>
-                        <option value="<?= htmlspecialchars($poids['poids']) ?>"
-                                <?= (isset($_GET['poids']) && $_GET['poids'] == $poids['poids']) ? 'selected' : '' ?>
-                                data-price="<?= htmlspecialchars($poids['price']) ?>"
-                                data-quantity="<?= htmlspecialchars($poids['quantity']) ?>">
-                            <?= htmlspecialchars($poids['poids']) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </form>
+    <!-- Formulaire pour sélectionner le poids -->
+<form action="" method="get">
+    <input type="hidden" name="id" value="<?= htmlspecialchars($product['id']) ?>">
+    <label for="poids">Choisissez le poids :</label>
+    <select name="poids" id="poids" onchange="this.form.submit()">
+        <?php foreach ($productPoids as $poids): ?>
+            <option value="<?= htmlspecialchars($poids['poids']) ?>"
+                    <?= (isset($_GET['poids']) && $_GET['poids'] == $poids['poids']) ? 'selected' : '' ?>
+                    data-price="<?= htmlspecialchars($poids['price']) ?>"
+                    data-quantity="<?= htmlspecialchars($poids['quantity']) ?>">
+                <?= htmlspecialchars($poids['poids']) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</form>
 
-            <?php
-            // Affichage des informations du produit basé sur la sélection
-            if (isset($_GET['poids'])) {
-                $selectedPoids = $_GET['poids'];
-                $selectedProduct = array_filter($productPoids, function ($item) use ($selectedPoids) {
-                    return $item['poids'] == $selectedPoids;
-                });
-                $selectedProduct = reset($selectedProduct);
-                if ($selectedProduct) {
-                    echo '<p id="price-display">Prix: ' . number_format($selectedProduct['price'], 2) . '€</p>';
-                    echo '<p id="quantity-display">Quantité disponible: ' . $selectedProduct['quantity'] . '</p>';
-                } else {
-                    echo '<p id="price-display">Prix: Non disponible</p>';
-                    echo '<p id="quantity-display">Quantité disponible: Non disponible</p>';
-                }
-            } else {
-                echo '<p id="price-display">Prix: ' . number_format($productPoids[0]['price'], 2) . '€</p>';
-                echo '<p id="quantity-display">Quantité disponible: ' . $productPoids[0]['quantity'] . '</p>';
-            }
-            ?>
-        </div>
-    </div>
+<!-- Affichage des informations du produit basé sur la sélection -->
+<p id="price-display">Prix: <?= number_format($productPoids[0]['price'], 2) ?>€</p>
+<p id="quantity-display">Quantité disponible: <?= $productPoids[0]['quantity'] ?></p>
 
-
-
-
-         <!-- Formulaire d'ajout au panier -->
-<form action="/ctrl/cart/add.php" method="get">
+<!-- Formulaire d'ajout au panier -->
+<form action="/ctrl/cart/add.php" method="get" id="add-to-cart-form">
     <!-- Champs cachés pour envoyer les données -->
     <input type="hidden" name="idProduct" value="<?= htmlspecialchars($_GET['id'] ?? $product['id']) ?>">
     <input type="hidden" name="poids" value="<?= htmlspecialchars($_GET['poids'] ?? $productPoids[0]['poids']) ?>">
     <input type="hidden" name="price" value="<?= htmlspecialchars($_GET['price'] ?? $productPoids[0]['price']) ?>">
-     <!-- Identifiant de la session pour les utilisateurs non connectés -->
-     <input type="hidden" name="sessionId" value="<?= htmlspecialchars($_GET['sessionId'] ?? $sessionId['sessionId']) ?>">
+    <!-- Identifiant de la session pour les utilisateurs non connectés -->
+    <input type="hidden" name="sessionId" value="<?= htmlspecialchars($_GET['sessionId'] ?? $sessionId['sessionId']) ?>">
+
     <!-- Quantité à ajouter au panier -->
     <label for="quantity">Quantité :</label>
-    <input type="number" id="quantity" name="quantity" value="1" min="1">
-
+    <input type="number" id="quantity" name="quantity" value="1" min="1" />
+    <span id="stock-message"></span>
 
     <!-- Bouton d'ajout au panier -->
-    <button type="submit">Ajouter au panier</button>
+    <button type="submit" id="add-to-cart-button">Ajouter au panier</button>
 </form>
+
+<script>
+function updateProductInfo() {
+    var select = document.getElementById('poids');
+    var selectedOption = select.options[select.selectedIndex];
+    var quantity = parseInt(selectedOption.getAttribute('data-quantity'), 10);
+    
+    var priceDisplay = document.getElementById('price-display');
+    var quantityDisplay = document.getElementById('quantity-display');
+    var stockMessage = document.getElementById('stock-message');
+    var quantityInput = document.getElementById('quantity');
+    var addToCartButton = document.getElementById('add-to-cart-button');
+
+    // Update price and quantity display
+    priceDisplay.textContent = 'Prix: ' + selectedOption.getAttribute('data-price') + '€';
+    
+    if (quantity > 0) {
+        quantityDisplay.textContent = 'Quantité disponible: ' + quantity;
+        quantityInput.disabled = false;
+        addToCartButton.disabled = false;
+        stockMessage.textContent = '';
+    } else {
+        quantityDisplay.textContent = 'Rupture de stock';
+        quantityDisplay.style.color = 'red';
+        quantityInput.disabled = true;
+        addToCartButton.disabled = true;
+     
+    }
+}
+
+// Initialize the product info when the page loads
+document.addEventListener('DOMContentLoaded', updateProductInfo);
+</script>
+
 
             </div>
             <h4 class="mt-5 mb-5">Commentaire</h4>

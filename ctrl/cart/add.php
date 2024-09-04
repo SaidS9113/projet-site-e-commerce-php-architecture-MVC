@@ -1,4 +1,4 @@
- <?php
+<?php
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
@@ -19,8 +19,50 @@ if ($idProduct <= 0 || $quantity <= 0 || empty($poids) || empty($sessionId)) {
 // Créer une connexion à la base de données
 $dbConnection = getConnection($dbConfig);
 
-// Ajouter le produit au panier pour les utilisateurs non connectés
+// Récupérer la quantité disponible en stock
+$stmt = $dbConnection->prepare('SELECT quantity FROM product_stock WHERE idProduct = ? AND poids = ?');
+$stmt->execute([$idProduct, $poids]);
+$stock = $stmt->fetchColumn();
+
+// Vérifier si le produit existe et obtenir la quantité disponible
+if ($stock === false) {
+    header('Location: /error.php?message=Produit non trouvé.');
+    exit;
+}
+
+// Si la quantité en stock est 0, afficher un message de rupture de stock
+if ($stock <= 0) {
+    header('Location: /error.php?message=Rupture de stock pour ce produit.');
+    exit;
+}
+
+// Récupérer la quantité déjà dans le panier pour l'utilisateur connecté ou la session
+if (isset($_SESSION['user']['id'])) {
+    $idUser = $_SESSION['user']['id'];
+    $stmt = $dbConnection->prepare('SELECT SUM(quantity) FROM cart_product WHERE idUser = ? AND idProduct = ? AND poids = ?');
+    $stmt->execute([$idUser, $idProduct, $poids]);
+    $alreadyInCart = $stmt->fetchColumn();
+} else {
+    $alreadyInCart = 0;
+    if (isset($_SESSION['cart_product'])) {
+        foreach ($_SESSION['cart_product'] as $item) {
+            if ($item['idProduct'] == $idProduct && $item['poids'] == $poids) {
+                $alreadyInCart = $item['quantity'];
+                break;
+            }
+        }
+    }
+}
+
+// Vérifier si la quantité demandée dépasse le stock disponible
+if (($alreadyInCart + $quantity) > $stock) {
+    header('Location: /error.php?message=Quantité demandée dépasse le stock disponible.');
+    exit;
+}
+
+// Ajouter le produit au panier
 if (!isset($_SESSION['user']['id'])) {
+    // Pour les utilisateurs non connectés
     if (!isset($_SESSION['cart_product'])) {
         $_SESSION['cart_product'] = [];
     }
@@ -39,12 +81,11 @@ if (!isset($_SESSION['user']['id'])) {
             'idProduct' => $idProduct,
             'poids' => $poids,
             'quantity' => $quantity,
-            'sessionId' => $sessionId // Assurez-vous que ce champ est bien enregistré pour les non-connectés
+            'sessionId' => $sessionId
         ];
     }
 } else {
-    // Code pour les utilisateurs connectés
-    $idUser = $_SESSION['user']['id'];
+    // Pour les utilisateurs connectés
     if (addToCart($idUser, $idProduct, $poids, $quantity, $dbConnection)) {
         header('Location: /ctrl/cart/cart.php');
         exit;
@@ -56,4 +97,4 @@ if (!isset($_SESSION['user']['id'])) {
 
 // Rediriger vers la page du panier après l'ajout réussi
 header('Location: /ctrl/cart/cart.php');
-exit; 
+exit;

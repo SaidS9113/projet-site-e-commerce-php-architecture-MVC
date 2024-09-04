@@ -50,8 +50,8 @@ $sessionId = isset($_SESSION['user']); ?>
                         <td><?= $item['price'] ?></td>
                         <td><?= $item['quantity'] ?></td>
                         <td>
-    <a href="/ctrl/product/delete.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>" 
-       onclick="return confirm('Confirmer la suppression de cette option (<?= $product['poids'] ?>) ?')">
+                        <a href="/ctrl/cart/delete.php?id=<?= $item['idProduct'] ?>&poids=<?= $item['poids'] ?>" 
+       onclick="return confirm('Confirmer la suppression de cette option (<?= $item['poids'] ?>) ?')">
        <button class="buttonDelete">
            <img class="iconeCorbeille" src="/asset/img/corbeille.png" alt="">
        </button>
@@ -65,10 +65,10 @@ $sessionId = isset($_SESSION['user']); ?>
         
                 </main>
                 <p><strong>Sous-total:</strong> <?= number_format($sousTotal, 2) ?> €</p>
-    <a href="/ctrl/checkout.php">Procéder au paiement</a>
+    <a href="/ctrl/payment/pay.php">Procéder au paiement</a>
 <?php endif; ?>
 
-<p><a href="/ctrl/catalog.php">Retourner au catalogue</a></p>
+<p><a href="/ctrl/catalogue.php">Retourner au catalogue</a></p>
 
 </body>
 </html>
