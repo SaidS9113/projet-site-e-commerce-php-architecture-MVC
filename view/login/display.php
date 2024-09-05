@@ -32,7 +32,11 @@
         <div class="submit">
             <button class="btn-connexion" type="submit">Connexion</button>
         </div>
+        <div style="margin-top: 15px;" class="inscription">
+        <a href="/ctrl/inscription/add-display.php" style="text-decoration: none"><button class="btn-inscription" type="button">Inscription</button></a>
+    </div>
+   
     </form>
-</body>
 
+</body>
 </html>

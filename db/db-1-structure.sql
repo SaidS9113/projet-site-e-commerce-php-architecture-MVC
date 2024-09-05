@@ -54,6 +54,7 @@ CREATE TABLE cart_product (
 CREATE TABLE commande_info (
     id INT AUTO_INCREMENT PRIMARY KEY
     ,idUser INT NOT NULL
+    ,email VARCHAR(100) NOT NULL
     ,order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ,total DECIMAL(10, 2) NOT NULL
     ,status VARCHAR(50) DEFAULT 'Pending'
@@ -63,6 +64,7 @@ CREATE TABLE commande_product (
     id INT AUTO_INCREMENT PRIMARY KEY
     ,idCommande_info INT NOT NULL
     ,idProduct INT NOT NULL
+    ,name VARCHAR(250)
     ,poids VARCHAR(50) NOT NULL
     ,quantity INT NOT NULL
    ,price DECIMAL(10, 2) NOT NULL

@@ -36,7 +36,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
                     <li><a href="/ctrl/product/list.php">ListProduits</a></li>
                 <?php endif; ?>
            
-                    <li><a href="/ctrl/profil/profile-list.php">ProfilImageList</a></li>
+                <li><a href="/ctrl/commande.php">ListeCommande</a></li>
                 
                     <li><a href="/ctrl/profil/profile-add-display.php">AjoutImageProfil</a></li>
               

@@ -29,14 +29,14 @@ VALUES
       (80, 1, 1, '250g', '2024-08-23 10:05:00', 1)
 ;
 
-INSERT INTO commande_info (id, idUser, order_date, total, status)
+INSERT INTO commande_info (id, idUser, email, order_date, total, status)
 VALUES 
-      (1, 80, '2024-08-23 11:00:00', 19.00, 'Pending')
+      (1, 80, 'blabla@gmail.fr', '2024-08-23 11:00:00', 19.00, 'Accepted')
 ;
 
-INSERT INTO commande_product (idCommande_info, idProduct, poids, quantity, price)
+INSERT INTO commande_product (idCommande_info, idProduct, name, poids, quantity, price)
 VALUES 
-      (1, 1, '250g', 5, 20)
+      (1, 1, "Miel d'Oranger", '250g', 5, 20)
 ;
 
 

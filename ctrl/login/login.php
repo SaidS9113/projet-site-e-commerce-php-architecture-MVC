@@ -15,7 +15,7 @@ $form['password'] = $_POST['password'];
 $dbConnection = getConnection($dbConfig);
 $user = getUser($form['email'], $dbConnection);
 
-// Vérifie que l'Utilisateur existe
+/// Vérifie que l'Utilisateur existe
 if ($user == null) {
 
     header('Location: ' . '/ctrl/login/display.php');
@@ -39,7 +39,7 @@ if ($user == null) {
     // Modifie la redirection selon que l'Utilisateur soit admin ou pas
     $isAdmin = $_SESSION['user']['idRole'] == 10;
     if ($isAdmin) {
-        header('Location: ' . '/ctrl/product/list.php');
+        header('Location: ' . '/ctrl/accueil.php');
         exit();
     }
     header('Location: ' . '/ctrl/accueil.php');

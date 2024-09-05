@@ -33,17 +33,43 @@ function getUser(string $email, PDO $db): ?array
  */
 function getRole(string $code, PDO $db): ?array
 {
-    // Prépare la requête
-    $query = 'SELECT role.id, role.code, role.label';
-    $query .= ' FROM role';
-    $query .= ' WHERE role.code = :code';
+    $query = 'SELECT role.id, role.code, role.label FROM role WHERE role.code = :code';
     $statement = $db->prepare($query);
     $statement->bindParam(':code', $code);
-
-    // Exécute la requête
     $statement->execute();
     $role = $statement->fetch(PDO::FETCH_ASSOC);
 
-    // Si aucun rôle n'est trouvé, retourne null
+    if (!$role) {
+        error_log("Role non trouvé pour le code: $code");
+    }
+
     return $role ?: null;
 }
+
+
+
+/** 
+ * @param string $email Email de l'utilisateur.
+ * @param string $password Mot de passe de l'utilisateur.
+ * @param string $idRole Identifiant du rôle de l'utilisateur.
+ * @param PDO $db Connexion à la BDD.
+ * @return boolean Succès ou échec de l'insertion.
+ * 
+ */
+
+ function create(string $email, string $password, string $idRole, PDO $db): bool
+ {
+     // Prépare la requête SQL pour insérer un nouvel utilisateur
+     $query = 'INSERT INTO user (email, password, idRole) VALUES (:email, :password, :idRole)';
+     $statement = $db->prepare($query);
+     
+     // Lie les paramètres à la requête préparée
+     $statement->bindParam(':email', $email);
+     $statement->bindParam(':password', $password);
+     $statement->bindParam(':idRole', $idRole);
+     
+     // Exécute la requête et retourne le succès ou l'échec
+     $successOrFailure = $statement->execute();
+ 
+     return $successOrFailure;
+ }

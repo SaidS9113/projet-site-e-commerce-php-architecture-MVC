@@ -4,6 +4,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/cart.php';
 
+// Fonction pour ajouter un message flash
+function addFlashMessage($message) {
+    $_SESSION['flash_message'] = $message;
+}
+
 // Récupérer les données depuis l'URL (GET)
 $idProduct = isset($_GET['idProduct']) ? intval($_GET['idProduct']) : 0;
 $poids = isset($_GET['poids']) ? $_GET['poids'] : '';
@@ -12,7 +17,8 @@ $sessionId = isset($_GET['sessionId']) ? $_GET['sessionId'] : '';
 
 // Assurer que les données sont valides
 if ($idProduct <= 0 || $quantity <= 0 || empty($poids) || empty($sessionId)) {
-    header('Location: /error.php?message=Données invalides. Veuillez réessayer.');
+    addFlashMessage('Données invalides. Veuillez réessayer.');
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;
 }
 
@@ -26,13 +32,15 @@ $stock = $stmt->fetchColumn();
 
 // Vérifier si le produit existe et obtenir la quantité disponible
 if ($stock === false) {
-    header('Location: /error.php?message=Produit non trouvé.');
+    addFlashMessage('Produit non trouvé.');
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;
 }
 
 // Si la quantité en stock est 0, afficher un message de rupture de stock
 if ($stock <= 0) {
-    header('Location: /error.php?message=Rupture de stock pour ce produit.');
+    addFlashMessage('Rupture de stock pour ce produit.');
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;
 }
 
@@ -56,7 +64,8 @@ if (isset($_SESSION['user']['id'])) {
 
 // Vérifier si la quantité demandée dépasse le stock disponible
 if (($alreadyInCart + $quantity) > $stock) {
-    header('Location: /error.php?message=Quantité demandée dépasse le stock disponible.');
+    addFlashMessage('Quantité demandée dépasse le stock disponible.');
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;
 }
 
@@ -90,7 +99,8 @@ if (!isset($_SESSION['user']['id'])) {
         header('Location: /ctrl/cart/cart.php');
         exit;
     } else {
-        header('Location: /error.php?message=Erreur lors de l\'ajout au panier.');
+        addFlashMessage('Erreur lors de l\'ajout au panier.');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
     }
 }

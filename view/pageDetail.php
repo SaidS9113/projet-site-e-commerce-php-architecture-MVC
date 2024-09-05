@@ -85,6 +85,12 @@
     <!-- Bouton d'ajout au panier -->
     <button type="submit" id="add-to-cart-button">Ajouter au panier</button>
 </form>
+<?php
+if (isset($_SESSION['flash_message'])) {
+    echo '<div class="alert alert-danger">' . htmlspecialchars($_SESSION['flash_message']) . '</div>';
+    unset($_SESSION['flash_message']); // Supprimer le message après affichage
+}
+?>
 
 <script>
 function updateProductInfo() {

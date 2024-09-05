@@ -35,12 +35,18 @@ function handleOrderAndPayment($userId, $sessionId, $dbConnection) {
         }
 
         $total = calculateTotal($cartProducts);
-        $orderId = createOrder($userId, $total, $dbConnection);
 
+        // Créer la commande
+        // Ajout d'un paramètre email pour la fonction createOrder
+        $email = $_SESSION['user']['email'] ?? null;
+        $orderId = createOrder($userId, $email, $total, $dbConnection);
+
+        // Ajouter chaque produit à la commande
         foreach ($cartProducts as $product) {
-            addOrderProduct($orderId, $product['idProduct'], $product['poids'], $product['quantity'], $product['price'], $dbConnection);
+            addOrderProduct($orderId, $product['idProduct'], $product['name'], $product['poids'], $product['quantity'], $product['price'], $dbConnection);
             updateStock($product['idProduct'], $product['poids'], $product['quantity'], $dbConnection);
         }
+
 
         clearCart($userId, $sessionId, $dbConnection);
         $dbConnection->commit();
