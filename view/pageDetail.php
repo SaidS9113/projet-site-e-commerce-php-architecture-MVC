@@ -129,24 +129,38 @@ document.addEventListener('DOMContentLoaded', updateProductInfo);
             </div>
             <h4 class="mt-5 mb-5">Commentaire</h4>
             
-            <form class="formCommentaire" action="/ctrl/add-commentaire/add.php" method="post" enctype="multipart/form-data">
-            <div class="boiteSaisieCommentaire">
-                <label for="label">Donnez votre avis sur le véhicule</label>
-                
-                <textarea  type="text" name="contenu" id="contenu" cols="30" rows="10" placeholder="Veuillez saisir un commentaire"></textarea>
-            </div>
-            <div class="boiteAjtCommentaire">
-                <button type="submit">Valider</button>
-            </div>
+<form class="formCommentaire" action="/ctrl/avis/add.php" method="post" enctype="multipart/form-data">
+    <div class="boiteSaisieCommentaire">
+        <label for="contenu">Donnez votre avis sur le produit</label>
+        <textarea name="content" id="contenu" cols="30" rows="10" placeholder="Veuillez saisir un commentaire"></textarea>
+    </div>
+    
+    <!-- Champ caché pour envoyer l'id du produit -->
+    <input type="hidden" name="idProduct" value="<?= htmlspecialchars($product['id']) ?>">
+    <input type="hidden" name="poids" value="<?= htmlspecialchars($productPoids[0]['poids']) ?>">
+    <input type="hidden" name="price" value="<?= htmlspecialchars($productPoids[0]['price']) ?>">
 
-            </form>
-            <?php foreach ($listAvis as $avis) { ?>
-            <div class="container-commentaire">
-                <h5 class="user-commentaire"><?=$avis ['idUser']?> <span class="date-commentaire"> <?= $avis['date'] ?></span><span></span></h5>
-                <p class="commentaire"><?= $avis['content'] ?></p>
-            </div>
-        <?php } ?>
+    <!-- Champ caché pour envoyer l'id de l'utilisateur (si l'utilisateur est connecté, sinon à gérer en back-end) -->
+    <input type="hidden" name="idUser" value="<?= htmlspecialchars($idUser) ?>">
+
+    <div class="boiteAjtCommentaire">
+        <button type="submit">Valider</button>
+    </div>
+</form>
+
+<?php foreach ($listAvis as $avis) { ?>
+    <div class="container-commentaire">
+        <h5 class="user-commentaire">
+            <!-- Affichage de l'email ou du nom de l'utilisateur qui a posté l'avis -->
+            <?= htmlspecialchars($avis['email']) ?> 
+            <span class="date-commentaire"><?= htmlspecialchars($avis['date']) ?></span>
+        </h5>
+        <p class="commentaire"><?= htmlspecialchars($avis['content']) ?></p>
+    </div>
+<?php } ?>
+
     </section>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="/asset/js/selectedOption.js"></script>
 </body>
