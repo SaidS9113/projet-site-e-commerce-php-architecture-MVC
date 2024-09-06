@@ -12,7 +12,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 
             <div class="nameProfilUser">
             
-                    <img src="<?= '/upload/' . $_SESSION['user']['photo_filename'] ?>" width="50" />
+                   
                     <span class="nameUser"><?= ($_SESSION['user']['email']) ?></span>
             </div>
            
@@ -30,21 +30,27 @@ $isLoggedIn = isset($_SESSION['user']); ?>
                 <li><a href="/ctrl/catalogue.php">Produits</a></li>
                 </div>
                 <?php if ($isLoggedIn && $_SESSION['user']['idRole'] == '10') : ?> <!-- cache le lien Gestion Aministrateur si l'utilisateur n'a pas le role admin -->
-                    <li><a href="/ctrl/product/add-display.php">AjoutVehicule</a></li>
+                    <li><a href="/ctrl/product/add-display.php">AjoutProduits</a></li>
                 <?php endif; ?>
                 <?php if ($isLoggedIn && $_SESSION['user']['idRole'] == '10') : ?> <!-- cache le lien Gestion Aministrateur si l'utilisateur n'a pas le role admin -->
-                    <li><a href="/ctrl/product/list.php">ListProduits</a></li>
+                    <li><a href="/ctrl/product/list.php">ListeProduits</a></li>
                 <?php endif; ?>
            
-                    <li><a href="/ctrl/commande.php">ListeCommande</a></li>
+                    <li><a href="/ctrl/commande.php">ListeCommandes</a></li>
                 
-                    <li><a href="/ctrl/profil/profile-add-display.php">AjoutImageProfil</a></li>
+                    <li><a href="/ctrl/inscription/list.php">ListeUtilisateurs</a></li>
               
             </ul>
             <div class="boiteIcons">
-                <a href="/ctrl/login/display.php"><i class='bx bx-user'></i></a>
-                <a href="/ctrl/cart/cart.php"><i class='bx bx-cart'></i></a>
-            </div>
+        <?php if ($isLoggedIn) : ?>
+            <!-- Utilisateur connecté -->
+            <a href="/ctrl/profil-info/update-display.php"><i class='bx bx-user'></i></a> <!-- Remplacez /ctrl/other-page.php par la page souhaitée -->
+        <?php else : ?>
+            <!-- Utilisateur non connecté -->
+            <a href="/ctrl/login/display.php"><i class='bx bx-user'></i></a>
+        <?php endif; ?>
+        <a href="/ctrl/cart/cart.php"><i class='bx bx-cart'></i></a>
+    </div>
         </nav>
 
     </header>
