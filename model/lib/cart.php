@@ -142,3 +142,4 @@ function removeFromCart(int $cartItemId, PDO $db)
     return $statement->execute();
 }
 
+

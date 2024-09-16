@@ -13,7 +13,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
                 1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../asset/css/style.css">
-    <title><?= $titreSite ?>| Modifier</title>
+    <title>MielQualityS | Modifier le profil</title>
 </head>
 <body>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
@@ -44,7 +44,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 
 
     </main>
-
+    <script src="/asset/js/cart.js"></script>
 </body>
 
 </html>

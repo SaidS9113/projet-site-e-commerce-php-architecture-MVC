@@ -77,12 +77,12 @@ $_SESSION['msg']['error'] = [];
 
 $uploadDirectory = $_SERVER['DOCUMENT_ROOT'] . '/upload/';
 
-//Déclaration pour mettre la liste des formats images acceptées pour uppload
+//Déclaration pour mettre la liste des formats images acceptées pour upload
 const MY_IMG_PNG = 'image/png';
-const MY_IMG_JPG = 'image/jpg';
+const MY_IMG_JPEG = 'image/jpeg'; // Remplace "image/jpg" par "image/jpeg"
 const MY_IMG_SVG = 'image/svg+xml';
-const LIST_ACCEPTED_FILE_TYPE = [MY_IMG_PNG, MY_IMG_JPG, MY_IMG_SVG];
-const FILE_MAX_SIZE = 10;
+const LIST_ACCEPTED_FILE_TYPE = [MY_IMG_PNG, MY_IMG_JPEG, MY_IMG_SVG];
+const FILE_MAX_SIZE = 10 * 1024 * 1024; // Exemple de taille maximale : 10 MB
 
 // Lis les informations saisies dans le formulaire
 $fileName = $_FILES['file']['name'];
@@ -93,47 +93,31 @@ $fileType = $_FILES['file']['type'];
 // Effectue différents tests sur les données saisies
 $isSupportedFileType = in_array($fileType, LIST_ACCEPTED_FILE_TYPE);
 if (!$isSupportedFileType) {
-
     // Ajoute un flash-message
     $_SESSION['msg']['error'][] = 'Les seuls formats de fichier acceptés sont : ' . implode(',', LIST_ACCEPTED_FILE_TYPE);
 }
-if (true) {
-    //...filesize
+if ($fileSize > FILE_MAX_SIZE) {
+    $_SESSION['msg']['error'][] = 'Le fichier est trop volumineux. Taille maximale : ' . (FILE_MAX_SIZE / (1024 * 1024)) . ' MB.';
 }
 
 $hasErrors = !empty($_SESSION['msg']['error']);
 if ($hasErrors) {
-
     // Redirige vers le formulaire pour corrections
-    header('Location: ' . '/ctrl/add-article/add-display.php');
+    header('Location: ' . '/ctrl/product/add-display.php');
     exit();
 }
 
-// Exécute la requête et retourne le succès ou l'échec
-
-
-// Insère les données en base
-// $db = getConnection($dbConfig);
-// $query = 'UPDATE vehicule';
-// $query .= ' SET';
-// $query .= ' vehicule.photo = :photo';
-// $query .= ' ,vehicule.photo_filename = :photo_filename';
-// $query .= ' WHERE vehicule.id = :idVehicule';
-// $statement = $db->prepare($query);
-// $statement->bindParam(':photo', fopen($fileTmpName, 'rb'), PDO::PARAM_LOB);
-// $statement->bindParam(':photo_filename', basename($fileName));
-// $statement->bindParam(':idVehicule', $_SESSION['vehicule']['id']);
-// $successOrFailure = $statement->execute();
-// $id = $db->lastInsertId();
-
-// Copie aussi le fichier d'avatar dans un répertoire
+// Copie aussi le fichier dans le répertoire d'upload
 $uploadPath = $uploadDirectory . basename($fileName);
 $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
-// Ajoute un flash-message
-$_SESSION['msg']['info'][] = 'Le produit a été ajouté.';
+if ($didUpload) {
+    $_SESSION['msg']['info'][] = 'Le produit a été ajouté.';
+} else {
+    $_SESSION['msg']['error'][] = 'Erreur lors de l\'upload de l\'image.';
+}
 
 // Rends la vue
 include $_SERVER['DOCUMENT_ROOT'] . '/view/uploadImage.php';
 
-// Redirige vers la liste des Marins
+// Redirige vers la liste des produits
 header('Location: ' . '/ctrl/product/list.php');

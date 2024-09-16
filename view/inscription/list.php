@@ -13,47 +13,68 @@ $sessionId = isset($_SESSION['user']); ?>
                 1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../asset/css/style.css">
-    <title><?= $titreSite ?>| Ajout</title>
+    <title>MielQualityS | Liste utilisateurs</title>
 </head>
 <body>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 
-    <h1>Liste des utilisateurs</h1>
-   
+    <h1 class="titleList">Liste des utilisateurs</h1>
 
-    <main>
-        <table>
-            <thead>
-                <tr>
-                <th>id</th> 
-                    <th>idRole</th>
-                    <th>Email</th>
-                    <th>password</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <?php foreach ($listUser as $user) { ?>
+    <section class="sectionList">
+        <div class="product-list-table">
+            <table>
+                <thead>
                     <tr>
-                        <td><?= $user['id'] ?> </td>
-                        <td><?= $user['idRole'] ?></td>
-                        <td><?= $user['email'] ?></td>
-                        <td><?= $user['password'] ?></td>
-                        
-                        <td>
-                        <a href="/ctrl/inscription/delete.php?id=<?= $user['id'] ?>" 
-                   onclick="return confirm('Confirmer la suppression de cet utilisateur (ID: <?= $user['id'] ?>) ?')">
-                    <button class="buttonDelete">
-                        <img class="iconeCorbeille" src="/asset/img/corbeille.png" alt="Supprimer">
-                    </button>
-                </a>   
-</td>
-
+                        <th>id</th>
+                        <th>idRole</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Actions</th>
                     </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-                </main>
+                </thead>
+                <tbody>
+                    <?php foreach ($listUser as $user) { ?>
+                        <tr>
+                            <td><?= $user['id'] ?></td>
+                            <td><?= $user['idRole'] ?></td>
+                            <td><?= $user['email'] ?></td>
+                            <td><?= $user['password'] ?></td>
+                            <td>
+                                <a href="/ctrl/inscription/delete.php?id=<?= $user['id'] ?>" 
+                                   onclick="return confirm('Confirmer la suppression de cet utilisateur (ID: <?= $user['id'] ?>) ?')">
+                                    <button class="buttonDelete">
+                                        <img class="iconeCorbeille" src="/asset/img/corbeille.png" alt="Supprimer">
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="product-list-cards">
+            <?php foreach ($listUser as $user) { ?>
+                <div class="product-card">
+                    <div class="product-info">
+                        <p><strong>ID :</strong> <?= $user['id'] ?></p>
+                        <p><strong>ID Role :</strong> <?= $user['idRole'] ?></p>
+                        <p><strong>Email :</strong> <?= $user['email'] ?></p>
+                        <p><strong>Password :</strong> <?= $user['password'] ?></p>
+                        <div class="product-actions">
+                            <a href="/ctrl/inscription/delete.php?id=<?= $user['id'] ?>" 
+                               onclick="return confirm('Confirmer la suppression de cet utilisateur (ID: <?= $user['id'] ?>) ?')">
+                                <button class="buttonDelete">
+                                    <img class="iconeCorbeille" src="/asset/img/corbeille.png" alt="Supprimer">
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </section>
+    <script src="/asset/js/cart.js"></script>
 </body>
 
 </html>

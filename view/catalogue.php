@@ -9,27 +9,26 @@
                 1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../asset/css/style.css">
-    <title><?= $titreSite ?>| Boutique</title>
+    <title>MielQualityS | Boutique</title>
 </head>
 <body class="bodyArticle">
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
-
-
-
-
-<h1 class="title-product"><?= $pageTitle ?></h1>
-<section class="container-product">
-<?php foreach ($listProduct as $product) { ?>
-    <article class="product">
-    <a href="<?= $productUrls[$product['id']] ?>"><img class="image" src="../upload/<?= $product['photo_filename'] ?>" alt=""></a>
-    <a href="<?= $productUrls[$product['id']] ?>"><h3 class="title"><?= $product['name'] ?></h3></a>
+<section class="products">
+        <h2>NOS PRODUITS</h2>
         <div>
-        <div>
+        <?php foreach ($listProduct as $product) { ?>
+            <figure>
+            <a href="<?= $productUrls[$product['id']] ?>"><img class="image" src="../upload/<?= $product['photo_filename'] ?>" alt=""></a>
+            <a href="<?= $productUrls[$product['id']] ?>"><h3 class="title"><?= $product['name'] ?></h3></a>
             <p class="description"><?= $product['description'] ?></p>
-        <span class="price"><?= $product['price'] ?></span>
-    </div>
-    </article>
-<?php } ?>
+            <span class="price"><?= $product['price'] ?>€</span>
+            </figure>
+            <?php } ?>
+
+            
+        </div>
     </section>
+    <?php include 'partial/footer.php'; ?>
+    <script src="/asset/js/cart.js"></script>
 </body>
 </html>

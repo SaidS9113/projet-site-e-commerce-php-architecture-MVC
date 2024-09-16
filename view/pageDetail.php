@@ -1,4 +1,6 @@
-
+<?php
+//Verifier si l'user s'est authentifié
+$isLoggedIn = isset($_SESSION['user']); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../asset/css/style.css">
-    <title><?= $titreSite ?>| Article</title>
+    <title>MielQualityS | Page-detail-produit</title>
 </head>
 </head>
 
@@ -157,10 +159,27 @@ document.addEventListener('DOMContentLoaded', updateProductInfo);
         </h5>
         <p class="commentaire"><?= htmlspecialchars($avis['content']) ?></p>
     </div>
+    <form class="formCommentaire" action="/ctrl/avis/delete.php" method="post" enctype="multipart/form-data">
+    <!-- Champs cachés pour les informations du produit -->
+    <input type="hidden" name="idProduct" value="<?= htmlspecialchars($product['id']) ?>">
+    <input type="hidden" name="poids" value="<?= htmlspecialchars($productPoids[0]['poids']) ?>">
+    <input type="hidden" name="price" value="<?= htmlspecialchars($productPoids[0]['price']) ?>">
+    
+    <!-- Champ caché pour l'identifiant de l'avis à supprimer -->
+    <input type="hidden" name="idAvis" value="<?= htmlspecialchars($avis['id']) ?>">
+
+    <!-- Affichage du bouton de suppression si l'utilisateur est autorisé -->
+    <?php if ($isLoggedIn && ($_SESSION['user']['idRole'] == '10' || $avis['idUser'] == $_SESSION['user']['id'])): ?>
+        <button class="buttonDelete" type="submit" onclick="return confirm('Confirmer la suppression de cet avis ?');">
+            <img class="iconeCorbeille" src="/asset/img/corbeille.png" alt="Supprimer">
+        </button>
+    <?php endif; ?>
+</form>
+
 <?php } ?>
 
     </section>
-    
+    <script src="/asset/js/cart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="/asset/js/selectedOption.js"></script>
 </body>

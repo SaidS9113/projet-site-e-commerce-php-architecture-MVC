@@ -1,0 +1,191 @@
+/* Base : version mobile */
+.titleList{
+
+text-align: center;
+padding: 10px;
+font-family: "Spectral", serif;
+}
+.sectionList {
+   width: 95%;
+    margin: 0 auto; 
+   
+  }
+  
+  .product-list-table {
+    display: none;
+  }
+  
+  .product-list-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 3.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    .product-image {
+      width: 100%;
+      text-align: center;
+  
+      img {
+        width: 200px;
+        height: auto;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+    }
+  
+    .product-info {
+      margin-top: 1rem;
+  
+      .product-name {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        font-family: "Spectral", serif;
+      }
+  
+      .product-description {
+        font-size: 1.2rem;
+        color: #555;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        font-family: "Spectral", serif;
+      }
+  
+      .product-poids, .product-price, .product-quantity {
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+        text-align: center;
+        font-family: "Spectral", serif;
+      }
+    }
+  
+    .product-actions {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+  
+      .buttonDelete {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+  
+        img {
+          width: 50px;
+          height: auto;
+        }
+       
+
+      }
+      .buttonUpdate{
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        i{
+            width: 50px;
+          height: 50px;
+          font-size: 3rem;
+        }
+      }
+
+    }
+  }
+  
+  /* Version tablette (min-width: 768px) */
+  @media (min-width: 768px) {
+    .product-card {
+        padding: 10rem;
+      .product-image img {
+        width: 300px;
+        height: auto;
+      }
+  
+      .product-info {
+        .product-name {
+          font-size: 3rem;
+          font-family: "Spectral", serif;
+        }
+  
+        .product-description,
+        .product-poids,
+        .product-price,
+        .product-quantity {
+            font-size: 1.2rem;
+            font-family: "Spectral", serif;
+        }
+      }
+  
+      .product-actions img {
+        width: 70px;
+      }
+      .product-actions i {
+        width: 70px;
+      }
+    }
+  }
+  
+  /* Version ordinateur (min-width: 1024px) */
+  @media (min-width: 1024px) {
+    .product-list-cards {
+      display: none; 
+    }
+  
+    .product-list-table {
+      display: block;
+      width: 100%;
+      margin: 0 auto; 
+  
+      table {
+        width: 100%; 
+  
+        thead > tr > th {
+          padding: 8px;
+          background-color: #f0f0f4;
+          font-weight: bold;
+          text-align: center; 
+        }
+  
+        tbody > tr > td {
+          padding: 3px;
+          text-align: left; 
+          border-bottom: 1px dashed; 
+          color: #fff; 
+          background-color: #0000009a; 
+          font-weight: bold;
+  
+          img {
+            width: 60px; 
+            height: 60px;
+            cursor: pointer;
+          }
+  
+          a {
+            width: 20px;
+            height: 40px;
+  
+            img {
+              width: 30px; 
+              height: 32px;
+              cursor: pointer;
+            }
+
+            i{
+                width: 30px;
+                height: 30px; 
+                font-size: 2rem;
+                color: #000;
+            }
+          }
+        }
+      }
+    }
+  }
+  

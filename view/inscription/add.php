@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../../asset/css/style.css">
-    <title>Site e-commerce | login</title>
+    <title>MielQualityS | Inscription</title>
 </head>
 <body>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
@@ -41,7 +41,7 @@
             </div>
         </form>
     </main>
-
+    <script src="/asset/js/cart.js"></script>
 </body>
 
 </html>

@@ -12,25 +12,26 @@ $isLoggedIn = isset($_SESSION['user']); ?>
                 1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../asset/css/style.css">
-    <title><?= $titreSite ?>| Ajout</title>
+    <title>MielQualityS | Ajout d'un produit</title>
 </head>
 <body>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
-<h4 class="titleAjtVehicule"><?= $pageTitle ?></h4>
-    <main class="mainAjtVehicule">
-        <form class="formAjtVehicule" action="/ctrl/product/add.php" method="post" enctype="multipart/form-data">
+
+    <section class="sectionAjtProduct">
+    <h1 class="titleAjtProduct"><?= $pageTitle ?></h1>
+        <form class="formAjtProduct" action="/ctrl/product/add.php" method="post" enctype="multipart/form-data">
              <!-- Nom -->
-            <div class="boiteAjtVehicule">
+            <div class="boiteAjtProduct">
                 <label for="name">Nom</label>
                 <input type="text" name="name" id="name">
             </div>
         <!-- Matricule -->
-            <div class="boiteAjtVehicule">
+            <div class="boiteAjtProduct">
                 <label for="description">Description</label>
                 <input type="text" name="description" id="description">
             </div>
             <!-- Price -->
-            <div class="boiteAjtVehicule">
+            <div class="boiteAjtProduct">
     <label for="add_250g">
         <input type="checkbox" id="add_250g" name="add_250g" value="250g">
         Ajouter 250g
@@ -53,30 +54,30 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     <input type="text" id="price_1kg" name="price_1kg" step="0.01">
 </div>
  <!-- Matricule -->
-            <div class="boiteAjtVehicule">
+            <div class="boiteAjtProduct">
                 <label for="quantity_250g">Quantité pour 250g</label>
                 <input type="text" name="quantity_250g" id="quantity_250g">
             </div>
-            <div class="boiteAjtVehicule">
+            <div class="boiteAjtProduct">
                 <label for="quantity_250g">Quantité pour 500g</label>
                 <input type="text" name="quantity_500g" id="quantity_500g">
             </div>
-            <div class="boiteAjtVehicule">
+            <div class="boiteAjtProduct">
                 <label for="quantity_250g">Quantité pour 1kg</label>
                 <input type="text" name="quantity_1kg" id="quantity_1kg">
             </div>
          <!-- Update une image -->
-            <div class="boiteAjtVehicule">
+            <div class="boiteAjtProduct">
             <label for="file">Fichier d'image d'article</label>
             <input type="file" id="file" name="file">
         </div>
-            <div class="boiteAjtVehicule">
+            <div class="boiteAjtProduct">
                 <button type="submit">Valider</button>
             </div>
         </form>
-    </main>
+</section>
 
-   
+<script src="/asset/js/cart.js"></script>
 </body>
 
 </html>

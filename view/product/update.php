@@ -1,6 +1,13 @@
 <?php
-//Verifier si l'user s'est authentifié
-$isLoggedIn = isset($_SESSION['user']); ?>
+// Vérifier si l'utilisateur est authentifié
+$isLoggedIn = isset($_SESSION['user']);
+
+// Récupérer les informations de l'URL (poids, prix, quantité) avec $_GET
+$productInfo['poids'] = $_GET['poids'] ?? '';
+$productInfo['price'] = $_GET['price'] ?? '';
+$productInfo['quantity'] = $_GET['quantity'] ?? '';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -13,63 +20,62 @@ $isLoggedIn = isset($_SESSION['user']); ?>
                 1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../asset/css/style.css">
-    <title><?= $titreSite ?>| Modifier</title>
+    <title>MielQualityS | Modifier le produit</title>
 </head>
 <body>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php'; ?>
     <main>
 
-    <form class="formUpdate" action="/ctrl/product/update.php" method="post">
-    <!-- ID du produit -->
-    <input type="hidden" name="id" value="<?= $productInfo['id'] ?? '' ?>">
+        <form class="formUpdate" action="/ctrl/product/update.php" method="post">
+            <!-- ID du produit -->
+            <input type="hidden" name="id" value="<?= $productInfo['id'] ?? '' ?>">
+            <!-- Nom -->
+            <div>
+                <label for="name">Nom</label>
+                <input type="text" name="name" id="name" value="<?= htmlspecialchars($productInfo['name'] ?? '', ENT_QUOTES) ?>" required>
+            </div>
 
-    <!-- Nom -->
-    <div>
-        <label for="name">Nom</label>
-        <input type="text" name="name" id="name" value="<?= htmlspecialchars($productInfo['name'] ?? '', ENT_QUOTES) ?>" required>
-    </div>
+            <!-- Description -->
+            <div>
+                <label for="description">Description</label>
+                <textarea name="description" id="description" required><?= htmlspecialchars($productInfo['description'] ?? '', ENT_QUOTES) ?></textarea>
+            </div>
 
-    <!-- Description -->
-    <div>
-        <label for="description">Description</label>
-        <textarea name="description" id="description" required><?= htmlspecialchars($productInfo['description'] ?? '', ENT_QUOTES) ?></textarea>
-    </div>
-
-    <!-- Poids -->
-    <div>
-        <label for="poids">Poids</label>
-        <select name="poids" id="poids" required>
-            <?php foreach ($stockInfo as $stock): ?>
-                <option value="<?= htmlspecialchars($stock['poids'], ENT_QUOTES) ?>" 
-                    <?= isset($productInfo['poids']) && $productInfo['poids'] === $stock['poids'] ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($stock['poids'], ENT_QUOTES) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-    </div>
-
-    <!-- Prix -->
-    <div>
-        <label for="price">Prix</label>
-        <input type="text" name="price" id="price" value="<?= htmlspecialchars($stockInfo[0]['price'] ?? '', ENT_QUOTES) ?>" required>
-    </div>
-
-    <!-- Quantité -->
-    <div>
-        <label for="quantity">Quantité</label>
-        <input type="number" name="quantity" id="quantity" value="<?= htmlspecialchars($stockInfo[0]['quantity'] ?? '', ENT_QUOTES) ?>" required>
-    </div>
-
-    <!-- Bouton de soumission -->
-    <div class="submit">
-        <button type="submit">Modifier</button>
-    </div>
-</form>
+            
+            <!-- Poids -->
+<div>
+    <label for="poids">Poids</label>
+    <input type="hidden" name="poids" id="poids" value="<?= htmlspecialchars($productInfo['poids'], ENT_QUOTES) ?>">
+    <p class="poids"><?= htmlspecialchars($productInfo['poids'], ENT_QUOTES) ?></p> <!-- Affichage en texte -->
+</div>
 
 
+<!-- Boucle foreach pour récupérer uniquement les informations selon le poids -->
+<?php foreach ($stockInfo as $info) {
+                // Comparer le poids du produit avec celui du stock
+                if ($info['poids'] == $productInfo['poids']) { ?>
+                    <!-- Prix -->
+                    <div>
+                        <label for="price">Prix</label>
+                        <input type="text" name="price" id="price" value="<?= htmlspecialchars($info['price'], ENT_QUOTES) ?>" required>
+                    </div>
+
+                    <!-- Quantité -->
+                    <div>
+                        <label for="quantity">Quantité</label>
+                        <input type="number" name="quantity" id="quantity" value="<?= htmlspecialchars($info['quantity'], ENT_QUOTES) ?>" required>
+                    </div>
+                <?php }
+            } ?>
+
+            <!-- Bouton de soumission -->
+            <div class="submit">
+                <button type="submit">Modifier</button>
+            </div>
+        </form>
 
     </main>
-
+    <script src="/asset/js/cart.js"></script>
 </body>
 
 </html>

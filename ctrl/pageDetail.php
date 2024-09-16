@@ -1,6 +1,10 @@
 <?php
-// Sauvegarde de maintenance de session
+// pageDetail.php
 session_start();
+
+
+// Code pour récupérer et afficher les avis sur la page de détails
+
 
 // Variable pour le titre
 $titreSite = "MielNaturel";
@@ -76,19 +80,19 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-// Vérifie si l'utilisateur est connecté et a un ID dans la session
-if (!isset($_SESSION['user']['id']) || !is_numeric($_SESSION['user']['id'])) {
-    die('ID utilisateur invalide ou non trouvé.');
-}
 
-$idUser = (int)$_SESSION['user']['id'];
+
+if (isset($_SESSION['user']) && isset($_SESSION['user']['id'])) {
+    $idUser = (int)$_SESSION['user']['id'];
+} else {
+    $idUser = null; // Vous pouvez définir $idUser à null ou gérer autrement l'absence d'utilisateur
+}
 
 // Prépare la requête pour sélectionner les colonnes de la table avis pour un produit donné
 $query = 'SELECT avis.id, avis.content, avis.date, avis.idUser, user.email';
 $query .= ' FROM avis';
 $query .= ' JOIN user ON avis.idUser = user.id'; 
 $query .= ' WHERE avis.idProduct = :idProduct';
-
 $statement = $dbConnection->prepare($query);
 $statement->bindParam(':idProduct', $idProduct, PDO::PARAM_INT); 
 $statement->execute();

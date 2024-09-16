@@ -13,38 +13,40 @@ $sessionId = isset($_SESSION['user']); ?>
                 1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../asset/css/style.css">
-    <title>confirmation payment</title>
+    <title>MielQualityS | Pay</title>
 </head>
 <body>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 
+    
     <h1>Formulaire de Paiement</h1>
 
-    <!-- Affichage du statut du paiement si défini -->
-    <?php if (isset($paymentSuccess)) : ?>
-        <?php if ($paymentSuccess) : ?>
-            <p>Le paiement a été effectué avec succès. Merci pour votre commande !</p>
-        <?php else : ?>
-            <p>Échec du paiement. Veuillez réessayer.</p>
-        <?php endif; ?>
+<!-- Affichage du statut du paiement si défini -->
+<?php if (isset($paymentSuccess)) : ?>
+    <?php if ($paymentSuccess) : ?>
+        <p class="success">Le paiement a été effectué avec succès. Merci pour votre commande !</p>
+    <?php else : ?>
+        <p class="error">Échec du paiement. Veuillez réessayer.</p>
     <?php endif; ?>
+<?php endif; ?>
 
-    <!-- Formulaire de paiement -->
-    <form action="?action=processPayment" method="post">
-        <label for="cardNumber">Numéro de Carte :</label>
-        <input type="text" id="cardNumber" name="cardNumber" required><br><br>
+<!-- Formulaire de paiement -->
+<form class="formPay" action="?action=processPayment" method="post">
+    <label for="cardNumber">Numéro de Carte :</label>
+    <input type="text" id="cardNumber" name="cardNumber" required>
 
-        <label for="cardName">Nom sur la Carte :</label>
-        <input type="text" id="cardName" name="cardName" required><br><br>
+    <label for="cardName">Nom sur la Carte :</label>
+    <input type="text" id="cardName" name="cardName" required>
 
-        <label for="expiryDate">Date d'Expiration (MM/AA) :</label>
-        <input type="text" id="expiryDate" name="expiryDate" required><br><br>
+    <label for="expiryDate">Date d'Expiration (MM/AA) :</label>
+    <input type="text" id="expiryDate" name="expiryDate" required>
 
-        <label for="cvv">CVV :</label>
-        <input type="text" id="cvv" name="cvv" required><br><br>
+    <label for="cvv">CVV :</label>
+    <input type="text" id="cvv" name="cvv" required>
 
-        <button type="submit">Procéder au Paiement</button>
-    </form>
+    <button type="submit">Procéder au Paiement</button>
+</form>
 
+<script src="/asset/js/cart.js"></script>
 </body>
 </html>

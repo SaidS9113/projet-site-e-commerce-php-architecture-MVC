@@ -1,0 +1,224 @@
+.haut-footer {
+    background-color: rgb(247, 247, 247);
+    padding: 20px;
+
+    h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .reglements {
+        font-size: 1rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        margin-top: 20px;
+        line-height: 2.5;
+        display: flex;
+        flex-direction: column;
+
+
+        .lienreglement {
+            text-decoration: none;
+            color: #000;
+        }
+    }
+
+    .infos-footer1 {
+        font-size: 1rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        margin-top: 20px;
+        line-height: 1.5;
+    }
+
+    .lienRS {
+        border: 1px solid #747474;
+        text-decoration: none;
+        color: #000;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        border-radius: 100%;
+        font-size: 1.5rem;
+
+        display: inline;
+        justify-content: center;
+        align-items: center;
+    }
+
+    i {
+        font-size: 1.7rem;
+        margin-top: 20px;
+        position: center;
+        text-align: center;
+        color: #424242;
+    }
+
+    .newsletter {
+        font-size: 1rem;
+        font-weight: 700;
+        font-family: "Montserrat", sans-serif;
+        margin-top: 20px;
+    }
+
+    .infos-footer2 {
+        font-size: 1rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        margin-top: 20px;
+        line-height: 1.5;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+
+        .barreMail {
+            width: 330px;
+            height: 37px;
+            border-radius: 5px;
+            border: 1px solid #c0c0c0;
+
+            ::placeholder {
+                font-size: 1.5rem;
+
+            }
+        }
+
+        .barreMail::placeholder {
+            font-size: 1rem;
+            padding-left: 10px;
+
+        }
+
+        .buttonNewsletter {
+            border-radius: 20px;
+            width: 150px;
+            height: 40px;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #000;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: "Montserrat", sans-serif;
+        }
+    }
+}
+
+.sous-footer {
+    background-color: rgb(254, 254, 254);
+    border-top: 1px soolid #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+
+
+    .image-mPayement {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 200px;
+
+        img {
+            width: 50px;
+            height: 30px;
+            border-radius: 5px;
+        }
+    }
+
+    .reglements-sous-footer {
+        font-size: 1rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        margin-top: 20px;
+
+        .lienreglement2 {
+            text-decoration: none;
+            color: #7c7c7c;
+        }
+    }
+
+    .copyR {
+        margin-top: 10px;
+        color: #7c7c7c;
+        padding: 10px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+    .haut-footer {
+        display: grid;
+        grid-template-columns: 33.33% 33.33% 33.33%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: flex-start;
+
+            .barreMail {
+                width: 250px;
+                height: 37px;
+                border-radius: 5px;
+                border: 1px solid #c0c0c0;
+
+            }
+           
+        }
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .haut-footer {
+        display: grid;
+        grid-template-columns: 33.33% 33.33% 33.33%;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 100px;
+
+        .infos-footer1 {
+            font-size: 0.9rem;
+        }
+
+        .infos-footer2 {
+            font-size: 0.9rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: flex-start;
+            margin-top: 20px;
+            margin-left: 30px;
+
+            .barreMail {
+                width: 250px;
+                height: 37px;
+                border-radius: 5px;
+                border: 1px solid #c0c0c0;
+            }
+            .barreMess{
+                width: 250px;
+                height: 100px;
+                border-radius: 5px;
+                border: 1px solid #c0c0c0;
+                margin-top: 30px;
+                padding: 10px;
+            }
+        }
+    }
+}

@@ -3,40 +3,12 @@
     margin: 0;
     padding: 0;
 }
-.bodyAccueil {
-    background-image: url(/asset/img/photoPrincipale.jpg);
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 
-}
-
-.bodyArticle {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(20, 20, 20, 0.9)), url(/asset/img/photoPrincipale.jpg);
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.bodyArticleDetail {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(20, 20, 20, 0.9)), url(/asset/img/photoPrincipale.jpg);
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.bodyProfilList {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(20, 20, 20, 0.9)),url(/asset/img/photoPrincipale.jpg);
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-h2 {
-    text-align: center;
-    margin-top: 300px;
-    font-size: 4rem;
-    color: #fff;
-}
+body {
+    overflow-x: hidden !important; /* Empêche le défilement horizontal */
+    margin: 0;
+    padding: 0;
+    width: 100vw; /* Assure que le body occupe 100% de la largeur de la fenêtre */
+    box-sizing: border-box !important; /* Évite que les marges et bordures s'ajoutent à la largeur totale */
+  }
+  

@@ -1,0 +1,176 @@
+.accueil {
+    background: url('/asset/img/photoPrincipale.jpg') no-repeat center;
+    background-size: cover;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    .boiteVoirPlus{
+        border: 1px solid red;
+    }
+
+    p {
+        color: #fff;
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 10px;.quality {
+    background-color: #f1f1f1;
+    text-align: center;
+
+    h2 {
+        margin-bottom: 5px;
+        padding-top: 20px;
+        font-family: "Spectral", serif;
+        font-weight: 500;
+    }
+
+    p {
+        padding: 20px;
+        font-family: "Spectral", serif;
+    }
+}
+        font-weight: 600;
+        font-family: "Spectral", serif;
+    }
+
+    .btn {
+        text-decoration: none;
+        color: #000;
+        font-size: 1.4rem;
+        background-color: #ffe4c4;
+        padding: 5px 20px;
+        border-radius: 20px;
+        font-family: "Spectral", serif;
+    }
+}
+/* Section .section__ban5 */
+.section__ban5 {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    padding: 20px;
+    margin: 4rem auto 1rem auto;
+    justify-content: space-between;
+    max-width: 100%; /* S'assure que la section ne dépasse pas */
+    box-sizing: border-box;
+}
+
+.section__ban5-left, .section__ban5-right {
+    flex-basis: 49%;
+    max-width: 100%; /* Évite tout dépassement */
+    position: relative;
+}
+
+.section__ban5-left img, .section__ban5-right img {
+    width: 100%; /* L'image prend la largeur maximale du conteneur */
+    height: auto; /* Garde le ratio d'aspect de l'image */
+    object-fit: cover; /* Couvre le conteneur sans déformation */
+    max-width: 100%; /* Limite pour éviter les débordements */
+    border-radius: 8px;
+}
+
+/* Section .section__ban6 */
+.section__ban6 {
+    background: url('/asset/img/photoPrincipale.jpg') no-repeat center;
+    background-size: cover;
+    height: 20rem;
+    background-position: center;
+    margin-bottom: 4rem;
+    padding: 20px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    max-width: 100%; /* Empêche la section de dépasser le body */
+    box-sizing: border-box;
+}
+
+.section__ban6-text {
+    text-align: center;
+    padding: 40px 40px;
+    margin: auto;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    align-items: center;
+    max-width: 90%; /* Limite la largeur du texte pour qu'il ne dépasse pas */
+    box-sizing: border-box;
+}
+
+.section__ban6-text h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.section__ban6-text p {
+    font-size: 1.2rem;
+    padding: 10px;
+    font-weight: 600;
+    font-family: 'Spectral';
+}
+
+/* Styles pour les boutons */
+.section__ban6-text button {
+    border: 2px solid #000;
+    background-color: transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 20%;
+    transition: all 0.5s ease;
+}
+
+.section__ban6-text button:hover {
+    transform: scale(1.2);
+}
+
+/* Responsive - Écrans plus larges */
+@media only screen and (min-width: 1024px) {
+    .section__ban5 {
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: auto; /* Ajustement dynamique de la hauteur */
+        width: 80%;
+        margin: 4rem auto 1rem auto;
+    }
+
+    .section__ban5-left, .section__ban5-right {
+        flex-basis: 49%;
+        height: auto; /* Ajustement de la hauteur */
+    }
+
+    .section__ban5-left img, .section__ban5-right img {
+        height: auto;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .section__ban6 {
+        background-size: cover;
+        height: 25rem;
+        width: 80%;
+        margin: auto auto 4rem auto;
+    }
+
+    .section__ban6-text {
+        text-align: center;
+        width: 60%;
+        margin: auto;
+        height: auto;
+        padding: 40px 40px;
+    }
+
+    .section__ban6-text h4 {
+        font-size: 2rem;
+    }
+
+    .section__ban6-text p {
+        padding: 5px 0;
+    }
+}

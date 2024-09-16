@@ -14,44 +14,42 @@ $product['price'] = $_POST['price'];
 $product['quantity'] = $_POST['quantity'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    var_dump($_POST); // Affiche les données POST pour vérifier leur présence
+    try {
+        // Commence une transaction
+        $dbConnection->beginTransaction();
 
-    // Supposons que votre traitement se trouve ici
-    $queryProduct = 'UPDATE product SET name = :name, description = :description WHERE id = :id';
-    $statementProduct = $dbConnection->prepare($queryProduct);
-    $statementProduct->bindParam(':name', $_POST['name']);
-    $statementProduct->bindParam(':description', $_POST['description']);
-    $statementProduct->bindParam(':id', $_POST['id']);
-    
-    $successProduct = $statementProduct->execute();
-    
-    if (!$successProduct) {
-        var_dump($statementProduct->errorInfo()); // Affiche l'erreur SQL s'il y en a une
-        die('Erreur lors de la mise à jour du produit.');
+        // Mise à jour des informations du produit dans la table 'product'
+        $queryProduct = 'UPDATE product SET name = :name, description = :description WHERE id = :id';
+        $statementProduct = $dbConnection->prepare($queryProduct);
+        $statementProduct->bindParam(':name', $product['name']);
+        $statementProduct->bindParam(':description', $product['description']);
+        $statementProduct->bindParam(':id', $product['id']);
+
+        if (!$statementProduct->execute()) {
+            throw new Exception('Erreur lors de la mise à jour du produit : ' . implode(', ', $statementProduct->errorInfo()));
+        }
+
+        // Mise à jour des informations du stock dans la table 'product_stock'
+        $queryStock = 'UPDATE product_stock SET price = :price, quantity = :quantity WHERE idProduct = :idProduct AND poids = :poids';
+        $statementStock = $dbConnection->prepare($queryStock);
+        $statementStock->bindParam(':poids', $product['poids']);
+        $statementStock->bindParam(':price', $product['price']);
+        $statementStock->bindParam(':quantity', $product['quantity']);
+        $statementStock->bindParam(':idProduct', $product['id']);
+
+        if (!$statementStock->execute()) {
+            throw new Exception('Erreur lors de la mise à jour du stock du produit : ' . implode(', ', $statementStock->errorInfo()));
+        }
+
+        // Valide la transaction si tout est correct
+        $dbConnection->commit();
+
+        // Redirige vers la liste des produits avec les informations mises à jour
+        header('Location: /ctrl/product/list.php?id=' . $product['id'] . '&poids=' . $product['poids'] . '&price=' . $product['price'] . '&quantity=' . $product['quantity']);
+        exit(); // Assurez-vous d'arrêter l'exécution du script après la redirection
+    } catch (Exception $e) {
+        // Si une erreur survient, annule la transaction
+        $dbConnection->rollBack();
+        die('Erreur : ' . $e->getMessage());
     }
-
-    // Si tout va bien
-    echo "Produit mis à jour avec succès";
-    // header('Location: /ctrl/add-article/list.php');
-    // exit();
 }
-
-
-// Deuxième requête : mise à jour de la table 'product_stock'
-$queryStock = 'UPDATE product_stock SET price = :price, quantity = :quantity 
-               WHERE idProduct = :idProduct AND poids = :poids';
-$statementStock = $dbConnection->prepare($queryStock);
-$statementStock->bindParam(':poids', $product['poids']);
-$statementStock->bindParam(':price', $product['price']);
-$statementStock->bindParam(':quantity', $product['quantity']);
-$statementStock->bindParam(':idProduct', $product['id']);
-$successStock = $statementStock->execute();
-
-// Vérifie si la mise à jour de 'product_stock' a réussi
-if (!$successStock) {
-    die('La mise à jour du stock du produit a échoué : ' . $statementStock->errorInfo()[2]);
-}
-
-// Redirige vers la liste des articles
-header('Location: /ctrl/product/list.php?id=' . $product['id']);
-exit(); // Assurez-vous d'appeler exit() après une redirection pour arrêter l'exécution du script

@@ -1,0 +1,78 @@
+.cartVide{
+    text-align: center;
+    font-family: "Spectral", serif;
+    font-size: 1.2rem;
+    color: #5f5f5f;
+}
+.boiteActionCart {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fafafa;
+    padding: 20px;
+    border-radius: 8px;
+   
+    text-align: right;
+  
+    // Sous-total
+    .sous-total {
+      font-size: 1.2rem;
+      color: #333;
+  
+      strong {
+        font-weight: bold;
+        font-size: 1.3rem;
+      }
+    }
+  
+    // Procéder au paiement
+    .procedePay {
+      margin-top: 1.5rem;
+  
+      a {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #4caf50;
+        color: white;
+        font-size: 1.1rem;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: darken(#4caf50, 10%);
+        }
+      }
+    }
+  
+    // Retour au catalogue
+    .exitProduct {
+      text-align: center;
+      margin-top: 2rem;
+  
+      a {
+        color: #ff5722;
+        font-size: 1.1rem;
+        text-decoration: none;
+        border-bottom: 2px solid #ff5722;
+        padding-bottom: 2px;
+        transition: color 0.3s ease;
+  
+        &:hover {
+          color: darken(#ff5722, 10%);
+        }
+      }
+    }
+  }
+  
+  // Media queries for responsiveness
+  @media (min-width: 768px) {
+    .boiteActionCart {
+      width: 70%;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .boiteActionCart {
+      width: 60%;
+    }
+  }

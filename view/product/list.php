@@ -3,7 +3,6 @@
 $isLoggedIn = isset($_SESSION['user']); ?>
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,11 +12,13 @@ $isLoggedIn = isset($_SESSION['user']); ?>
                 1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../asset/css/style.css">
-    <title><?= $titreSite ?>| Panier</title>
+    <title>MielQualityS | Liste des produits</title>
 </head>
 <body>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
-    <main>
+<h1 class="titleList"><?= $pageTitle ?></h1>
+<section class="sectionList">
+    <div class="product-list-table">
         <table>
             <thead>
                 <tr>
@@ -28,35 +29,58 @@ $isLoggedIn = isset($_SESSION['user']); ?>
                     <th>Poids</th>
                     <th>Price</th>
                     <th>Quantité</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
-
             <tbody>
                 <?php foreach ($listProduct as $product) { ?>
                     <tr>
-                        <td><?= $product['id'] ?> </td>
-                        <td><img class="image" src="../../upload/<?= $product['photo_filename'] ?>" alt=""></td>
+                        <td><?= $product['id'] ?></td>
+                        <td><img class="image" src="../../upload/<?= $product['photo_filename'] ?>" alt="Image du produit"></td>
                         <td><?= $product['name'] ?></td>
                         <td><?= $product['description'] ?></td>
                         <td><?= $product['poids'] ?></td>
-                        <td><?= $product['price'] ?></td>
+                        <td><?= $product['price'] ?> €</td>
                         <td><?= $product['quantity'] ?></td>
                         <td>
-                        <a href="/ctrl/product/update-display.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>" ><button class="buttonUpdate"><img class="iconeCorbeille" src="/asset/img/editer.png" alt=""></button></a>
-    <a href="/ctrl/product/delete.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>" 
-       onclick="return confirm('Confirmer la suppression de cette option (<?= $product['poids'] ?>) ?')">
-       <button class="buttonDelete">
-           <img class="iconeCorbeille" src="/asset/img/corbeille.png" alt="">
-       </button>
-    </a>
-</td>
-
-
+                            <a href="/ctrl/product/update-display.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>"><button class="buttonUpdate"><i class='bx bxs-wrench'></i></a>
+                            <a href="/ctrl/product/delete.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>" 
+                               onclick="return confirm('Confirmer la suppression de cette option (<?= $product['poids'] ?>) ?')">
+                               <button class="buttonDelete"><img class="iconeDelete" src="/asset/img/corbeille.png" alt="Supprimer"></button>
+                            </a>
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
-                </main>
+    </div>
+
+    <div class="product-list-cards">
+        <?php foreach ($listProduct as $product) { ?>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../upload/<?= $product['photo_filename'] ?>" alt="Image du produit">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"><?= $product['name'] ?></h3>
+                    <p class="product-description"><?= $product['description'] ?></p>
+                    <p class="product-poids">Poids : <?= $product['poids'] ?> g</p>
+                    <p class="product-price">Prix : <?= $product['price'] ?> €</p>
+                    <p class="product-quantity">Quantité : <?= $product['quantity'] ?></p>
+                    <div class="product-actions">
+                        <a href="/ctrl/product/update-display.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>"><button class="buttonUpdate"><i class='bx bxs-wrench'></i></button></a>
+                        <a href="/ctrl/product/delete.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>" 
+                           onclick="return confirm('Confirmer la suppression de cette option (<?= $product['poids'] ?>) ?')">
+                           <button class="buttonDelete"><img class="iconeDelete" src="/asset/img/corbeille.png" alt="Supprimer"></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+</section>
+
+<script src="/asset/js/cart.js"></script>
 </body>
 
 </html>

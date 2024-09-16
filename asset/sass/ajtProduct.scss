@@ -1,0 +1,98 @@
+
+.sectionAjtProduct {
+    padding: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    .titleAjtProduct{
+      text-align: center;
+      font-size: 2rem;
+      padding-bottom: 20px;
+    }
+   
+    .formAjtProduct {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      
+      .boiteAjtProduct {
+        display: flex;
+        flex-direction: column;
+    
+        label {
+          font-size: 16px;
+          margin-bottom: 5px;
+          font-weight: bold;
+          text-align: center;
+        }
+        input,
+        button {
+          padding: 10px;
+          font-size: 16px;
+          border-radius: 10px;
+          border: 1px solid #747474;
+        }
+        input[type="file"] {
+          padding: 0;
+        }
+        button {
+          background-color: #ffe4c4;
+          color: rgb(0, 0, 0);
+          border: none;
+          cursor: pointer;
+          &:hover {
+            background-color: #f37923;
+          }
+        }
+      }
+    }
+    
+    // Version tablette (768px - 1024px)
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      .formAjtProduct {
+        gap: 20px;
+        
+        .boiteAjtProduct {
+          label {
+            font-size: 18px;
+          }
+          input,
+          button {
+            font-size: 18px;
+            padding: 12px;
+           
+          }
+        }
+      }
+    }
+  
+    // Version desktop (plus de 1024px)
+    @media screen and (min-width: 1024px) {
+        .titleAjtProduct{
+            font-size: 3rem;
+          }
+      .formAjtProduct {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 30px;
+        
+        .boiteAjtProduct {
+          width: 48%; // Pour avoir deux colonnes de 50% moins la marge
+         
+          label {
+            font-size: 20px;
+          }
+          input,
+          button {
+            font-size: 18px;
+            padding: 14px;
+          }
+        
+        }
+  
+        .boiteAjtProduct:last-child {
+          width: 100%; // Le bouton prend toute la largeur
+        }
+      }
+    }
+  }
+  

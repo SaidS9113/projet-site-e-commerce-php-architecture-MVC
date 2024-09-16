@@ -1,0 +1,335 @@
+.products {
+    padding-bottom: 20px;
+
+    h2 {
+        text-align: center;
+        font-weight: 400;
+        font-family: "Spectral", serif;
+        position: relative;
+        margin-top: 50px;
+    }
+
+    h2::before,
+    h2::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 20%;
+        height: 1.2px;
+        background-color: rgb(180, 180, 180);
+    }
+
+    h2::before {
+        left: 0;
+        transform: translateX(-10%);
+    }
+
+    h2::after {
+        right: 0;
+        transform: translateX(0%);
+    }
+
+    div {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        gap: 10px;
+        padding: 15px;
+        justify-content: center;
+
+
+        figure {
+            font-family: "Spectral", serif;
+            font-weight: 600;
+            margin-top: 50px;
+            background-color: #fafafa;
+            cursor: pointer;
+            border: 0.5px solid #e0e0e0;
+
+            img {
+                width: 80%;
+                display: block;
+                margin: auto;
+            }
+
+            a{
+                text-align: center;
+                font-family: "Spectral", serif;
+                text-decoration: none;
+                color: #000;
+                font-size: 1.2rem;
+
+            }
+
+            p{
+                text-align: center;
+                font-family: "Spectral", serif;
+                color: #000;
+                font-size: 1.1rem;  
+            }
+            span{
+               
+                font-family: "Spectral", serif;
+                color: #000;
+                font-size: 1.2rem;  
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+    
+}
+.boiteVoirPlus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffc65d;
+    width: 150px;
+    height: 50px;
+    border-radius: 30px;
+    margin: auto;
+    margin-bottom: 20px;
+    .voirPlus{
+        color: #000;
+        text-decoration: none;
+        font-size: 1.7rem;
+    }
+    
+}
+.quality {
+    background-color: #f1f1f1;
+    text-align: center;
+
+    h2 {
+        margin-bottom: 5px;
+        padding-top: 20px;
+        font-family: "Spectral", serif;
+        font-weight: 500;
+    }
+
+    p {
+        padding: 20px;
+        font-family: "Spectral", serif;
+    }
+}
+
+.user-advice {
+    h2 {
+        text-align: center;
+        font-family: "Spectral", serif;
+        font-weight: 500;
+        font-size: 1.2rem;
+        margin-top: 20px;
+    }
+
+    p {
+        text-align: center;
+        font-family: "Spectral", serif;
+        margin-top: 5px;
+
+        img {
+            display: block;
+            margin: auto;
+            width: 100px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .nameAvis {
+            font-weight: bold;
+        }
+    }
+}
+
+.trust {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    line-height: 1.5;
+
+    div {
+        text-align: center;
+    }
+
+    img {
+        margin-top: 40px;
+        width: auto;
+        height: 60px;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        font-family: "Spectral", serif;
+        margin-top: 20px;
+    }
+
+    p {
+        margin-top: 15px;
+        font-size: 1.1rem;
+        font-family: "Spectral", serif;
+        font-weight: 500;
+        color: #000;
+    }
+}
+
+@media only screen and (min-width: 920px) and (max-width: 1280px) {
+    .products {
+        h2 {
+            font-size: 2rem;
+        }
+
+        h2::before,
+        h2::after {
+            width: 30%;
+        }
+
+        h2::before {
+            left: 0;
+            transform: translateX(-3%);
+        }
+
+        div {
+            display: grid;
+            grid-template-columns: 33.33% 33.33% 33.33%;
+            figure{
+                width: 300px;
+                border-radius: 10px;
+                margin-left: 25px;
+            }
+
+            a {
+                font-size: 1.5rem;
+
+                img{
+
+                    width: 300px;
+                    height: 300px;
+                    max-width: 100%;
+                    max-height: 100%;
+                    border-radius: 10px; 
+                }
+            }
+        }
+    }
+
+    .quality {
+        h2 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+    }
+
+    .user-advice {
+        h2 {
+            font-size: 2rem;
+        }
+    }
+
+    .trust {
+        display: grid;
+        grid-template-columns: 33.33% 33.33% 33.33%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .products {
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        h2::before,
+        h2::after {
+            width: 40%;
+        }
+
+        h2::before {
+            left: 0;
+            transform: translateX(0%);
+        }
+      
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            figure{
+                width: 300px;
+                border-radius: 10px;
+                margin-left: 25px;
+               
+            }
+            a {
+                font-size: 1.3rem;
+               img{
+                width: 300px;
+                height: 300px;
+                max-width: 100%;
+                max-height: 100%;
+                border-radius: 10px;
+               } 
+            }
+            span{
+                color: #000 !important;
+            }
+        }
+    }
+
+    .quality {
+        background-color: #fff;
+        margin: 0 200px;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        margin-top: 100px;
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+    }
+
+    .user-advice {
+        margin-top: 100px;
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+    }
+
+    .trust {
+        display: grid;
+        grid-template-columns: 33.33% 33.33% 33.33%;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 100px;
+        padding: 20px;
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+    }
+}

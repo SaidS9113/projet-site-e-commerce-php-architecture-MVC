@@ -13,61 +13,72 @@ $sessionId = isset($_SESSION['user']); ?>
                 1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../asset/css/style.css">
-    <title><?= $titreSite ?>| Ajout</title>
+    <title>MielQualityS | Commande</title>
 </head>
 <body>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 
-    <h1>Commmande des clients</h1>
-   
-
-    <main>
-        <table>
-            <thead>
-                <tr>
-                    <th>idUser</th>
-                    <th>Email</th>
-                    <th>Commande</th>
-                    <th>Poids</th>
-                    <th>Quantité</th>
-                    <th>Total</th>
-                    <th>Statut</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <?php foreach ($listCommande as $commande) { ?>
+    <h1 class="titleList">Liste des Commandes</h1>
+    <section class="sectionList">
+        <div class="product-list-table">
+            <table>
+                <thead>
                     <tr>
-                        <td><?= $commande['idUser'] ?> </td>
-                        
-                        <td><?= $commande['email'] ?></td>
-                        <td><?= $commande['name'] ?></td>
-                        <td><?= $commande['poids'] ?></td>
-                        <td><?= $commande['quantity'] ?></td>
-                        <td><?= $commande['total'] ?></td>
-                        <td><?= $commande['status'] ?></td>
-                        <td><?= $commande['order_date'] ?></td>
-                        <td>
-                        
-</td>
-
+                        <th>idUser</th>
+                        <th>Email</th>
+                        <th>Commande</th>
+                        <th>Poids</th>
+                        <th>Quantité</th>
+                        <th>Total</th>
+                        <th>Statut</th>
+                        <th>Date</th>
                     </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-                </main>
+                </thead>
+                <tbody>
+                    <?php foreach ($listCommande as $commande) { ?>
+                        <tr>
+                            <td><?= $commande['idUser'] ?></td>
+                            <td><?= $commande['email'] ?></td>
+                            <td><?= $commande['name'] ?></td>
+                            <td><?= $commande['poids'] ?></td>
+                            <td><?= $commande['quantity'] ?></td>
+                            <td><?= $commande['total'] ?> €</td>
+                            <td><?= $commande['status'] ?></td>
+                            <td><?= $commande['order_date'] ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
 
-                <?php if (isset($message)): ?>
-    <p><?php echo htmlspecialchars($message); ?></p>
-<?php endif; ?>
+        <div class="product-list-cards">
+            <?php foreach ($listCommande as $commande) { ?>
+                <div class="product-card">
+                    <div class="product-info">
+                        <p><strong>idUser :</strong> <?= $commande['idUser'] ?></p>
+                        <p><strong>Email :</strong> <?= $commande['email'] ?></p>
+                        <p><strong>Commande :</strong> <?= $commande['name'] ?></p>
+                        <p><strong>Poids :</strong> <?= $commande['poids'] ?> g</p>
+                        <p><strong>Quantité :</strong> <?= $commande['quantity'] ?></p>
+                        <p><strong>Total :</strong> <?= $commande['total'] ?> €</p>
+                        <p><strong>Statut :</strong> <?= $commande['status'] ?></p>
+                        <p><strong>Date :</strong> <?= $commande['order_date'] ?></p>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </section>
 
+    <?php if (isset($message)): ?>
+        <p><?php echo htmlspecialchars($message); ?></p>
+    <?php endif; ?>
 
-<!-- Formulaire pour vider les tables commande_info et commande_product -->
-<form action="/ctrl/commande.php" method="post">
-    <input type="hidden" name="action" value="clear">
-    <button type="submit">Vider les tables commande_info et commande_product</button>
-</form>
+    <!-- Formulaire pour vider les tables commande_info et commande_product -->
+    <form action="/ctrl/commande.php" method="post">
+        <input type="hidden" name="action" value="clear">
+        <button type="submit">Vider les tables commande_info et commande_product</button>
+    </form>
+    <script src="/asset/js/cart.js"></script>
 </body>
 
 </html>
