@@ -3,9 +3,9 @@
 
     h2 {
         text-align: center;
-        font-weight: 400;
+        font-weight: 600 !important;
         font-family: "Spectral", serif;
-        position: relative;
+      font-size: 1.6rem !important;
         margin-top: 50px;
     }
 
@@ -314,14 +314,19 @@
     }
 
     .trust {
-        display: grid;
-        grid-template-columns: 33.33% 33.33% 33.33%;
+        display: grid !important;
+        grid-template-columns: 33.33% 33.33% 33.33% !important;
         gap: 20px;
         justify-content: center;
         align-items: center;
         text-align: center;
         margin-top: 100px;
-        padding: 20px;
+      padding: 40px !important;
+
+        img{
+            width: 150px !important;
+            height: auto !important;
+        }
 
         h3 {
             font-size: 1.8rem;

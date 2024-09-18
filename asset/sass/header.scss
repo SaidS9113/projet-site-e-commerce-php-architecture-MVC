@@ -14,7 +14,7 @@ header {
     align-items: center;
     padding: 10px;
     background-color: #ffffff;
-    border-bottom: 0.5px solid #e7e7e7;
+    border-bottom: 1px solid #a8a8a8 !important;
    
 
     .version-desktop {
@@ -25,34 +25,64 @@ header {
         width: 100%;
        display: flex;
        justify-content: center;
-      
-      
-       
-    
+       align-items: center;
         h1 {
-            width: 120px;
-            height: 120px;
+            width: 250px;
+            height: 100px;
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
             img {
-                width: 120px;
-                height: 125px;
-                text-align: center;
+                width: 250px;
+                height: 100px;  
             }
     }
 }
-
-    .bx-search {
-        font-size: 1.8rem;
-    }
-
-   
     
-    .bx-user {
-        font-size: 2rem;
-        font-weight: 500;
-        cursor: pointer;
+    border-bottom: 0.5px solid #e7e7e7;
+    nav {
+        display: flex;
+        align-items: center;
+        ul {
+            display: flex;
+            justify-content: center;
+            margin: auto;
+            width: 950px;
+            gap: 50px;
+            .flexNav {
+                display: flex;
+                justify-content: space-between;
+                width: 210px;
+               
+            }
+            li {
+                display: flex;
+                a {
+                    color: #fff;
+                    text-decoration: none;
+                    font-weight: 600;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+        
+        .boiteIcons {
+            width: 75px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            position: absolute;
+            right: 0;
+            margin-right: 100px;
+
+            i {
+                font-size: 2rem;
+                color: #fff;
+                cursor: pointer;
+            }
+   
+        }
     }
     .mobile-first {
         position: fixed;
@@ -219,24 +249,27 @@ header {
            
             color: #000;
             font-size: 2rem;
-            sup{
-                background-color: #f37923;
-                border-radius: 100%;
-                color: #ffffff;
-                font-weight: bold;
-                font-size: 1.2rem;
-                position: absolute;
-                padding: 1px;
-                top: 112px;
-                right: 23px;
-                width: 12px;
-                height: 13px;
-                line-height: 9px;
-                text-align: center;
-                padding: .1rem;
-            }
+         
         }
-       
+        .boiteLogin{
+        display: none;
+    }
+    }
+    .bx-shopping-bag sup {
+        background-color: #f37923;
+        border-radius: 100%;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 1.2rem;
+        position: absolute;
+        padding: 1px;
+        top: 92px ;
+        right: 14px;
+        width: 14px;
+        height: 15px;
+        line-height: 9px;
+        text-align: center;
+        padding: .1rem;
     }
 
     .bx-user {
@@ -287,6 +320,24 @@ header {
             justify-content: space-between;
             align-items: center;
             padding: 10px;
+
+            .container-logo{
+                width: 100%;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+                h1 {
+                    width: 400px;
+                    height: 150px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center !important;
+                    img {
+                        width: 400px;
+                        height: 150px; 
+                    }
+            }
+        }
         
         }
 
@@ -363,10 +414,10 @@ header {
             font-size: 1.2rem;
             position: absolute;
             padding: 1px;
-            top: 70px;
-            right: 14px;
+            top: 120px !important;
+            right: 16px !important;
             width: 14px;
-            height: 13px;
+            height: 15px;
             line-height: 9px;
             text-align: center;
             padding: .1rem;
@@ -394,9 +445,7 @@ header {
         .barre-recherche-pc {
             display: none;
         }
-        .boiteLogin{
-            display: none;
-        }
+        
     }
 }
 
@@ -420,13 +469,12 @@ header {
             justify-content: center;
             align-items: center;
             width: 200px;
-           position: absolute;
-           margin-top: 150px;
-           margin-left: 60px;
+            margin-bottom: -60px;
+            margin-left: 75px;
            .infoUser{
             font-weight: bold;
             font-size: 1.2rem;
-            font-family: "Spectral", serif;
+            font-family: "Spectral", serif; 
            }
            .boiteDeconnexion{
             display: flex;
@@ -446,29 +494,12 @@ header {
            
 
             .bx-exit{
-                font-size: 2rem;
-               
-              
+                font-size: 2rem;    
             }
         }           
         }
-
         }
-
-        .container-logo{
-            h1 {
-                width: 120px;
-                height: 120px;
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-                img {
-                    width: 120px;
-                    height: 125px;
-                    text-align: center;
-                }
-            }
-        }
+        
 
         .header-version-m-t-p {
             display: flex;
@@ -479,6 +510,26 @@ header {
             #cart-icon-first{
                 display: none;
             }
+
+            .container-logo{
+                width: 100%;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+                h1 {
+                    width: 400px;
+                    height: 150px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    img {
+                        width: 400px;
+                        height: 150px;
+                        margin-top: 20px; 
+                    }
+            }
+        }
+        
         }
 
         .barre-recherche-tablette {
@@ -521,7 +572,7 @@ header {
             top: 1px;
             right: -7px;
             width: 14px;
-            height: 13px;
+            height: 15px;
             line-height: 11px;
             text-align: center;
             padding: .1rem;
@@ -602,21 +653,20 @@ header {
                 justify-content: center;
                 align-items: center;
                 list-style: none;
-                width: 60%;
-               
+                width: 70%;
             }
-
             li {
-                position: relative;
                 text-align: center;
             }
-
             a {
                 text-decoration: none;
                 color: #000;
                 font-size: 1.2rem;
                 font-weight: 600;
                 font-family: 'Spectral', serif;
+            }
+            .bx-user{
+                font-size: 2.1rem;
             }
         }
        

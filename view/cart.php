@@ -16,6 +16,10 @@ $sessionId = isset($_SESSION['user']); ?>
     <title>MielQualityS | Panier</title>
 </head>
 <body>
+    <!---------Barre de promotion----------->
+<div class="promo">
+    <p>Livraison gratuite à partir de 50€</p>
+</div>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 
     <h1 class="titleList">Mon Panier</h1>
@@ -45,20 +49,28 @@ $sessionId = isset($_SESSION['user']); ?>
                             $totalProduit = $item['price'] * $item['quantity'];
                             $sousTotal += $totalProduit; 
                             ?>
-                            <tr>
+                         <tr>
                                 <td><img class="image" src="../../upload/<?= $item['photo_filename'] ?>" alt=""></td>
-                                <td><?= $item['name'] ?></td>
-                                <td><?= $item['description'] ?></td>
+                                <td><?= mb_substr($item['name'], 0, 25) . '...' ?></td>
+                                <td><?= mb_substr($item['description'], 0, 60) . '...' ?></td>
                                 <td><?= $item['poids'] ?></td>
-                                <td><?= $item['price'] ?> €</td>
+
+                                <!-- Limiter le prix à 7 caractères -->
+                                <td>
+                                    <?php 
+                                    $formattedPrice = number_format($item['price'], 2); // Formater le prix avec 2 décimales
+                                    echo (strlen($formattedPrice) > 7) ? substr($formattedPrice, 0, 7) : $formattedPrice; 
+                                    ?> €
+                                </td>
+
                                 <td><?= $item['quantity'] ?></td>
                                 <td>
                                     <a href="/ctrl/cart/delete.php?id=<?= $item['idProduct'] ?>&poids=<?= $item['poids'] ?>" 
-                                       onclick="return confirm('Confirmer la suppression de cette option (<?= $item['poids'] ?>) ?')">
-                                       <button class="buttonDelete"><img class="iconeCorbeille" src="/asset/img/corbeille.png" alt="Supprimer"></button>
+                                    onclick="return confirm('Confirmer la suppression de cette option (<?= $item['poids'] ?>) ?')">
+                                    <button class="buttonDelete"><img class="iconeCorbeille" src="/asset/img/corbeille.png" alt="Supprimer"></button>
                                     </a>
                                 </td>
-                            </tr>
+                        </tr>
                         <?php } ?>
                     </tbody>
                 </table>

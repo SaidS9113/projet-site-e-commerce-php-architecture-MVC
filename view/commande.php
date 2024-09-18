@@ -16,6 +16,10 @@ $sessionId = isset($_SESSION['user']); ?>
     <title>MielQualityS | Commande</title>
 </head>
 <body>
+    <!---------Barre de promotion----------->
+<div class="promo">
+    <p>Livraison gratuite à partir de 50€</p>
+</div>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 
     <h1 class="titleList">Liste des Commandes</h1>
@@ -38,11 +42,17 @@ $sessionId = isset($_SESSION['user']); ?>
                     <?php foreach ($listCommande as $commande) { ?>
                         <tr>
                             <td><?= $commande['idUser'] ?></td>
-                            <td><?= $commande['email'] ?></td>
-                            <td><?= $commande['name'] ?></td>
+                            <td><?= mb_substr($commande['email'], 0, 40) . '...' ?></td>
+                            <td><?= mb_substr($commande['name'], 0, 27) . '...' ?></td>
                             <td><?= $commande['poids'] ?></td>
-                            <td><?= $commande['quantity'] ?></td>
-                            <td><?= $commande['total'] ?> €</td>
+                            <td><?= substr($commande['quantity'], 0, 3) ?></td>
+                        <td>
+                            <?php 
+                            $formattedTotal = number_format($commande['total'], 2); // Formater avec 2 décimales
+                            echo (strlen($formattedTotal) > 7) ? substr($formattedTotal, 0, 7) : $formattedTotal; 
+                            ?> €
+                        </td>
+
                             <td><?= $commande['status'] ?></td>
                             <td><?= $commande['order_date'] ?></td>
                         </tr>

@@ -2,26 +2,13 @@
 // Vérifier si l'utilisateur s'est authentifié
 $isLoggedIn = isset($_SESSION['user']); 
 ?>
-<!---------Barre de promotion----------->
-<div class="promo">
-    <p>Livraison gratuite à partir de 50€</p>
-</div>
+
 
 <!---------En-tête de page----------->
 <header class="header" id="header">
 
     <!-- Section de connexion si l'utilisateur est connecté -->
-    <?php if ($isLoggedIn) : ?>
-    <div class="boiteLogin">
-        <span class="infoUser"><?= htmlspecialchars($_SESSION['user']['email']) ?></span>
-
-        <div class="boiteDeconnexion">
-            <a href="/ctrl/login/logout.php" class="btnDeconnexion"><i class='bx bx-exit'></i></a>
-            <span class="nameDeconnexion">Déconnexion</span>
-        </div>
-    </div>
-    <?php endif; ?>
-
+ 
     <div class="header-version-m-t-p"> <!-- Div header pour toutes les versions -->
         <i class="bx bx-menu-alt-left" id="menu-btn" style="font-size: 2.5rem;"></i>
 
@@ -76,13 +63,23 @@ $isLoggedIn = isset($_SESSION['user']);
 
         <!---------Logo toujours au centre----------->
         <div class="container-logo">
-            <h1><a href="/ctrl/accueil.php"><img src="/asset/img/logoSiteEcommerce.png" alt=""></a></h1>
+            <h1><a href="/ctrl/accueil.php"><img src="/asset/img/logoHorizontale.png" alt=""></a></h1>
         </div>
 
         <!-- Icône du panier -->
         <a href="/ctrl/cart/cart.php"><i class='bx bx-shopping-bag' id="cart-icon-first"><sup id="cart-count-first">0</sup></i></a>
     </div>
 
+    <?php if ($isLoggedIn) : ?>
+    <div class="boiteLogin">
+        <span class="infoUser"><?= htmlspecialchars($_SESSION['user']['email']) ?></span>
+
+        <div class="boiteDeconnexion">
+            <a href="/ctrl/login/logout.php" class="btnDeconnexion"><i class='bx bx-exit'></i></a>
+            <span class="nameDeconnexion">Déconnexion</span>
+        </div>
+    </div>
+    <?php endif; ?>
     <!--------Menu pour la version PC----------->
     <nav class="version-desktop">
         <ul>

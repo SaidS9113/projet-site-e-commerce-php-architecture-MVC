@@ -12,6 +12,10 @@
     <title>MielQualityS | Boutique</title>
 </head>
 <body class="bodyArticle">
+    <!---------Barre de promotion----------->
+<div class="promo">
+    <p>Livraison gratuite à partir de 50€</p>
+</div>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 <section class="products">
         <h2>NOS PRODUITS</h2>
@@ -19,9 +23,11 @@
         <?php foreach ($listProduct as $product) { ?>
             <figure>
             <a href="<?= $productUrls[$product['id']] ?>"><img class="image" src="../upload/<?= $product['photo_filename'] ?>" alt=""></a>
-            <a href="<?= $productUrls[$product['id']] ?>"><h3 class="title"><?= $product['name'] ?></h3></a>
-            <p class="description"><?= $product['description'] ?></p>
-            <span class="price"><?= $product['price'] ?>€</span>
+            <a href="<?= $productUrls[$product['id']] ?>">
+                <h3 class="title"><?= mb_substr($product['name'], 0, 26) . '...' ?></h3>
+            </a>
+            <p class="description"><?= substr($product['description'], 0, 15) . '...' ?></p>
+            <span class="price"><?= substr($product['price'], 0, 7) ?>€</span>
             </figure>
             <?php } ?>
 

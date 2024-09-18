@@ -23,6 +23,10 @@ $productInfo['quantity'] = $_GET['quantity'] ?? '';
     <title>MielQualityS | Modifier le produit</title>
 </head>
 <body>
+    <!---------Barre de promotion----------->
+<div class="promo">
+    <p>Livraison gratuite à partir de 50€</p>
+</div>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php'; ?>
     <main>
 

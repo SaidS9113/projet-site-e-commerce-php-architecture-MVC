@@ -16,6 +16,10 @@ $sessionId = isset($_SESSION['user']); ?>
     <title>MielQualityS | Liste utilisateurs</title>
 </head>
 <body>
+    <!---------Barre de promotion----------->
+<div class="promo">
+    <p>Livraison gratuite à partir de 50€</p>
+</div>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 
     <h1 class="titleList">Liste des utilisateurs</h1>
@@ -35,19 +39,19 @@ $sessionId = isset($_SESSION['user']); ?>
                 <tbody>
                     <?php foreach ($listUser as $user) { ?>
                         <tr>
-                            <td><?= $user['id'] ?></td>
-                            <td><?= $user['idRole'] ?></td>
-                            <td><?= $user['email'] ?></td>
-                            <td><?= $user['password'] ?></td>
-                            <td>
-                                <a href="/ctrl/inscription/delete.php?id=<?= $user['id'] ?>" 
-                                   onclick="return confirm('Confirmer la suppression de cet utilisateur (ID: <?= $user['id'] ?>) ?')">
-                                    <button class="buttonDelete">
-                                        <img class="iconeCorbeille" src="/asset/img/corbeille.png" alt="Supprimer">
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
+                    <td><?= $user['id'] ?></td>
+                    <td><?= $user['idRole'] ?></td>
+                    <td><?= mb_substr($user['email'], 0, 40) . (strlen($user['email']) > 40 ? '...' : '') ?></td>
+                    <td><?= mb_substr($user['password'], 0, 70) . (strlen($user['password']) > 70 ? '...' : '') ?></td>
+                    <td>
+                        <a href="/ctrl/inscription/delete.php?id=<?= $user['id'] ?>" 
+                        onclick="return confirm('Confirmer la suppression de cet utilisateur (ID: <?= $user['id'] ?>) ?')">
+                            <button class="buttonDelete">
+                                <img class="iconeCorbeille" src="/asset/img/corbeille.png" alt="Supprimer">
+                            </button>
+                        </a>
+                    </td>
+                    </tr>
                     <?php } ?>
                 </tbody>
             </table>

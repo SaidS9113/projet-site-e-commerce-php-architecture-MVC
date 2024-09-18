@@ -17,9 +17,13 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../asset/css/style.css">
-    <title>MielQualityS | Accueil</title>
+    <title><?=$titreSite?></title>
 </head>
 <body class="bodyAccueil" id="">
+    <!---------Barre de promotion----------->
+<div class="promo">
+    <p>Livraison gratuite à partir de 50€</p>
+</div>
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
  <!--------Accueil----------->
  <section class="accueil">
@@ -41,7 +45,7 @@ foreach ($listProduct as $product) {
     <figure>
         <a href="<?= $productUrls[$product['id']] ?>"><img class="image" src="../upload/<?= $product['photo_filename'] ?>" alt=""></a>
         <a href="<?= $productUrls[$product['id']] ?>"><h3 class="title"><?= $product['name'] ?></h3></a>
-        <p class="description"><?= $product['description'] ?></p>
+        <p class="description"><?= substr($product['description'], 0, 15) . '...' ?></p>
         <span class="price"><?= $product['price'] ?>€</span>
     </figure>
 <?php 
@@ -103,17 +107,17 @@ foreach ($listProduct as $product) {
         <!--------Partie pour attirer rassurer les clients----------->
         <section class="trust">
             <div>
-                <img src="../img/truck.png" alt="">
+                <img src="/asset/img/truck.png" alt="">
                 <h3>Livraison en 48h</h3>
                 <p>Toutes les commandes sont traitées dans les meilleurs délais, avec livraison mondiale.</p>
             </div>
             <div>
-                <img src="../img/phone.png" alt="">
+                <img src="/asset/img/phone.png" alt="">
                 <h3>SAV irréprochable</h3>
                 <p>Chacune de vos recommandations sera traitée rapidement sans exception aucune.</p>
             </div>
             <div>
-                <img src="../img/card.png" alt="">
+                <img src="/asset/img/card.png" alt="">
                 <h3>Paiement sécurisé</h3>
                 <p>Réglez vos achats en toute sécurité et en toute sérénité par carte bancaire ou via PayPal.</p>
             </div>

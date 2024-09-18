@@ -3,7 +3,7 @@
 session_start();
 
 //Variable du titre
-$titreSite = "MielNaturel";
+$titreSite = "MielQualityS | Accueil";
 
 
 // Ouvre une connexion à la BDD

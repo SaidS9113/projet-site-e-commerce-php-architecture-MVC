@@ -1,74 +1,162 @@
-.mt-5{
+.promoBootstraps{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f37923;
+  color: #000;
+  font-weight: bold;
+ padding: 8px;
+  font-family: "Spectral", serif;
+  p{
+    margin-bottom: -1px;
+  }
+}
+.mt-5 {
     font-family: 'Spectral';
-}
-.arboPageDetail {
-    color: #fff;
-}
 
-.product-title {
-    color: #fff;
-}
-
-.price {
-    color: #fff;
-}
-
-.formCommentaire{
-.boiteSaisieCommentaire {
-   
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5px;
+  }
+  
+  .arboPageDetail,
+  .product-title,
+  .price,
+  .description {
+    color: #000000;
+  }
+  
+  .description {
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  
+  .formPoids {
     label {
-        color: #fff;
-        font-size: 1.4rem;
-        font-family: 'Spectral';
+      font-weight: 600;
     }
-    textarea{
-        width: 700px;
-        height: 200px;
+  }
+  
+  #price-display {
+    font-size: 1.6rem;
+  }
+  .titreFormAvis{
+    text-align: center;
+    padding: 40px;
+    color: #000;
+    font-weight: 600;
+    font-family: "Spectral", serif;
+    font-size: 1.6rem;
+    margin-top: 70px;
+
+  }
+  // Styles pour la section commentaires
+  .formCommentaire {
+    .boiteSaisieCommentaire {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 5px;
+      
+  
+      label {
+        color: #fff;
+        font-size: 1.2rem; // Plus petit pour mobile
+        font-family: 'Spectral';
+      }
+  
+      textarea {
+        width: 100%; // Pleine largeur pour mobile
+        height: 150px; // Plus petit pour mobile
         border: none;
         border-radius: 5px;
         background-color: #ffffff81;
         padding: 10px;
-       
+        border: 1px solid #000;
+      }
     }
-    
-}
-
-.boiteAjtCommentaire{
-    text-align: center;
-    button{
-        width: 150px;
+  
+    .boiteAjtCommentaire {
+      text-align: center;
+  
+      button {
+        width: 120px; // Plus petit pour mobile
         height: 35px;
         margin-top: 20px;
         color: #000;
         border-radius: 4px;
         font-weight: bold;
         border: none;
-        font-size: 1.2rem;
+        font-size: 1rem; // Plus petit pour mobile
         cursor: pointer;
         font-family: 'Spectral';
+      }
     }
-}
-
-}
-.container-commentaire{
-   
+  }
+  
+  // Container commentaire
+  .container-commentaire {
     text-align: center;
     margin-top: 40px;
     padding: 5px;
+  
+    .user-commentaire {
+      color: #ff0000;
+    }
+  
+    .date-commentaire,
+    .commentaire {
+      color: #000000;
+      font-family: 'Spectral';
+      font-size: 1rem; // Plus petit pour mobile
+    }
+  }
+  
+  // Media queries pour les tablettes (768px à 1024px)
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .formCommentaire {
+      .boiteSaisieCommentaire {
+        textarea {
+          width: 80%; // Ajustement pour tablette
+          height: 180px;
+        }
+  
+        label {
+          font-size: 1.3rem; // Taille du texte plus grande sur tablette
+        }
+      }
+  
+      .boiteAjtCommentaire button {
+        width: 140px; // Taille plus grande pour tablette
+        font-size: 1.1rem;
+      }
+    }
+  
+    .container-commentaire .commentaire {
+      font-size: 1.1rem;
+    }
+  }
+  
+  // Media queries pour les écrans desktop (à partir de 1024px)
+  @media (min-width: 1024px) {
 
-    .user-commentaire{
-        color: #ff0000;
+    .formCommentaire {
+      .boiteSaisieCommentaire {
+        textarea {
+          width: 700px; // Taille plus grande pour desktop
+          height: 200px;
+        }
+  
+        label {
+          font-size: 1.4rem; // Texte plus grand sur desktop
+        }
+      }
+  
+      .boiteAjtCommentaire button {
+        width: 150px; // Taille normale sur desktop
+        font-size: 1.2rem;
+      }
     }
-    .date-commentaire{
-        color: #000000;
+  
+    .container-commentaire .commentaire {
+      font-size: 1.2rem;
     }
-.commentaire{
-    color: #000000;
-    font-family: 'Spectral';
-    font-size: 1.2rem;
-}
-}
+  }
+  

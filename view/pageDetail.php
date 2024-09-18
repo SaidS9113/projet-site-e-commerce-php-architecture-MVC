@@ -20,7 +20,11 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 </head>
 
 <body class="bodyArticleDetail">
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/headerBootstraps.php' ?>
+    <!---------Barre de promotion----------->
+<div class="promoBootstraps">
+    <p>Livraison gratuite à partir de 50€</p>
+</div>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
    
    
   
@@ -51,7 +55,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
             <p class="description"><?= htmlspecialchars($product['description']) ?></p>
 
     <!-- Formulaire pour sélectionner le poids -->
-<form action="" method="get">
+<form class="formPoids" action="" method="get">
     <input type="hidden" name="id" value="<?= htmlspecialchars($product['id']) ?>">
     <label for="poids">Choisissez le poids :</label>
     <select name="poids" id="poids" onchange="this.form.submit()">
@@ -129,7 +133,7 @@ document.addEventListener('DOMContentLoaded', updateProductInfo);
 
 
             </div>
-            <h4 class="mt-5 mb-5">Commentaire</h4>
+            <h2 class="titreFormAvis">Commentaire</h2>
             
 <form class="formCommentaire" action="/ctrl/avis/add.php" method="post" enctype="multipart/form-data">
     <div class="boiteSaisieCommentaire">

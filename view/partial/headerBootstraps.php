@@ -76,7 +76,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 
     <!---------Logo toujours au centre----------->
     <div class="container-logo">
-        <h1><a href="/ctrl/accueil.php"><img src="/asset/img/logoSiteEcommerce.png" alt=""></a></h1>
+        <h1><a href="/ctrl/accueil.php"><img src="/asset/img/logoHorizontale.png" alt=""></a></h1>
     </div>
 
     <!-- Icône du panier -->

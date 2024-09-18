@@ -15,6 +15,10 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     <title>MielQualityS | Liste des produits</title>
 </head>
 <body>
+    <!---------Barre de promotion----------->
+<div class="promo">
+    <p>Livraison gratuite à partir de 50€</p>
+</div>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 <h1 class="titleList"><?= $pageTitle ?></h1>
 <section class="sectionList">
@@ -34,22 +38,25 @@ $isLoggedIn = isset($_SESSION['user']); ?>
             </thead>
             <tbody>
                 <?php foreach ($listProduct as $product) { ?>
-                    <tr>
-                        <td><?= $product['id'] ?></td>
-                        <td><img class="image" src="../../upload/<?= $product['photo_filename'] ?>" alt="Image du produit"></td>
-                        <td><?= $product['name'] ?></td>
-                        <td><?= $product['description'] ?></td>
-                        <td><?= $product['poids'] ?></td>
-                        <td><?= $product['price'] ?> €</td>
-                        <td><?= $product['quantity'] ?></td>
-                        <td>
-                            <a href="/ctrl/product/update-display.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>"><button class="buttonUpdate"><i class='bx bxs-wrench'></i></a>
-                            <a href="/ctrl/product/delete.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>" 
-                               onclick="return confirm('Confirmer la suppression de cette option (<?= $product['poids'] ?>) ?')">
-                               <button class="buttonDelete"><img class="iconeDelete" src="/asset/img/corbeille.png" alt="Supprimer"></button>
-                            </a>
-                        </td>
-                    </tr>
+                                <tr>
+                <td><?= $product['id'] ?></td>
+                <td><img class="image" src="../../upload/<?= $product['photo_filename'] ?>" alt="Image du produit"></td>
+                <td><?= $product['name'] ?></td>
+                <td><?= mb_substr($product['description'], 0, 60) . '...' ?></td>
+                <td><?= $product['poids'] ?></td>
+                <td><?= substr($product['price'], 0, 7) ?> €</td>
+
+                <!-- Limiter la quantité à 100 chiffres -->
+                <td><?= substr($product['quantity'], 0, 100) ?></td>
+
+                <td>
+                    <a href="/ctrl/product/update-display.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>"><button class="buttonUpdate"><i class='bx bxs-wrench'></i></button></a>
+                    <a href="/ctrl/product/delete.php?id=<?= $product['id'] ?>&poids=<?= $product['poids'] ?>" 
+                    onclick="return confirm('Confirmer la suppression de cette option (<?= $product['poids'] ?>) ?')">
+                    <button class="buttonDelete"><img class="iconeDelete" src="/asset/img/corbeille.png" alt="Supprimer"></button>
+                    </a>
+                </td>
+            </tr>   
                 <?php } ?>
             </tbody>
         </table>

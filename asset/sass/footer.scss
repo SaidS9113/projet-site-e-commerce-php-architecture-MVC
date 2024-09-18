@@ -1,7 +1,6 @@
 .haut-footer {
     background-color: rgb(247, 247, 247);
     padding: 20px;
-
     h3 {
         font-size: 1rem;
         font-weight: 700;
@@ -78,18 +77,26 @@
         align-items: flex-start;
 
         .barreMail {
-            width: 330px;
+            width: 70%;
             height: 37px;
             border-radius: 5px;
             border: 1px solid #c0c0c0;
+        }
 
-            ::placeholder {
-                font-size: 1.5rem;
-
-            }
+        .barreMess{
+            border: 1px solid #c0c0c0;
+            width: 80%;
+            height: 80px;
+            margin-top: 10px;
+            border-radius: 5px;
         }
 
         .barreMail::placeholder {
+            font-size: 1rem;
+            padding-left: 10px;
+
+        }
+        .barreMess::placeholder {
             font-size: 1rem;
             padding-left: 10px;
 
@@ -116,41 +123,25 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
     padding-bottom: 20px;
-
-
-    .image-mPayement {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 200px;
-
-        img {
-            width: 50px;
-            height: 30px;
-            border-radius: 5px;
-        }
     }
-
     .reglements-sous-footer {
         font-size: 1rem;
         font-family: "Montserrat", sans-serif;
         font-weight: 400;
         margin-top: 20px;
-
+        text-align: center;
         .lienreglement2 {
             text-decoration: none;
             color: #7c7c7c;
         }
     }
-
     .copyR {
         margin-top: 10px;
         color: #7c7c7c;
         padding: 10px;
+        text-align: center;
     }
-}
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
 
