@@ -22,6 +22,7 @@ $sessionId = session_id();
 // Récupérer les articles du panier pour l'utilisateur ou la session actuelle
 $cartItems = getCartItems($userId, $dbConnection);
 
+
 // Titre de la page
 $pageTitle = 'Mon Panier';
 

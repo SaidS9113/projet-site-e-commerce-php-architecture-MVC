@@ -13,6 +13,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/payment.php';
 
 // Vérifier si l'utilisateur est connecté
 $userId = $_SESSION['user']['id'] ?? null;
+$email = $_SESSION['user']['email'] ?? null; // Récupérer l'email si l'utilisateur est connecté
 
 // Récupérer l'identifiant de session pour les utilisateurs non connectés
 $sessionId = $_SESSION['sessionId'];
@@ -25,7 +26,7 @@ function calculateTotal($cartProducts) {
 }
 
 // Fonction pour gérer le processus de commande et de paiement
-function handleOrderAndPayment($userId, $sessionId, $dbConnection) {
+function handleOrderAndPayment($userId, $sessionId, $email, $dbConnection) {
     try {
         $dbConnection->beginTransaction();
 
@@ -39,8 +40,8 @@ function handleOrderAndPayment($userId, $sessionId, $dbConnection) {
         // Calculer le total des produits
         $total = calculateTotal($cartProducts);
 
-        // Créer la commande pour l'utilisateur connecté ou non, sans email pour les non connectés
-        $orderId = createOrder($userId, null, $total, $dbConnection); // Suppression de l'email
+        // Créer la commande pour l'utilisateur connecté (avec email) ou non (sans email)
+        $orderId = createOrder($userId, $sessionId, $userId ? $email : null, $total, $dbConnection); // Passer l'email uniquement pour les utilisateurs connectés
 
         if (!$orderId) {
             throw new Exception("Erreur lors de la création de la commande.");
@@ -69,13 +70,13 @@ function handleOrderAndPayment($userId, $sessionId, $dbConnection) {
 
 // Fonction principale pour traiter le paiement
 function processPayment() {
-    global $userId, $sessionId;
+    global $userId, $sessionId, $email;
 
     // Connexion à la base de données
     $dbConnection = getConnection($GLOBALS['dbConfig']);
     
-    // Traiter la commande et le paiement sans email pour les non connectés
-    $paymentSuccess = handleOrderAndPayment($userId, $sessionId, $dbConnection);
+    // Traiter la commande et le paiement, avec email pour les connectés et sans pour les non connectés
+    $paymentSuccess = handleOrderAndPayment($userId, $sessionId, $email, $dbConnection);
 
     if ($paymentSuccess) {
         $message = "Paiement réussi ! Votre commande a été enregistrée.";

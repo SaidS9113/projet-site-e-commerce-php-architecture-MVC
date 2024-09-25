@@ -58,19 +58,31 @@ function updateStock(int $idProduct, string $poids, int $quantity, PDO $db) {
  * 
  * @param int|null $idUser ID de l'utilisateur. Peut être null pour les utilisateurs non connectés.
  * @param string|null $sessionId ID de la session utilisateur pour les utilisateurs non connectés.
+ * @param string|null $email Adresse email de l'utilisateur connecté. Null pour les utilisateurs non connectés.
  * @param float $total Montant total de la commande.
  * @param PDO $db Connexion à la base de données.
  * @return int|false Retourne l'ID de la commande créée en cas de succès, false en cas d'échec.
  */
-function createOrder(?int $idUser, ?string $sessionId, float $total, PDO $db) {
+function createOrder(?int $idUser, ?string $sessionId, ?string $email, float $total, PDO $db) {
     try {
-        // Requête pour créer la commande, sans email pour les non connectés
-        $query = "INSERT INTO commande_info (idUser, sessionId, total) VALUES (:idUser, :sessionId, :total)";
-        $stmt = $db->prepare($query);
-        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        // Requête différente en fonction de l'état de connexion de l'utilisateur
+        if ($idUser !== null) {
+            // Utilisateur connecté : inclure l'email
+            $query = "INSERT INTO commande_info (idUser, sessionId, email, total) VALUES (:idUser, :sessionId, :email, :total)";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        } else {
+            // Utilisateur non connecté : ne pas inclure l'email
+            $query = "INSERT INTO commande_info (sessionId, total) VALUES (:sessionId, :total)";
+            $stmt = $db->prepare($query);
+        }
+
+        // Paramètres communs aux deux types d'utilisateurs
         $stmt->bindParam(':sessionId', $sessionId, PDO::PARAM_STR);
         $stmt->bindParam(':total', $total, PDO::PARAM_STR);
 
+        // Exécuter la requête et retourner l'ID de la commande créée
         if ($stmt->execute()) {
             return $db->lastInsertId();
         } else {

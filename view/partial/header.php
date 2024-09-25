@@ -65,9 +65,13 @@ $isLoggedIn = isset($_SESSION['user']);
         <div class="container-logo">
             <h1><a href="/ctrl/accueil.php"><img src="/asset/img/logoHorizontale.png" alt=""></a></h1>
         </div>
-
+        <?php include $_SERVER['DOCUMENT_ROOT'] . '/ctrl/cart/cart_counter2.php'; ?>
         <!-- Icône du panier -->
-        <a href="/ctrl/cart/cart.php"><i class='bx bx-shopping-bag' id="cart-icon-first"><sup id="cart-count-first">0</sup></i></a>
+       <a href="/ctrl/cart/cart.php">
+    <i class='bx bx-shopping-bag' id="cart-icon-first">
+        <sup id="cart-count"><?php echo htmlspecialchars($totalQuantity2); ?></sup>
+    </i>
+</a>
     </div>
 
     <?php if ($isLoggedIn) : ?>
@@ -103,8 +107,14 @@ $isLoggedIn = isset($_SESSION['user']);
                 <a href="/ctrl/login/display.php"><i class='bx bx-user'></i></a>
             <?php endif; ?>
 
-            <!-- Icône du panier -->
-            <a href="/ctrl/cart/cart.php"><i class='bx bx-shopping-bag' id="cart-icon"><sup id="cart-count">0</sup></i></a>
+            <?php include $_SERVER['DOCUMENT_ROOT'] . '/ctrl/cart/cart_counter.php'; ?>
+         <!-- Icône du panier -->
+<a href="/ctrl/cart/cart.php">
+    <i class='bx bx-shopping-bag' id="cart-icon">
+        <sup id="cart-count"><?php echo htmlspecialchars($totalQuantity); ?></sup>
+    </i>
+</a>
+
         </div>
     </nav>
 </header>

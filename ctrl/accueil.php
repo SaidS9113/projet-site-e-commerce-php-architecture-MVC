@@ -9,7 +9,11 @@ $titreSite = "MielQualityS | Accueil";
 // Ouvre une connexion à la BDD
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/cart.php';
+
 $dbConnection = getConnection($dbConfig);
+
+
 
 // Prépare la requête en sélectionnant les colonnes dans la table produit
 $query = 'SELECT product.id, product.name, product.description, product.photo_filename, product_stock.poids, product_stock.price, product_stock.quantity';
@@ -54,7 +58,6 @@ $statement->execute();
 
 // Récupère les informations des avis
 $listAvis = $statement->fetchAll(PDO::FETCH_ASSOC);
-
 
 // Rends la vue
 include $_SERVER['DOCUMENT_ROOT'] . '/view/accueil.php';
