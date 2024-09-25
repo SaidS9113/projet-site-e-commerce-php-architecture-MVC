@@ -50,6 +50,7 @@ if (isset($_SESSION['user']['id'])) {
     $stmt->execute([$idUser, $idProduct, $poids]);
     $alreadyInCart = $stmt->fetchColumn();
 } else {
+    // Pour les utilisateurs non connectés, vérifier la quantité dans la session
     $alreadyInCart = 0;
     if (isset($_SESSION['cart_product'])) {
         foreach ($_SESSION['cart_product'] as $item) {
@@ -71,25 +72,13 @@ if (($alreadyInCart + $quantity) > $stock) {
 // Ajouter le produit au panier
 if (!isset($_SESSION['user']['id'])) {
     // Pour les utilisateurs non connectés
-    if (!isset($_SESSION['cart_product'])) {
-        $_SESSION['cart_product'] = [];
-    }
-
-    $found = false;
-    foreach ($_SESSION['cart_product'] as &$item) {
-        if ($item['idProduct'] == $idProduct && $item['poids'] == $poids) {
-            $item['quantity'] += $quantity;
-            $found = true;
-            break;
-        }
-    }
-
-    if (!$found) {
-        $_SESSION['cart_product'][] = [
-            'idProduct' => $idProduct,
-            'poids' => $poids,
-            'quantity' => $quantity
-        ];
+    $sessionId = session_id();
+    
+    // Appeler la fonction addToCart pour enregistrer dans la base de données
+    if (addToCart(null, $idProduct, $poids, $quantity, $dbConnection)) {
+        addFlashMessage('Produit ajouté au panier.');
+    } else {
+        addFlashMessage('Erreur lors de l\'ajout au panier.');
     }
 } else {
     // Pour les utilisateurs connectés

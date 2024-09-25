@@ -20,7 +20,7 @@ $userId = isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : null;
 $sessionId = session_id();
 
 // Récupérer les articles du panier pour l'utilisateur ou la session actuelle
-$cartItems = getCartItems($userId, $sessionId, $dbConnection);
+$cartItems = getCartItems($userId, $dbConnection);
 
 // Titre de la page
 $pageTitle = 'Mon Panier';

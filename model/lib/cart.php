@@ -97,8 +97,10 @@ function addToCart(?int $userId, int $productId, string $poids, int $quantity, P
  * @param PDO $db Connexion à la base de données.
  * @return array|false Retourne un tableau d'items du panier en cas de succès, false en cas d'échec.
  */
-function getCartItems(?int $userId, string $sessionId, PDO $db)
+function getCartItems(?int $userId, PDO $db)
 {
+    $sessionId = session_id();
+    
     if ($userId !== null) {
         // Utilisateur connecté
         $query = 'SELECT cart_product.id, cart_product.idProduct, product.name, product.description, product.photo_filename, cart_product.poids, cart_product.quantity, product_stock.price
@@ -125,7 +127,6 @@ function getCartItems(?int $userId, string $sessionId, PDO $db)
     return $result;
 }
 
-
 /**
  * Supprime un item du panier.
  * 
@@ -141,5 +142,3 @@ function removeFromCart(int $cartItemId, PDO $db)
     
     return $statement->execute();
 }
-
-

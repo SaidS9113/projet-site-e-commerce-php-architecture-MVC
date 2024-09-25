@@ -29,17 +29,22 @@ function handleOrderAndPayment($userId, $sessionId, $dbConnection) {
     try {
         $dbConnection->beginTransaction();
 
-        $cartProducts = getCartItems($userId, $sessionId, $dbConnection);
+        // Récupérer les articles du panier pour l'utilisateur connecté ou par session pour les non connectés
+        $cartProducts = $userId ? getCartItems($userId, $dbConnection) : getCartItems(null, $dbConnection, $sessionId);
+        
         if (empty($cartProducts)) {
             throw new Exception("Le panier est vide.");
         }
 
+        // Calculer le total des produits
         $total = calculateTotal($cartProducts);
 
-        // Créer la commande
-        // Ajout d'un paramètre email pour la fonction createOrder
-        $email = $_SESSION['user']['email'] ?? null;
-        $orderId = createOrder($userId, $email, $total, $dbConnection);
+        // Créer la commande pour l'utilisateur connecté ou non, sans email pour les non connectés
+        $orderId = createOrder($userId, null, $total, $dbConnection); // Suppression de l'email
+
+        if (!$orderId) {
+            throw new Exception("Erreur lors de la création de la commande.");
+        }
 
         // Ajouter chaque produit à la commande
         foreach ($cartProducts as $product) {
@@ -47,7 +52,7 @@ function handleOrderAndPayment($userId, $sessionId, $dbConnection) {
             updateStock($product['idProduct'], $product['poids'], $product['quantity'], $dbConnection);
         }
 
-
+        // Vider le panier après la commande
         clearCart($userId, $sessionId, $dbConnection);
         $dbConnection->commit();
         return true;
@@ -66,12 +71,10 @@ function handleOrderAndPayment($userId, $sessionId, $dbConnection) {
 function processPayment() {
     global $userId, $sessionId;
 
-    if (!$userId) {
-        echo "Utilisateur non connecté. Veuillez vous connecter pour continuer.";
-        return;
-    }
-
+    // Connexion à la base de données
     $dbConnection = getConnection($GLOBALS['dbConfig']);
+    
+    // Traiter la commande et le paiement sans email pour les non connectés
     $paymentSuccess = handleOrderAndPayment($userId, $sessionId, $dbConnection);
 
     if ($paymentSuccess) {

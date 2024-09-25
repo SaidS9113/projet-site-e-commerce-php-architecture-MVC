@@ -57,18 +57,20 @@ function updateStock(int $idProduct, string $poids, int $quantity, PDO $db) {
  * Crée une nouvelle commande pour l'utilisateur.
  * 
  * @param int|null $idUser ID de l'utilisateur. Peut être null pour les utilisateurs non connectés.
- * @param string $email Adresse email de l'utilisateur.
+ * @param string|null $sessionId ID de la session utilisateur pour les utilisateurs non connectés.
  * @param float $total Montant total de la commande.
  * @param PDO $db Connexion à la base de données.
  * @return int|false Retourne l'ID de la commande créée en cas de succès, false en cas d'échec.
  */
-function createOrder(?int $idUser, string $email, float $total, PDO $db) {
+function createOrder(?int $idUser, ?string $sessionId, float $total, PDO $db) {
     try {
-        $query = "INSERT INTO commande_info (idUser, email, total) VALUES (:idUser, :email, :total)";
+        // Requête pour créer la commande, sans email pour les non connectés
+        $query = "INSERT INTO commande_info (idUser, sessionId, total) VALUES (:idUser, :sessionId, :total)";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':sessionId', $sessionId, PDO::PARAM_STR);
         $stmt->bindParam(':total', $total, PDO::PARAM_STR);
+
         if ($stmt->execute()) {
             return $db->lastInsertId();
         } else {
@@ -123,18 +125,18 @@ function addOrderProduct(int $idCommande_info, int $idProduct, string $name, str
  * Vide le panier après un paiement réussi.
  * 
  * @param int|null $userId ID de l'utilisateur ou null pour un utilisateur non connecté.
- * @param string $sessionId ID de session pour identifier les utilisateurs non connectés.
+ * @param string|null $sessionId ID de session pour identifier les utilisateurs non connectés.
  * @param PDO $db Connexion à la base de données.
  * @return void
  */
-function clearCart(?int $userId, string $sessionId, PDO $dbConnection) {
+function clearCart(?int $userId, ?string $sessionId, PDO $dbConnection) {
     try {
         if ($userId !== null) {
             // Supprimer tous les produits pour l'utilisateur connecté
             $query = 'DELETE FROM cart_product WHERE idUser = :userId';
             $statement = $dbConnection->prepare($query);
             $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
-        } else {
+        } elseif ($sessionId !== null) {
             // Supprimer tous les produits pour la session non connectée
             $query = 'DELETE FROM cart_product WHERE sessionId = :sessionId';
             $statement = $dbConnection->prepare($query);
