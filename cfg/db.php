@@ -4,7 +4,7 @@
 $dbConfig[] = [];
 $dbConfig['host'] = '127.0.0.1';
 $dbConfig['port'] = '3306';
-$dbConfig['dbname'] = 'site-e-commerce-examen-SAID';
+$dbConfig['dbname'] = 'site-e-commerce-SAID';
 $dbConfig['user'] = 'root';
 $dbConfig['password'] = '';
 

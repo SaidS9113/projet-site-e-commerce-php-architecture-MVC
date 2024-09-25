@@ -74,6 +74,8 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 <p id="price-display">Prix: <?= number_format($productPoids[0]['price'], 2) ?>€</p>
 <p id="quantity-display">Quantité disponible: <?= $productPoids[0]['quantity'] ?></p>
 
+
+
 <!-- Formulaire d'ajout au panier -->
 <form action="/ctrl/cart/add.php" method="get" id="add-to-cart-form">
     <!-- Champs cachés pour envoyer les données -->
@@ -91,7 +93,9 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     <!-- Bouton d'ajout au panier -->
     <button type="submit" id="add-to-cart-button">Ajouter au panier</button>
 </form>
+
 <?php
+// Affichage du message flash
 if (isset($_SESSION['flash_message'])) {
     echo '<div class="alert alert-danger">' . htmlspecialchars($_SESSION['flash_message']) . '</div>';
     unset($_SESSION['flash_message']); // Supprimer le message après affichage

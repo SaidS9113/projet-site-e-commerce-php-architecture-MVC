@@ -1,4 +1,4 @@
-USE `site-e-commerce-examen-SAID`;
+USE `site-e-commerce-SAID`;
 
 INSERT INTO role (id, code, label ) VALUES
      (10, 'A', 'Admin')
@@ -6,7 +6,7 @@ INSERT INTO role (id, code, label ) VALUES
 ;
 
 INSERT INTO user (id, idRole, password, email) VALUES
-     (80, 10, '$2y$10$lFxmIp/dShJEVWCCkKxwpu2e5dV88zo//4mpaYrl3UqHvpgrNdIom', 'admin@hotmail.fr.com')
+     (80, 10, '$2y$10$lFxmIp/dShJEVWCCkKxwpu2e5dV88zo//4mpaYrl3UqHvpgrNdIom', 'admin@hotmail.fr')
     ,(90, 20, '$2y$10$lFxmIp/dShJEVWCCkKxwpu2e5dV88zo//4mpaYrl3UqHvpgrNdIom', 'adminsecondaire@gmail.com')
     ,(100, 20, '$2y$10$lFxmIp/dShJEVWCCkKxwpu2e5dV88zo//4mpaYrl3UqHvpgrNdIom', 'anthony@gmail.com')
     ,(110, 20, '$2y$10$lFxmIp/dShJEVWCCkKxwpu2e5dV88zo//4mpaYrl3UqHvpgrNdIom', 'amelie@gmail.com')
@@ -26,7 +26,7 @@ INSERT INTO product_stock (idProduct, poids, price, quantity) VALUES
 
 INSERT INTO cart_product (idUser, idProduct, poids, quantity, date_added, sessionId)
 VALUES 
-      (80, 1, 1, '250g', '2024-08-23 10:05:00', 1)
+      (80, 1,'250g', 5, '2024-08-23 10:05:00', 1)
 ;
 
 INSERT INTO commande_info (id, idUser, email, order_date, total, status)

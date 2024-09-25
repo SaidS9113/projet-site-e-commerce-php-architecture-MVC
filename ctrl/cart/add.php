@@ -13,10 +13,9 @@ function addFlashMessage($message) {
 $idProduct = isset($_GET['idProduct']) ? intval($_GET['idProduct']) : 0;
 $poids = isset($_GET['poids']) ? $_GET['poids'] : '';
 $quantity = isset($_GET['quantity']) ? intval($_GET['quantity']) : 1;
-$sessionId = isset($_GET['sessionId']) ? $_GET['sessionId'] : '';
 
 // Assurer que les données sont valides
-if ($idProduct <= 0 || $quantity <= 0 || empty($poids) || empty($sessionId)) {
+if ($idProduct <= 0 || $quantity <= 0 || empty($poids)) {
     addFlashMessage('Données invalides. Veuillez réessayer.');
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;
@@ -89,8 +88,7 @@ if (!isset($_SESSION['user']['id'])) {
         $_SESSION['cart_product'][] = [
             'idProduct' => $idProduct,
             'poids' => $poids,
-            'quantity' => $quantity,
-            'sessionId' => $sessionId
+            'quantity' => $quantity
         ];
     }
 } else {
