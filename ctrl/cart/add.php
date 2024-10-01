@@ -2,7 +2,8 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/cart.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/cart/cart.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/cart/add.php';
 
 // Fonction pour ajouter un message flash
 function addFlashMessage($message) {
@@ -25,9 +26,7 @@ if ($idProduct <= 0 || $quantity <= 0 || empty($poids)) {
 $dbConnection = getConnection($dbConfig);
 
 // Récupérer la quantité disponible en stock
-$stmt = $dbConnection->prepare('SELECT quantity FROM product_stock WHERE idProduct = ? AND poids = ?');
-$stmt->execute([$idProduct, $poids]);
-$stock = $stmt->fetchColumn();
+$stock = getStockQuantity($dbConnection, $idProduct, $poids);
 
 // Vérifier si le produit existe et obtenir la quantité disponible
 if ($stock === false) {
@@ -44,14 +43,12 @@ if ($stock <= 0) {
 }
 
 // Récupérer la quantité déjà dans le panier pour l'utilisateur connecté ou la session
+$alreadyInCart = 0;
 if (isset($_SESSION['user']['id'])) {
     $idUser = $_SESSION['user']['id'];
-    $stmt = $dbConnection->prepare('SELECT SUM(quantity) FROM cart_product WHERE idUser = ? AND idProduct = ? AND poids = ?');
-    $stmt->execute([$idUser, $idProduct, $poids]);
-    $alreadyInCart = $stmt->fetchColumn();
+    $alreadyInCart = getCartQuantityForUser($dbConnection, $idUser, $idProduct, $poids);
 } else {
     // Pour les utilisateurs non connectés, vérifier la quantité dans la session
-    $alreadyInCart = 0;
     if (isset($_SESSION['cart_product'])) {
         foreach ($_SESSION['cart_product'] as $item) {
             if ($item['idProduct'] == $idProduct && $item['poids'] == $poids) {
@@ -74,15 +71,15 @@ if (!isset($_SESSION['user']['id'])) {
     // Pour les utilisateurs non connectés
     $sessionId = session_id();
     
-    // Appeler la fonction addToCart pour enregistrer dans la base de données
-    if (addToCart(null, $idProduct, $poids, $quantity, $dbConnection)) {
+    // Appeler la fonction pour ajouter au panier
+    if (storeInCart($dbConnection, null, $idProduct, $poids, $quantity)) {
         addFlashMessage('Produit ajouté au panier.');
     } else {
         addFlashMessage('Erreur lors de l\'ajout au panier.');
     }
 } else {
     // Pour les utilisateurs connectés
-    if (addToCart($idUser, $idProduct, $poids, $quantity, $dbConnection)) {
+    if (storeInCart($dbConnection, $idUser, $idProduct, $poids, $quantity)) {
         header('Location: /ctrl/cart/cart.php');
         exit;
     } else {

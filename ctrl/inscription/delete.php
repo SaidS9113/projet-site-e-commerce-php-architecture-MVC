@@ -1,5 +1,4 @@
 <?php
-
 // Sauvegarde de la session
 session_start();
 if (!isset($_SESSION['sessionId'])) {
@@ -9,19 +8,16 @@ if (!isset($_SESSION['sessionId'])) {
 // Ouvre une connexion à la BDD
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/inscription/delete.php';  // Inclure le modèle
+
 $dbConnection = getConnection($dbConfig);
 
 // Vérifie si un utilisateur doit être supprimé
 if (isset($_GET['id'])) {
     $deleteUserId = (int)$_GET['id'];
 
-    // Prépare la requête de suppression
-    $deleteQuery = 'DELETE FROM user WHERE id = :id';
-    $deleteStatement = $dbConnection->prepare($deleteQuery);
-    $deleteStatement->bindParam(':id', $deleteUserId, PDO::PARAM_INT);
-
-    // Exécute la requête de suppression
-    if ($deleteStatement->execute()) {
+    // Appeler la fonction pour supprimer l'utilisateur
+    if (deleteUser($dbConnection, $deleteUserId)) {
         // Redirection après suppression
         header("Location: /ctrl/inscription/list.php?message=deleted");
         exit();

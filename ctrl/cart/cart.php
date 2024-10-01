@@ -8,7 +8,7 @@ if (!isset($_SESSION['sessionId'])) {
 // Inclure les modèles nécessaires pour interagir avec la base de données
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/cart.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/cart/cart.php';
 
 // Créer une connexion à la base de données
 $dbConnection = getConnection($dbConfig);

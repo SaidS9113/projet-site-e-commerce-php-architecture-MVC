@@ -2,7 +2,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/cart.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/cart/cart.php';
 
 // Connexion à la base de données
 $dbConnection = getConnection($GLOBALS['dbConfig']);

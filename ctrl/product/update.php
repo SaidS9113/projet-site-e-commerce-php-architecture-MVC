@@ -2,6 +2,8 @@
 // Ouvre une connexion à la base de données
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/product/update.php';  // Inclure le modèle
+
 $dbConnection = getConnection($dbConfig);
 
 // Lis les informations depuis la requête HTTP
@@ -18,28 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Commence une transaction
         $dbConnection->beginTransaction();
 
-        // Mise à jour des informations du produit dans la table 'product'
-        $queryProduct = 'UPDATE product SET name = :name, description = :description WHERE id = :id';
-        $statementProduct = $dbConnection->prepare($queryProduct);
-        $statementProduct->bindParam(':name', $product['name']);
-        $statementProduct->bindParam(':description', $product['description']);
-        $statementProduct->bindParam(':id', $product['id']);
+        // Mise à jour des informations du produit
+        updateProduct($dbConnection, $product);
 
-        if (!$statementProduct->execute()) {
-            throw new Exception('Erreur lors de la mise à jour du produit : ' . implode(', ', $statementProduct->errorInfo()));
-        }
-
-        // Mise à jour des informations du stock dans la table 'product_stock'
-        $queryStock = 'UPDATE product_stock SET price = :price, quantity = :quantity WHERE idProduct = :idProduct AND poids = :poids';
-        $statementStock = $dbConnection->prepare($queryStock);
-        $statementStock->bindParam(':poids', $product['poids']);
-        $statementStock->bindParam(':price', $product['price']);
-        $statementStock->bindParam(':quantity', $product['quantity']);
-        $statementStock->bindParam(':idProduct', $product['id']);
-
-        if (!$statementStock->execute()) {
-            throw new Exception('Erreur lors de la mise à jour du stock du produit : ' . implode(', ', $statementStock->errorInfo()));
-        }
+        // Mise à jour des informations de stock
+        updateProductStock($dbConnection, $product);
 
         // Valide la transaction si tout est correct
         $dbConnection->commit();

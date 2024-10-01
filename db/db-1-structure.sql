@@ -114,7 +114,7 @@ ALTER TABLE product_stock
 -- Contraintes sur la table 'avis'
 ALTER TABLE avis
     ADD CONSTRAINT `fk_avis_product` FOREIGN KEY(idProduct) REFERENCES product(id),
-    ADD CONSTRAINT `fk_avis_user` FOREIGN KEY(idUser) REFERENCES user(id);
+    ADD CONSTRAINT `fk_avis_user` FOREIGN KEY(idUser) REFERENCES user(id) ON DELETE CASCADE;
 
 -- Contraintes sur la table 'cart_product'
 ALTER TABLE cart_product

@@ -1,5 +1,4 @@
 <?php
-
 // Sauvegarde de la session
 session_start();
 if (!isset($_SESSION['sessionId'])) {
@@ -9,16 +8,17 @@ if (!isset($_SESSION['sessionId'])) {
 // Ouvre une connexion à la BDD
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/inscription/list.php';  // Inclure le modèle
+
 $dbConnection = getConnection($dbConfig);
 
-// Prépare la requête en selectionnant les colonnes dans la table véhicule
-$query = 'SELECT user.id, user.email, user.password, user.idRole, photo_filename';
-$query .= ' FROM user';
-$statement = $dbConnection->prepare($query);
-// Exécute la requête
-$successOrFailure = $statement->execute();
-//Variable pour boucler pour recuperer les informations
-$listUser = $statement->fetchAll(PDO::FETCH_ASSOC);
+// Récupérer la liste des utilisateurs
+$listUser = getUserList($dbConnection);
+
+if ($listUser === false) {
+    echo "Erreur lors de la récupération de la liste des utilisateurs.";
+    exit();
+}
 
 // Rends la vue
 include $_SERVER['DOCUMENT_ROOT'] . '/view/inscription/list.php';

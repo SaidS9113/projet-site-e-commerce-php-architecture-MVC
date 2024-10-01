@@ -1,20 +1,32 @@
 <?php
-// model/commandeModel.php
+// model/lib/commande.php
 
+// Efface les tables de commande et renvoie un message
 function clearCommandeTables($dbConnection) {
     try {
-        // Désactive les contraintes de clé étrangère pour permettre de vider les tables
-        $dbConnection->exec('SET FOREIGN_KEY_CHECKS = 0');
-
-        // Vidage des tables commande_product et commande_info
-        $dbConnection->exec('TRUNCATE TABLE commande_product');
-        $dbConnection->exec('TRUNCATE TABLE commande_info');
-
-        // Réactive les contraintes de clé étrangère
-        $dbConnection->exec('SET FOREIGN_KEY_CHECKS = 1');
+        // Supposons que vous ayez une requête pour effacer les tables de commande
+        $dbConnection->beginTransaction();
         
-        return "Les tables commande_info et commande_product ont été vidées avec succès.";
+        // Exemple d'une requête d'effacement (à adapter selon vos besoins)
+        $dbConnection->exec("DELETE FROM commande_product");
+        $dbConnection->exec("DELETE FROM commande_info");
+
+        $dbConnection->commit();
+        return "Commandes effacées avec succès.";
     } catch (PDOException $e) {
-        return "Erreur lors de la suppression des données : " . $e->getMessage();
+        $dbConnection->rollBack();
+        return "Erreur lors de l'effacement des commandes : " . htmlspecialchars($e->getMessage());
     }
+}
+
+// Récupère toutes les commandes et leurs détails
+function getAllCommandes($dbConnection) {
+    $query = 'SELECT commande_info.idUser, commande_info.email, commande_product.name, commande_product.poids, commande_product.quantity, commande_info.total, commande_info.status, commande_info.order_date';
+    $query .= ' FROM commande_info';
+    $query .= ' LEFT JOIN commande_product ON commande_info.id = commande_product.idCommande_info';
+    
+    $statement = $dbConnection->prepare($query);
+    $statement->execute();
+    
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
