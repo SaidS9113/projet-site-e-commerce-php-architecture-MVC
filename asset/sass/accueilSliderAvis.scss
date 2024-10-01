@@ -27,16 +27,8 @@
     height: 100%;
 }
 
-.slide2__star {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.slide2__star i {
-    color: #fdc701;
 
-}
 
 .slide2__text {
     cursor: context-menu;
@@ -48,6 +40,11 @@
     align-items: center;
     justify-content: center;
     cursor: context-menu;
+
+    .nomProductAvis{
+        font-family: "Spectral", serif;
+        color: rgb(255, 147, 24);
+    }
 
 }
 

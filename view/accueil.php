@@ -45,7 +45,7 @@ foreach ($listProduct as $product) {
     <figure>
         <a href="<?= $productUrls[$product['id']] ?>"><img class="image" src="../upload/<?= $product['photo_filename'] ?>" alt=""></a>
         <a href="<?= $productUrls[$product['id']] ?>"><h3 class="title"><?= $product['name'] ?></h3></a>
-        <p class="description"><?= substr($product['description'], 0, 15) . '...' ?></p>
+        <p class="description"><?= substr($product['description'], 0, 15)  ?></p>
         <span class="price"><?= $product['price'] ?>€</span>
     </figure>
 <?php 
@@ -77,14 +77,10 @@ foreach ($listProduct as $product) {
         <div class="slider2">
             <?php foreach ($listAvis as $avis) { ?>
                 <div class="slide2">
-                    <div class="slide2__star">
-                        <!-- Étoiles fixes comme dans l'ancien code -->
-                        <i class="las la-star"></i>
-                        <i class="las la-star"></i>
-                        <i class="las la-star"></i>
-                        <i class="las la-star"></i>
-                        <i class="las la-star"></i>
+                <div class="slide2__name">
+                        <h3><?= htmlspecialchars($avis['email']) ?></h3>
                     </div>
+                   
                     <p class="slide2__text">
                         <?= htmlspecialchars($avis['content']) ?>
                         
@@ -93,7 +89,7 @@ foreach ($listProduct as $product) {
                         <span>
                             <i class="las la-arrow-right"></i>
                         </span>
-                        <h3><?= htmlspecialchars($avis['email']) ?></h3>
+                        <h3 class="nomProductAvis"><?= $avis['product_name'] ?></h3>
                     </div>
                 </div>
                 

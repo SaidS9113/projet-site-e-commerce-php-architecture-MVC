@@ -41,8 +41,8 @@ $sessionId = isset($_SESSION['user']); ?>
                         <tr>
                     <td><?= $user['id'] ?></td>
                     <td><?= $user['idRole'] ?></td>
-                    <td><?= mb_substr($user['email'], 0, 40) . (strlen($user['email']) > 40 ? '...' : '') ?></td>
-                    <td><?= mb_substr($user['password'], 0, 70) . (strlen($user['password']) > 70 ? '...' : '') ?></td>
+                    <td><?= mb_substr($user['email'], 0, 40) . (strlen($user['email']) > 40 ?  : '') ?></td>
+                    <td><?= mb_substr($user['password'], 0, 15) . (strlen($user['password']) > 15 ?  : '') ?></td>
                     <td>
                         <a href="/ctrl/inscription/delete.php?id=<?= $user['id'] ?>" 
                         onclick="return confirm('Confirmer la suppression de cet utilisateur (ID: <?= $user['id'] ?>) ?')">
@@ -63,8 +63,8 @@ $sessionId = isset($_SESSION['user']); ?>
                     <div class="product-info">
                         <p><strong>ID :</strong> <?= $user['id'] ?></p>
                         <p><strong>ID Role :</strong> <?= $user['idRole'] ?></p>
-                        <p><strong>Email :</strong> <?= $user['email'] ?></p>
-                        <p><strong>Password :</strong> <?= $user['password'] ?></p>
+                        <p><strong>Email :</strong> <?= mb_substr($user['email'], 0, 40) . (strlen($user['email']) > 40 ?  : '') ?></p>
+                        <p><strong>Password :</strong> <?= mb_substr($user['password'], 0, 15) . (strlen($user['password']) > 15 ?  : '') ?></p>
                         <div class="product-actions">
                             <a href="/ctrl/inscription/delete.php?id=<?= $user['id'] ?>" 
                                onclick="return confirm('Confirmer la suppression de cet utilisateur (ID: <?= $user['id'] ?>) ?')">

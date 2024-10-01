@@ -50,7 +50,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
         </div>
 
         <div class="col-lg-6 col-md-12 col-12">
-            <h6 class="arboPageDetail">Accueil / Produit / Miel ...</h6>
+            <h6 class="arboPageDetail">Accueil / Page détail / <?= htmlspecialchars($product['name']) ?></h6>
             <h3 class="product-title"><?= htmlspecialchars($product['name']) ?></h3>
             <p class="description"><?= htmlspecialchars($product['description']) ?></p>
 

@@ -24,9 +24,9 @@
             <figure>
             <a href="<?= $productUrls[$product['id']] ?>"><img class="image" src="../upload/<?= $product['photo_filename'] ?>" alt=""></a>
             <a href="<?= $productUrls[$product['id']] ?>">
-                <h3 class="title"><?= mb_substr($product['name'], 0, 26) . '...' ?></h3>
+                <h3 class="title"><?= mb_substr($product['name'], 0, 26)  ?></h3>
             </a>
-            <p class="description"><?= substr($product['description'], 0, 15) . '...' ?></p>
+            <p class="description"><?= substr($product['description'], 0, 15) ?></p>
             <span class="price"><?= substr($product['price'], 0, 7) ?>€</span>
             </figure>
             <?php } ?>

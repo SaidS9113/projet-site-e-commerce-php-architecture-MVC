@@ -42,8 +42,8 @@ $sessionId = isset($_SESSION['user']); ?>
                     <?php foreach ($listCommande as $commande) { ?>
                         <tr>
                             <td><?= $commande['idUser'] ?></td>
-                            <td><?= mb_substr($commande['email'], 0, 40) . '...' ?></td>
-                            <td><?= mb_substr($commande['name'], 0, 27) . '...' ?></td>
+                            <td><?= mb_substr($commande['email'], 0, 40)  ?></td>
+                            <td><?= mb_substr($commande['name'], 0, 27)  ?></td>
                             <td><?= $commande['poids'] ?></td>
                             <td><?= substr($commande['quantity'], 0, 3) ?></td>
                         <td>

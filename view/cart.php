@@ -51,8 +51,8 @@ $sessionId = isset($_SESSION['user']); ?>
                             ?>
                          <tr>
                                 <td><img class="image" src="../../upload/<?= $item['photo_filename'] ?>" alt=""></td>
-                                <td><?= mb_substr($item['name'], 0, 25) . '...' ?></td>
-                                <td><?= mb_substr($item['description'], 0, 60) . '...' ?></td>
+                                <td><?= mb_substr($item['name'], 0, 25)  ?></td>
+                                <td><?= mb_substr($item['description'], 0, 60) ?></td>
                                 <td><?= $item['poids'] ?></td>
 
                                 <!-- Limiter le prix à 7 caractères -->
