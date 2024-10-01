@@ -45,7 +45,7 @@ foreach ($listProduct as $product) {
     <figure>
         <a href="<?= $productUrls[$product['id']] ?>"><img class="image" src="../upload/<?= $product['photo_filename'] ?>" alt=""></a>
         <a href="<?= $productUrls[$product['id']] ?>"><h3 class="title"><?= $product['name'] ?></h3></a>
-        <p class="description"><?= substr($product['description'], 0, 15)  ?></p>
+        <p class="description"><?= substr($product['description'], 0, 25)  ?></p>
         <span class="price"><?= $product['price'] ?>€</span>
     </figure>
 <?php 

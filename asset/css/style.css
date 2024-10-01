@@ -1084,7 +1084,7 @@ header .boiteLogin {
 }
 .slide2__name .nomProductAvis {
   font-family: "Spectral", serif;
-  color: rgb(255, 147, 24);
+  color: rgb(255, 147, 24) !important;
 }
 
 .slider2-dots {
