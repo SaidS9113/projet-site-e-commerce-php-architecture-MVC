@@ -3,12 +3,9 @@
 $isLoggedIn = isset($_SESSION['user']); 
 ?>
 
-
 <!---------En-tête de page----------->
 <header class="header" id="header">
-
     <!-- Section de connexion si l'utilisateur est connecté -->
- 
     <div class="header-version-m-t-p"> <!-- Div header pour toutes les versions -->
         <i class="bx bx-menu-alt-left" id="menu-btn" style="font-size: 2.5rem;"></i>
 
@@ -18,23 +15,24 @@ $isLoggedIn = isset($_SESSION['user']);
             <div class="flex-column">
             <!-- Logo du site -->
             <a class="logoNavbar" href="/ctrl/accueil.php"><img src="/asset/img/logoSiteEcommerce.png" alt=""></a>
-
             <!-- Liste des pages du site -->
             <ul class="listSite">
-                <li><a href="/ctrl/accueil.php">Accueil</a></li>
-                <li><a href="/ctrl/catalogue.php">Produits</a></li>
+                <!-- Affichage de "Accueil" et "Produits" pour tous les utilisateurs sauf ceux ayant le rôle 10 -->
+        <?php if (!($isLoggedIn && $_SESSION['user']['idRole'] == '10')) : ?>
+            <li><a href="/ctrl/accueil.php">Accueil</a></li>
+            <li><a href="/ctrl/catalogue.php">Produits</a></li>
+        <?php endif; ?>
 
-                <!-- Lien vers la gestion des produits si l'utilisateur est administrateur -->
-                <?php if ($isLoggedIn && $_SESSION['user']['idRole'] == '10') : ?>
-                    <li><a href="/ctrl/product/add-display.php">Ajouter Produits</a></li>
-                    <li><a href="/ctrl/product/list.php">Liste Produits</a></li>
-                    <li><a href="/ctrl/commande.php">Liste Commandes</a></li>
-                    <li><a href="/ctrl/inscription/list.php">Liste Utilisateurs</a></li>
-                <?php endif; ?>
-
+        <!-- Options supplémentaires visibles uniquement pour l'utilisateur avec le rôle 10 -->
+        <?php if ($isLoggedIn && $_SESSION['user']['idRole'] == '10') : ?>
+            <li><a href="/ctrl/product/list.php">Produits</a></li>
+            <li><a href="/ctrl/commande.php">Commandes</a></li>
+            <li><a href="/ctrl/inscription/list.php">Utilisateurs</a></li>
+        <?php endif; ?>
                 <!-- Lien Connexion visible si l'utilisateur n'est pas connecté -->
                 <?php if (!$isLoggedIn) : ?>
                     <li><a href="/ctrl/login/display.php">Connexion</a></li>
+                    <li><a href="/ctrl/inscription/add-display.php">S'inscrire</a></li>
                 <?php endif; ?>
             </ul>
 
@@ -86,18 +84,20 @@ $isLoggedIn = isset($_SESSION['user']);
     <?php endif; ?>
     <!--------Menu pour la version PC----------->
     <nav class="version-desktop">
-        <ul>
+    <ul>
+        <!-- Affichage de "Accueil" et "Produits" pour tous les utilisateurs sauf ceux ayant le rôle 10 -->
+        <?php if (!($isLoggedIn && $_SESSION['user']['idRole'] == '10')) : ?>
             <li><a href="/ctrl/accueil.php">Accueil</a></li>
             <li><a href="/ctrl/catalogue.php">Produits</a></li>
+        <?php endif; ?>
 
-            <!-- Lien vers la gestion des produits si l'utilisateur est administrateur -->
-            <?php if ($isLoggedIn && $_SESSION['user']['idRole'] == '10') : ?>
-                <li><a href="/ctrl/product/add-display.php">Ajout Produits</a></li>
-                <li><a href="/ctrl/product/list.php">Liste Produits</a></li>
-                <li><a href="/ctrl/commande.php">Liste Commandes</a></li>
-                <li><a href="/ctrl/inscription/list.php">Liste Utilisateurs</a></li>
-            <?php endif; ?>
-        </ul>
+        <!-- Options supplémentaires visibles uniquement pour l'utilisateur avec le rôle 10 -->
+        <?php if ($isLoggedIn && $_SESSION['user']['idRole'] == '10') : ?>
+            <li><a href="/ctrl/product/list.php">Produits</a></li>
+            <li><a href="/ctrl/commande.php">Commandes</a></li>
+            <li><a href="/ctrl/inscription/list.php">Utilisateurs</a></li>
+        <?php endif; ?>
+    </ul>
 
         <div class="tablette-first_recherche_cart">
             <!-- Icône de profil selon l'état de connexion -->
@@ -106,15 +106,13 @@ $isLoggedIn = isset($_SESSION['user']);
             <?php else : ?>
                 <a href="/ctrl/login/display.php"><i class='bx bx-user'></i></a>
             <?php endif; ?>
-
             <?php include $_SERVER['DOCUMENT_ROOT'] . '/ctrl/cart/cart_counter.php'; ?>
          <!-- Icône du panier -->
-<a href="/ctrl/cart/cart.php">
+    <a href="/ctrl/cart/cart.php">
     <i class='bx bx-shopping-bag' id="cart-icon">
         <sup id="cart-count"><?php echo htmlspecialchars($totalQuantity); ?></sup>
     </i>
 </a>
-
         </div>
     </nav>
 </header>

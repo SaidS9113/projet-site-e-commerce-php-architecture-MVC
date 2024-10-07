@@ -87,6 +87,11 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     </div>
 </section>
 
+<section class="boiteDeuxButton">
+    <button class="ajoutProduit"><a href="/ctrl/product/add-display.php">Ajouter un nouveau produit</a></button>
+    <button class="testAjoutPanier"><a href="/ctrl/catalogue.php">Test d'ajout au panier </a></button>
+</section>
+
 <script src="/asset/js/cart.js"></script>
 </body>
 

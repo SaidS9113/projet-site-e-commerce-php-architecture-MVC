@@ -98,6 +98,33 @@ font-family: "Spectral", serif;
 
     }
   }
+
+  .boiteDeuxButton {
+    // Styles par défaut pour mobile
+    display: flex;
+    flex-direction: column !important;
+    gap: 10px; // Espace entre les boutons
+    padding: 10px;
+  
+    button {
+      width: 100% !important; // Les boutons prennent toute la largeur sur mobile
+      padding: 10px;
+      background-color: #f37923;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+  
+      a {
+        color: inherit; // Le lien hérite de la couleur du bouton
+        text-decoration: none;
+        display: block;
+        text-align: center;
+      }
+  
+    }
+  }
   
   /* Version tablette (min-width: 768px) */
   @media (min-width: 768px) {
@@ -131,7 +158,19 @@ font-family: "Spectral", serif;
       }
     }
   }
-  
+  .boiteDeuxButton{
+    flex-direction: row ; // Les boutons sont alignés horizontalement
+    justify-content: center; // Centrage horizontal des boutons
+    gap: 20px; // Espacement plus large entre les boutons
+    padding: 20px 40px; // Plus de padding autour de la section
+
+
+
+a {
+  font-size: 18px; // Taille du texte du lien adaptée pour les écrans plus grands
+}
+}
+
   /* Version ordinateur (min-width: 1024px) */
   @media (min-width: 1024px) {
     .product-list-cards {
@@ -189,3 +228,19 @@ font-family: "Spectral", serif;
     }
   }
   
+  .boiteDeuxButton{
+  justify-content: space-around; // Espace bien réparti entre les boutons
+  padding: 30px 60px; // Padding plus généreux pour la section
+
+  button {
+    width: 20%; // Les boutons sont plus larges (30% de la largeur parent)
+    padding: 20px 30px; // Padding encore plus grand pour un confort visuel
+    font-size: 20px; // Taille de texte plus grande pour les boutons
+    border-radius: 10px; // Boutons encore plus arrondis
+
+  }
+
+  a {
+    font-size: 20px; // Texte des liens légèrement plus grand pour un meilleur confort sur grand écran
+  }
+}
