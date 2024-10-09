@@ -7,45 +7,71 @@
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../asset/css/style.css">
     <title>MielQualityS | Inscription</title>
+
 </head>
 <body>
     <!---------Barre de promotion----------->
-<div class="promo">
-    <p>Livraison gratuite à partir de 50€</p>
-</div>
+    <div class="promo">
+        <p>Livraison gratuite à partir de 50€</p>
+    </div>
+    
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
+    
     <h1 class="bvn">Inscription</h1>
-    <main>
+      <!-- Messages d'erreur (invisible par défaut) -->
+      <div id="errorBanner" class="error-banner" style="display: none;">
+            <ul id="errorList"></ul>
+        </div>
+
+        <!-- Formulaire -->
+        <form id="inscriptionForm" action="/ctrl/inscription/add.php" method="post">
+           <!-- nom -->
+            <div>
+                <label for="nom">Nom</label>
+                <input type="text" name="nom" id="nom" value="" required>
+                <p class="error2" id="nomError"></p>
+            </div>
+            
+            <!-- prenom -->
+            <div>
+                <label for="prenom">Prénom</label>
+                <input type="text" name="prenom" id="prenom" value="" required>
+                
+            </div>
+            
+            <!-- email -->
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" value="" required>
+          
+            </div>
+
+            <!-- password -->
+            <div>
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password" required>
   
-        <form action="/ctrl/inscription/add.php" method="post">
-
-            <!-- Matricule -->
-            <div>
-                <label for="label">Email</label>
-                <input type="text" name="email" id="email">
             </div>
 
-            <!-- Nom -->
+            <!-- confirm password -->
             <div>
-                <label for="code">password</label>
-                <input type="text" name="password" id="password">
+                <label for="confirm_password">Confirmez le mot de passe</label>
+                <input type="password" name="confirm_password" id="confirm_password" required>
+             
             </div>
 
-
+            <!-- submit -->
             <div class="submit">
                 <button type="submit">Valider</button>
             </div>
         </form>
-    </main>
+ 
+
+   
+<script src="/asset/js/errorInscription.js"></script>
     <script src="/asset/js/cart.js"></script>
 </body>
-
 </html>

@@ -78,7 +78,7 @@ foreach ($listProduct as $product) {
             <?php foreach ($listAvis as $avis) { ?>
                 <div class="slide2">
                 <div class="slide2__name">
-                        <h3><?= htmlspecialchars($avis['email']) ?></h3>
+                        <h3><?= htmlspecialchars($avis['nom']) ?> <?= htmlspecialchars($avis['prenom']) ?></h3>
                     </div>
                    
                     <p class="slide2__text">

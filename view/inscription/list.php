@@ -32,7 +32,8 @@ $sessionId = isset($_SESSION['user']); ?>
                         <th>id</th>
                         <th>idRole</th>
                         <th>Email</th>
-                        <th>Password</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -42,7 +43,8 @@ $sessionId = isset($_SESSION['user']); ?>
                     <td><?= $user['id'] ?></td>
                     <td><?= $user['idRole'] ?></td>
                     <td><?= mb_substr($user['email'], 0, 40) . (strlen($user['email']) > 40 ?  : '') ?></td>
-                    <td><?= mb_substr($user['password'], 0, 15) . (strlen($user['password']) > 15 ?  : '') ?></td>
+                    <td><?= mb_substr($user['nom'], 0, 15) . (strlen($user['nom']) > 15 ?  : '') ?></td>
+                    <td><?= mb_substr($user['prenom'], 0, 15) . (strlen($user['prenom']) > 15 ?  : '') ?></td>
                     <td>
                         <a href="/ctrl/inscription/delete.php?id=<?= $user['id'] ?>" 
                         onclick="return confirm('Confirmer la suppression de cet utilisateur (ID: <?= $user['id'] ?>) ?')">

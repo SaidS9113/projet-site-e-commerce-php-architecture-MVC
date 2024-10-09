@@ -18,16 +18,16 @@ CREATE TABLE role (
     label VARCHAR(100) NOT NULL
 );
 
--- Table des utilisateurs
 CREATE TABLE user (
     id INT PRIMARY KEY AUTO_INCREMENT,
     password VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     idRole INT,
-    photo longblob,
-    photo_filename varchar(255)
+    photo LONGBLOB,
+    photo_filename VARCHAR(255),
+    nom VARCHAR(50) NOT NULL,     -- Ajout de la colonne pour le prénom
+    prenom VARCHAR(50) NOT NULL   -- Ajout de la colonne pour le nom de famille
 );
-
 -- Table des produits
 CREATE TABLE product (
     id INT AUTO_INCREMENT PRIMARY KEY,

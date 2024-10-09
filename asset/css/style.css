@@ -238,8 +238,8 @@ header .bx-shopping-bag sup {
   padding: 1px;
   top: 92px;
   right: 14px;
-  width: 14px;
-  height: 15px;
+  width: 18px;
+  height: 20px;
   line-height: 9px;
   text-align: center;
   padding: 0.1rem;
@@ -367,9 +367,9 @@ header .boiteLogin {
     position: absolute;
     padding: 1px;
     top: 120px !important;
-    right: 16px !important;
-    width: 14px;
-    height: 15px;
+    right: 14px !important;
+    width: 18px;
+    height: 20px;
     line-height: 9px;
     text-align: center;
     padding: 0.1rem;
@@ -424,23 +424,10 @@ header .boiteLogin {
     font-size: 1.2rem;
     font-family: "Spectral", serif;
   }
-  header .boiteLogin .boiteDeconnexion {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-  }
-  header .boiteLogin .boiteDeconnexion .nameDeconnexion {
-    font-weight: bold;
-    color: red;
-  }
-  header .boiteLogin .boiteDeconnexion .btnDeconnexion {
-    text-decoration: none;
-    color: red;
-    font-weight: bold;
-  }
-  header .boiteLogin .boiteDeconnexion .btnDeconnexion .bx-exit {
-    font-size: 2rem;
+  header .boiteLogin .bienvenueUser {
+    font-weight: 500;
+    font-size: 1.5rem;
+    font-family: "Spectral", serif;
   }
   header .header-version-m-t-p {
     display: flex;
@@ -505,8 +492,8 @@ header .boiteLogin {
     padding: 1px;
     top: 1px;
     right: -7px;
-    width: 14px;
-    height: 15px;
+    width: 18px;
+    height: 20px;
     line-height: 11px;
     text-align: center;
     padding: 0.1rem;
@@ -592,6 +579,101 @@ header .boiteLogin {
     font-size: 2.1rem;
   }
 }
+.tablette-first_recherche_cart {
+  position: relative;
+  display: inline-block;
+}
+.tablette-first_recherche_cart #user-icon {
+  font-size: 24px;
+  color: #000;
+  text-decoration: none;
+}
+.tablette-first_recherche_cart #user-icon:hover {
+  color: #f37923;
+}
+.tablette-first_recherche_cart .popup {
+  display: none;
+  gap: 20px;
+  position: absolute;
+  top: 100%;
+  left: -10px;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  border: 1px solid #c0c0c0;
+  width: 200px;
+  height: 100px;
+  flex-direction: column;
+  border-radius: 10px;
+}
+.tablette-first_recherche_cart .popup .connecter {
+  display: block;
+  color: #000;
+  text-decoration: none;
+  border: 1px solid #000;
+  text-align: center;
+  border-radius: 20px;
+}
+.tablette-first_recherche_cart .popup .connecter:hover {
+  color: #f37923;
+}
+.tablette-first_recherche_cart .popup .inscrire {
+  display: block;
+  color: #000;
+  text-decoration: none;
+  border: 1px solid #000;
+  text-align: center;
+  margin-top: 15px;
+  border-radius: 20px;
+}
+.tablette-first_recherche_cart .popup .inscrire:hover {
+  color: #f37923;
+}
+.tablette-first_recherche_cart .popup .voirProfil {
+  display: block;
+  color: #000;
+  text-decoration: none;
+  border: 1px solid #000;
+  text-align: center;
+  border-radius: 20px;
+}
+.tablette-first_recherche_cart .popup .voirProfil:hover {
+  color: #f37923;
+}
+.tablette-first_recherche_cart .popup .boiteDeconnexion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  border: 1px solid #000;
+  border-radius: 20px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.tablette-first_recherche_cart .popup .boiteDeconnexion .nameDeconnexion {
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+.tablette-first_recherche_cart .popup .boiteDeconnexion .nameDeconnexion:hover {
+  color: red;
+}
+.tablette-first_recherche_cart .popup .boiteDeconnexion .btnDeconnexion {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+.tablette-first_recherche_cart .popup .boiteDeconnexion .btnDeconnexion .bx-exit {
+  font-size: 1.5rem;
+  margin-top: 5px;
+}
+.tablette-first_recherche_cart .popup .boiteDeconnexion .btnDeconnexion .bx-exit:hover {
+  color: red;
+}
+
 .accueil {
   background: url("/asset/img/photoPrincipale.jpg") no-repeat center;
   background-size: cover;
@@ -1527,13 +1609,13 @@ header .boiteLogin {
   font-size: 1.2rem;
   font-weight: bold;
 }
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) {
   .btnLog {
     margin-left: 70px;
     font-size: 1.4rem;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 768px) and (min-width: 1024px) {
   .btnLog {
     margin-left: 100px;
     font-size: 1.5rem;
@@ -1546,7 +1628,7 @@ header .boiteLogin {
   padding: 20px;
   font-family: "Spectral", serif;
 }
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) {
   .titleLogin {
     font-size: 2rem;
   }
@@ -1560,20 +1642,19 @@ header .boiteLogin {
 .login {
   max-width: 300px;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.72);
   border-radius: 10px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
   margin: 20px auto;
-  color: #fff;
+  color: #000;
   text-align: center;
 }
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) {
   .login {
     max-width: 500px;
     padding: 25px;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 768px) and (min-width: 1024px) {
   .login {
     max-width: 520px;
     padding: 30px;
@@ -1584,13 +1665,15 @@ header .boiteLogin {
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
+  font-size: 1.2rem;
+  font-family: "Spectral", serif;
 }
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) {
   .login label {
     margin-bottom: 15px;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 768px) and (min-width: 1024px) {
   .login label {
     margin-bottom: 20px;
   }
@@ -1601,15 +1684,18 @@ header .boiteLogin {
   padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 20px;
 }
-@media (min-width: 768px) and (max-width: 1024px) {
+.login input:hover {
+  border: 1px solid #f37923;
+}
+@media (min-width: 768px) {
   .login input {
     padding: 12px;
     margin-bottom: 25px;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 768px) and (min-width: 1024px) {
   .login input {
     padding: 15px;
     margin-bottom: 30px;
@@ -1623,20 +1709,15 @@ header .boiteLogin {
   background-color: #4caf50;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
-.login button:hover {
-  background-color: #2e5830;
-  color: red;
-}
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) {
   .login button {
     padding: 12px;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 768px) and (min-width: 1024px) {
   .login button {
     padding: 15px;
   }
@@ -2309,6 +2390,188 @@ main .AjtImgProfil div button {
   }
   .container-commentaire .commentaire {
     font-size: 1.2rem;
+  }
+}
+.error-banner {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  width: 100%;
+  margin-top: -10px;
+}
+
+.error-banner ul {
+  padding-left: 20px;
+  text-align: center;
+  list-style: none;
+}
+
+h1.bvn {
+  text-align: center;
+  color: #000;
+  margin-bottom: 20px;
+  font-size: 3rem;
+  margin-top: 40px;
+  font-family: "Spectral", serif;
+}
+
+#inscriptionForm {
+  background: white;
+  padding: 20px;
+  border-radius: 4px;
+  max-width: 400px;
+  margin: auto;
+}
+#inscriptionForm div {
+  margin-bottom: 15px;
+}
+#inscriptionForm div label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: "Spectral", serif;
+}
+#inscriptionForm div input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #868686;
+  border-radius: 4px;
+  border-radius: 20px;
+}
+#inscriptionForm div input:focus {
+  border-color: #f37923;
+  outline: none;
+}
+#inscriptionForm div .error2 {
+  color: #f44336;
+  font-size: 0.9em;
+  display: none;
+}
+#inscriptionForm .submit {
+  text-align: center;
+}
+#inscriptionForm .submit button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+#inscriptionForm .submit button:hover {
+  background-color: #3d8b40;
+}
+
+@media (min-width: 768px) {
+  #inscriptionForm {
+    max-width: 600px;
+    padding: 30px;
+  }
+  #inscriptionForm div input {
+    padding: 12px;
+    border-radius: 20px;
+  }
+  #inscriptionForm .submit button {
+    font-size: 18px;
+  }
+}
+@media (min-width: 1024px) {
+  #inscriptionForm {
+    max-width: 800px;
+    padding: 40px;
+  }
+  #inscriptionForm div input {
+    padding: 15px;
+    border-radius: 20px;
+  }
+  #inscriptionForm .submit button {
+    font-size: 20px;
+  }
+}
+#errorBanner {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.modifInfoProfil {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  margin-top: 40px;
+}
+
+.formUpdate {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.formUpdate div {
+  margin-bottom: 20px;
+}
+.formUpdate div label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+.formUpdate div input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+.formUpdate div input:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+.formUpdate .submit {
+  text-align: center;
+}
+.formUpdate .submit button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.formUpdate .submit button:hover {
+  background-color: #45a049;
+}
+
+@media (min-width: 768px) {
+  .formUpdate {
+    max-width: 600px;
+    padding: 30px;
+  }
+  .modifInfoProfil {
+    font-size: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .formUpdate {
+    max-width: 800px;
+    padding: 40px;
+  }
+  .modifInfoProfil {
+    font-size: 2.5rem;
   }
 }
 .haut-footer {

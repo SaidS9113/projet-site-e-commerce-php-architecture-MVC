@@ -3,7 +3,7 @@
 
 // Récupérer la liste des utilisateurs
 function getUserList($dbConnection) {
-    $query = 'SELECT user.id, user.email, user.password, user.idRole, photo_filename FROM user';
+    $query = 'SELECT user.id, user.email, user.password, user.idRole, nom, prenom FROM user';
     $statement = $dbConnection->prepare($query);
     
     // Exécute la requête

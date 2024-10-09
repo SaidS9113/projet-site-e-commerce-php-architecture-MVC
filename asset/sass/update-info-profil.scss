@@ -1,0 +1,88 @@
+
+ 
+  // Style pour le titre
+  .modifInfoProfil {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333; // Couleur du titre
+    margin-top: 40px;
+  }
+  
+  // Style du formulaire
+  .formUpdate {
+    max-width: 400px; // Largeur maximale du formulaire
+    margin: 0 auto; // Centrer le formulaire
+    padding: 20px;
+    background-color: white; // Couleur de fond du formulaire
+    border-radius: 10px; // Coins arrondis
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); // Ombre légère
+  
+    // Styles pour les champs du formulaire
+    div {
+      margin-bottom: 20px;
+  
+      label {
+        display: block; // Afficher l'étiquette en bloc
+        margin-bottom: 5px; // Marge inférieure
+        font-weight: bold; // Texte en gras
+        color: #555; // Couleur des étiquettes
+      }
+  
+      input {
+        width: 100%; // Largeur complète
+        padding: 10px; // Rembourrage interne
+        border: 1px solid #ccc; // Bordure grise
+        border-radius: 20px; // Coins arrondis
+  
+        &:focus {
+          border-color: #4CAF50; // Couleur de bordure au focus
+          outline: none; // Retirer le contour par défaut
+          box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); // Ombre au focus
+        }
+      }
+    }
+  
+    // Style pour le bouton de soumission
+    .submit {
+      text-align: center; // Centrer le bouton
+  
+      button {
+        background-color: #4CAF50; // Couleur du bouton
+        color: white; // Couleur du texte
+        padding: 10px 20px; // Rembourrage interne
+        border: none; // Retirer la bordure
+        border-radius: 20px; // Coins arrondis
+        cursor: pointer; // Changer le curseur au survol
+        font-size: 1rem; // Taille de police
+  
+        &:hover {
+          background-color: #45a049; // Couleur au survol
+        }
+      }
+    }
+  }
+  
+  // Styles responsives
+  @media (min-width: 768px) {
+    .formUpdate {
+      max-width: 600px; // Augmenter la largeur du formulaire pour tablette
+      padding: 30px; // Augmenter le rembourrage
+    }
+  
+    .modifInfoProfil {
+      font-size: 2rem; // Augmenter la taille de police du titre
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .formUpdate {
+      max-width: 800px; // Augmenter la largeur du formulaire pour bureau
+      padding: 40px; // Augmenter le rembourrage
+    }
+  
+    .modifInfoProfil {
+      font-size: 2.5rem; // Augmenter la taille de police du titre
+    }
+  }
+  

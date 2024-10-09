@@ -1,0 +1,124 @@
+
+h1.bvn {
+  text-align: center;
+  color: #000; // Couleur du titre
+  margin-bottom: 20px;
+  font-size: 3rem;
+  margin-top: 40px;
+  font-family: "Spectral", serif;
+}
+
+// Styles pour le formulaire
+#inscriptionForm {
+  background: white;
+  padding: 20px;
+  border-radius: 4px; // Arrondi des coins
+  max-width: 400px;
+  margin: auto;
+
+  // Styles des champs du formulaire
+  div {
+      margin-bottom: 15px;
+
+      label {
+          display: block;
+          margin-bottom: 5px;
+          font-weight: bold;
+          color: #333; // Couleur du texte
+          text-align: center;
+          font-size: 1.2rem;
+          font-family: "Spectral", serif;
+      }
+
+      input {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #868686;
+          border-radius: 4px;
+          border-radius: 20px;
+
+          &:focus {
+              border-color: #f37923; // Couleur de la bordure au focus
+              outline: none;
+             
+          }
+      }
+
+      .error2 {
+          color: #f44336; // Couleur des erreurs
+          font-size: 0.9em;
+          display: none; // Masquer par défaut
+      }
+  }
+
+  // Styles pour le bouton de soumission
+  .submit {
+      text-align: center;
+
+      button {
+          background-color: #4CAF50; // Couleur du bouton
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+
+          &:hover {
+              background-color: darken(#4CAF50, 10%); // Couleur au survol
+          }
+      }
+  }
+}
+
+// Styles pour les écrans de tablette et plus larges
+@media (min-width: 768px) {
+  #inscriptionForm {
+      max-width: 600px; // Augmenter la largeur du formulaire
+      padding: 30px;
+
+      div {
+          input {
+              padding: 12px;
+              border-radius: 20px;
+          }
+      }
+
+      .submit {
+          button {
+              font-size: 18px; // Augmenter la taille du texte du bouton
+          }
+      }
+  }
+}
+
+// Styles pour les écrans de bureau et plus larges
+@media (min-width: 1024px) {
+  #inscriptionForm {
+      max-width: 800px; // Largeur maximale pour les ordinateurs de bureau
+      padding: 40px;
+
+      div {
+          input {
+              padding: 15px; // Augmenter le rembourrage pour les écrans plus grands
+              border-radius: 20px;
+          }
+      }
+
+      .submit {
+          button {
+              font-size: 20px; // Augmenter encore la taille du texte du bouton
+          }
+      }
+  }
+}
+
+// Styles pour les messages d'erreur
+#errorBanner {
+  background-color: #f44336; // Couleur de fond pour le message d'erreur
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  display: none; // Masquer par défaut
+}

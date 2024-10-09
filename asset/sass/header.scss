@@ -265,8 +265,8 @@ header {
         padding: 1px;
         top: 92px ;
         right: 14px;
-        width: 14px;
-        height: 15px;
+        width: 18px;
+        height: 20px;
         line-height: 9px;
         text-align: center;
         padding: .1rem;
@@ -415,9 +415,9 @@ header {
             position: absolute;
             padding: 1px;
             top: 120px !important;
-            right: 16px !important;
-            width: 14px;
-            height: 15px;
+            right: 14px !important;
+            width: 18px;
+            height: 20px;
             line-height: 9px;
             text-align: center;
             padding: .1rem;
@@ -476,28 +476,11 @@ header {
             font-size: 1.2rem;
             font-family: "Spectral", serif; 
            }
-           .boiteDeconnexion{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-            .nameDeconnexion{
-                font-weight: bold;
-                color: red;
-             }
-
-           .btnDeconnexion{
-            text-decoration: none;
-            color: red;
-            font-weight: bold;
-            
-           
-
-            .bx-exit{
-                font-size: 2rem;    
-            }
-        }           
-        }
+           .bienvenueUser{
+            font-weight: 500;
+            font-size: 1.5rem;
+            font-family: "Spectral", serif; 
+           }
         }
         
 
@@ -571,8 +554,8 @@ header {
             padding: 1px;
             top: 1px;
             right: -7px;
-            width: 14px;
-            height: 15px;
+            width: 18px;
+            height: 20px;
             line-height: 11px;
             text-align: center;
             padding: .1rem;
@@ -670,5 +653,111 @@ header {
             }
         }
        
+    }
+}
+.tablette-first_recherche_cart {
+    position: relative; // Positionner les éléments enfants en relation
+    display: inline-block; // Alignement horizontal de l'icône
+
+    #user-icon {
+        font-size: 24px; // Taille de l'icône
+        color: #000; // Couleur de l'icône
+        text-decoration: none; // Pas de soulignement
+
+        &:hover {
+            color: #f37923; // Changer la couleur au survol
+        }
+    }
+
+    .popup {
+        display: none; 
+        gap: 20px;
+        position: absolute;
+        top: 100%;
+        left: -10px; 
+        transform: translateX(-50%);
+        background-color: #ffffff;
+        border: 1px solid #dee2e6; 
+        border-radius: 4px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+        padding: 10px; 
+        z-index: 1000; 
+        border: 1px solid #c0c0c0;
+        width: 200px;
+        height: 100px;
+        flex-direction: column;
+        border-radius: 10px;
+
+        .connecter{
+            display: block; // Chaque lien sur une nouvelle ligne
+            color: #000; // Couleur des liens
+            text-decoration: none; // Pas de soulignement
+            border: 1px solid #000;
+            text-align: center;
+            border-radius: 20px;
+          
+
+            &:hover {
+                color: #f37923; // Changer la couleur au survol
+            }
+
+        }
+        .inscrire{
+            display: block; // Chaque lien sur une nouvelle ligne
+            color: #000; // Couleur des liens
+            text-decoration: none; // Pas de soulignement
+            border: 1px solid #000;
+            text-align: center;
+            margin-top: 15px;
+            border-radius: 20px;
+
+            &:hover {
+                color: #f37923; // Changer la couleur au survol
+            }
+        }
+        .voirProfil{
+            display: block; // Chaque lien sur une nouvelle ligne
+            color: #000; // Couleur des liens
+            text-decoration: none; // Pas de soulignement
+            border: 1px solid #000;
+            text-align: center;
+            border-radius: 20px;
+            &:hover {
+                color: #f37923; // Changer la couleur au survol
+            }
+        }
+        .boiteDeconnexion{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            border: 1px solid #000;
+            border-radius: 20px;
+            margin-top: 15px;
+            cursor: pointer;
+            .nameDeconnexion{
+                font-weight: bold;
+                color: rgb(0, 0, 0);
+                &:hover {
+                    color: red; // Changer la couleur au survol
+                }
+             }
+
+           .btnDeconnexion{
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            
+           
+
+            .bx-exit{
+                font-size: 1.5rem;
+                margin-top: 5px; 
+                &:hover {
+                    color: red; // Changer la couleur au survol
+                }
+            }
+        }           
+        }
     }
 }

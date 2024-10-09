@@ -10,7 +10,7 @@
 function getUser(string $email, PDO $db): ?array
 {
     // Prépare la requête
-    $query = 'SELECT user.id, user.email, user.password, user.idRole, photo_filename';
+    $query = 'SELECT user.id, user.email, user.password, user.idRole, user.nom, .user.prenom';
     $query .= ' FROM user';
     $query .= ' WHERE user.email = :email';
     $statement = $db->prepare($query);
@@ -57,16 +57,19 @@ function getRole(string $code, PDO $db): ?array
  * 
  */
 
- function create(string $email, string $password, string $idRole, PDO $db): bool
+ function create(string $email, string $password, string $idRole, string $nom, string $prenom, PDO $db): bool
  {
      // Prépare la requête SQL pour insérer un nouvel utilisateur
-     $query = 'INSERT INTO user (email, password, idRole) VALUES (:email, :password, :idRole)';
+     $query = 'INSERT INTO user (email, password, idRole, nom, prenom) VALUES (:email, :password, :idRole, :nom, :prenom)';
      $statement = $db->prepare($query);
      
      // Lie les paramètres à la requête préparée
      $statement->bindParam(':email', $email);
      $statement->bindParam(':password', $password);
      $statement->bindParam(':idRole', $idRole);
+     $statement->bindParam(':nom', $nom);
+     $statement->bindParam(':prenom', $prenom);
+     
      
      // Exécute la requête et retourne le succès ou l'échec
      $successOrFailure = $statement->execute();

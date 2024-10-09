@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', updateProductInfo);
     <div class="container-commentaire">
         <h5 class="user-commentaire">
             <!-- Affichage de l'email ou du nom de l'utilisateur qui a posté l'avis -->
-            <?= htmlspecialchars($avis['email']) ?> 
+            <?= htmlspecialchars($avis['nom']) ?>  <?= htmlspecialchars($avis['prenom']) ?> 
             <span class="date-commentaire"><?= htmlspecialchars($avis['date']) ?></span>
         </h5>
         <p class="commentaire"><?= htmlspecialchars($avis['content']) ?></p>

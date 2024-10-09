@@ -1,8 +1,8 @@
 <?php
 // Vérifier si l'utilisateur s'est authentifié
 $isLoggedIn = isset($_SESSION['user']); 
+$bienvenue = "Bienvenue,";
 ?>
-
 <!---------En-tête de page----------->
 <header class="header" id="header">
     <!-- Section de connexion si l'utilisateur est connecté -->
@@ -35,11 +35,10 @@ $isLoggedIn = isset($_SESSION['user']);
                     <li><a href="/ctrl/inscription/add-display.php">S'inscrire</a></li>
                 <?php endif; ?>
             </ul>
-
             <!-- Affichage de la boîte de connexion pour mobile si l'utilisateur est connecté -->
             <?php if ($isLoggedIn) : ?>
             <div class="boiteLogin-mobile-first">
-                <span class="infoUser"><?= htmlspecialchars($_SESSION['user']['email']) ?></span>
+                <span class="infoUser"><?=$bienvenue?> <?= htmlspecialchars($_SESSION['user']['nom']) ?> <?= htmlspecialchars($_SESSION['user']['prenom']) ?></span>
 
                 <div class="boiteDeconnexion">
                     <a href="/ctrl/login/logout.php" class="btnDeconnexion"><i class='bx bx-exit'></i></a>
@@ -74,12 +73,8 @@ $isLoggedIn = isset($_SESSION['user']);
 
     <?php if ($isLoggedIn) : ?>
     <div class="boiteLogin">
-        <span class="infoUser"><?= htmlspecialchars($_SESSION['user']['email']) ?></span>
-
-        <div class="boiteDeconnexion">
-            <a href="/ctrl/login/logout.php" class="btnDeconnexion"><i class='bx bx-exit'></i></a>
-            <span class="nameDeconnexion">Déconnexion</span>
-        </div>
+        <p class="bienvenueUser"><?=$bienvenue?></p>
+        <span class="infoUser"><?= htmlspecialchars($_SESSION['user']['nom']) ?> <?= htmlspecialchars($_SESSION['user']['prenom']) ?></span>
     </div>
     <?php endif; ?>
     <!--------Menu pour la version PC----------->
@@ -99,13 +94,74 @@ $isLoggedIn = isset($_SESSION['user']);
         <?php endif; ?>
     </ul>
 
-        <div class="tablette-first_recherche_cart">
-            <!-- Icône de profil selon l'état de connexion -->
-            <?php if ($isLoggedIn) : ?>
-                <a href="/ctrl/profil-info/update-display.php"><i class='bx bx-user'></i></a>
-            <?php else : ?>
-                <a href="/ctrl/login/display.php"><i class='bx bx-user'></i></a>
-            <?php endif; ?>
+    <div class="tablette-first_recherche_cart">
+    <!-- Icône de profil selon l'état de connexion -->
+    <?php if ($isLoggedIn) : ?>
+        <a href="#" id="user-icon">
+            <i class='bx bx-user'></i>
+        </a>
+    <?php else : ?>
+        <a href="/ctrl/login/display.php" id="user-icon">
+            <i class='bx bx-user'></i>
+        </a>
+    <?php endif; ?>
+    
+    <!-- Fenêtre contextuelle qui apparaîtra au survol de l'icône utilisateur -->
+    <div id="user-popup" class="popup" style="display: none;">
+        <?php if ($isLoggedIn) : ?>
+            <a class="voirProfil" href="/ctrl/profil-info/update-display.php">Voir le profil</a>
+            <div class="boiteDeconnexion">
+            <a href="/ctrl/login/logout.php" class="btnDeconnexion"><i class='bx bx-exit'></i>
+            <span class="nameDeconnexion">Déconnexion</span>
+            </a>
+        </div>
+        <?php else : ?>
+            <a class="connecter" href="/ctrl/login/display.php">Se connecter</a>
+            <a class="inscrire" href="/ctrl/inscription/add-display.php">S'inscrire</a>
+        <?php endif; ?>
+    </div>
+
+
+<!-- Script pour gérer l'affichage du popup -->
+<!-- Script pour gérer l'affichage du popup -->
+<script>
+// Sélection des éléments HTML
+const userIcon = document.getElementById('user-icon');
+const userPopup = document.getElementById('user-popup');
+
+// Fonction pour afficher la popup
+function showPopup() {
+    userPopup.style.display = 'block';
+}
+
+// Fonction pour masquer la popup
+function hidePopup() {
+    userPopup.style.display = 'none';
+}
+
+// Afficher la popup quand la souris est sur l'icône ou sur la popup
+userIcon.addEventListener('mouseover', showPopup);
+userPopup.addEventListener('mouseover', showPopup);
+
+// Masquer la popup uniquement lorsque la souris quitte à la fois l'icône et la popup
+userIcon.addEventListener('mouseout', function(event) {
+    setTimeout(function() {
+        if (!userPopup.matches(':hover') && !userIcon.matches(':hover')) {
+            hidePopup();
+        }
+    }, 200); // délai avant de cacher la popup
+});
+
+userPopup.addEventListener('mouseout', function(event) {
+    setTimeout(function() {
+        if (!userPopup.matches(':hover') && !userIcon.matches(':hover')) {
+            hidePopup();
+        }
+    }, 200); // délai avant de cacher la popup
+});
+</script>
+
+
             <?php include $_SERVER['DOCUMENT_ROOT'] . '/ctrl/cart/cart_counter.php'; ?>
          <!-- Icône du panier -->
     <a href="/ctrl/cart/cart.php">

@@ -21,22 +21,43 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     <p>Livraison gratuite à partir de 50€</p>
 </div>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
-    <main>
+  
+<h1 class="modifInfoProfil">Modification des informations</h1>
+<!-- Section pour afficher les messages -->
+<div id="message" style="display:none; padding: 10px; margin-bottom: 15px; border: 1px solid; border-radius: 5px; text-align: center;"></div>
 
-    <form class="formUpdate" action="/ctrl/profil-info/update.php" method="post">
-    <!-- ID du produit -->
+<form class="formUpdate" id="updateForm">
+    <!-- ID de l'utilisateur -->
     <input type="hidden" name="id" value="<?= $userInfo['id'] ?? '' ?>">
+
+    <!-- Nom -->
+    <div>
+        <label for="nom">Nom</label>
+        <input type="text" name="nom" id="nom" value="<?= htmlspecialchars($userInfo['nom'] ?? '', ENT_QUOTES) ?>" required>
+    </div>
+
+    <!-- Prénom -->
+    <div>
+        <label for="prenom">Prénom</label>
+        <input type="text" name="prenom" id="prenom" value="<?= htmlspecialchars($userInfo['prenom'] ?? '', ENT_QUOTES) ?>" required>
+    </div>
 
     <!-- Email -->
     <div>
         <label for="email">Email</label>
-        <input type="text" name="email" id="email" value="<?= htmlspecialchars($userInfo['email'] ?? '', ENT_QUOTES) ?>" required>
+        <input type="email" name="email" id="email" value="<?= htmlspecialchars($userInfo['email'] ?? '', ENT_QUOTES) ?>" required>
     </div>
 
-    <!-- Password -->
+    <!-- Mot de passe -->
     <div>
-        <label for="password">Password</label>
-        <textarea name="password" id="password" required><?= htmlspecialchars($userInfo['password'] ?? '', ENT_QUOTES) ?></textarea>
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password" required>
+    </div>
+
+    <!-- Confirmation du mot de passe -->
+    <div>
+        <label for="password_confirm">Confirmer le mot de passe</label>
+        <input type="password" name="password_confirm" id="password_confirm" required>
     </div>
 
     <!-- Bouton de soumission -->
@@ -45,10 +66,53 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     </div>
 </form>
 
+<script>
+    document.getElementById('updateForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Empêche la soumission par défaut du formulaire
 
+        // Récupérer les valeurs du formulaire
+        const password = document.getElementById('password').value;
+        const passwordConfirm = document.getElementById('password_confirm').value;
 
-    </main>
-    <script src="/asset/js/cart.js"></script>
-</body>
+        // Vérification des mots de passe
+        if (password !== passwordConfirm) {
+            showMessage("Les mots de passe ne correspondent pas. Aucune modification effectuée.", "error");
+            return;
+        }
 
-</html>
+        // Créer un objet FormData pour envoyer les données du formulaire
+        const formData = new FormData(this);
+
+        // Envoyer les données avec AJAX
+        fetch('/ctrl/profil-info/update.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json()) // On attend une réponse JSON
+        .then(data => {
+            if (data.success) {
+                showMessage("Mise à jour réussie ! Vous serez redirigé vers la page de connexion.", "success");
+                // Rediriger après 2 secondes
+                setTimeout(() => {
+                    window.location.href = '/ctrl/accueil.php';
+                }, 2000);
+            } else {
+                showMessage(data.message, "error"); // Afficher le message d'erreur
+            }
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+            showMessage("Une erreur est survenue. Veuillez réessayer.", "error");
+        });
+    });
+
+    function showMessage(message, type) {
+        const messageDiv = document.getElementById('message');
+        messageDiv.textContent = message;
+        messageDiv.style.display = 'block';
+        messageDiv.style.color = type === 'error' ? 'red' : 'green';
+        messageDiv.style.borderColor = type === 'error' ? 'red' : 'green';
+    }
+</script>
+
+<script src="/asset/js/cart.js"></script>

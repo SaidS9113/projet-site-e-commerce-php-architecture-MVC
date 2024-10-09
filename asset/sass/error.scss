@@ -1,0 +1,16 @@
+.error-banner {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    width: 100%;
+    margin-top: -10px;
+}
+
+.error-banner ul {
+    padding-left: 20px;
+    text-align: center;
+    list-style: none;
+}

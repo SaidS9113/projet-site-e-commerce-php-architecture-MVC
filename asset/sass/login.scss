@@ -1,3 +1,4 @@
+// Style du bouton de connexion
 .btnLog {
   position: absolute;
   margin-left: 50px;
@@ -6,52 +7,51 @@
   font-size: 1.2rem;
   font-weight: bold;
 
-  @media (min-width: 768px) and (max-width: 1024px) {
+  @media (min-width: 768px) {
     margin-left: 70px;
     font-size: 1.4rem;
-  }
 
-  @media (min-width: 1024px) {
-    margin-left: 100px;
-    font-size: 1.5rem;
+    @media (min-width: 1024px) {
+      margin-left: 100px;
+      font-size: 1.5rem;
+    }
   }
 }
 
+// Titre de connexion
 .titleLogin {
-  font-size: 1.2rem; 
+  font-size: 1.2rem;
   text-align: center;
   padding: 20px;
   font-family: "Spectral", serif;
-  @media (min-width: 768px) and (max-width: 1024px) {
+
+  @media (min-width: 768px) {
     font-size: 2rem;
-    
   }
 
   @media (min-width: 1024px) {
     font-size: 3.7rem;
-  
   }
 }
 
-// Style du formulaire
+// Style du formulaire de connexion
 .login {
-  max-width: 300px; // pour mobile
+  max-width: 300px; // Pour mobile
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.72);
   border-radius: 10px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
   margin: 20px auto;
-  color: #fff;
+  color: #000;
   text-align: center;
 
-  @media (min-width: 768px) and (max-width: 1024px) {
+  @media (min-width: 768px) {
     max-width: 500px;
     padding: 25px;
-  }
 
-  @media (min-width: 1024px) {
-    max-width: 520px;
-    padding: 30px;
+    @media (min-width: 1024px) {
+      max-width: 520px;
+      padding: 30px;
+    }
   }
 }
 
@@ -60,13 +60,15 @@
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
+  font-size: 1.2rem;
+  font-family: "Spectral", serif;
 
-  @media (min-width: 768px) and (max-width: 1024px) {
+  @media (min-width: 768px) {
     margin-bottom: 15px;
-  }
 
-  @media (min-width: 1024px) {
-    margin-bottom: 20px;
+    @media (min-width: 1024px) {
+      margin-bottom: 20px;
+    }
   }
 }
 
@@ -76,41 +78,41 @@
   padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 10px;
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    padding: 12px;
-    margin-bottom: 25px;
+  border-radius: 20px; // Arrondi à 20px
+  &:hover {
+   
+    border: 1px solid #f37923;
   }
 
-  @media (min-width: 1024px) {
-    padding: 15px;
-    margin-bottom: 30px;
+  @media (min-width: 768px) {
+    padding: 12px;
+    margin-bottom: 25px;
+
+    @media (min-width: 1024px) {
+      padding: 15px;
+      margin-bottom: 30px;
+    }
   }
 }
 
-// Style du bouton
+// Style du bouton de soumission
 .login button {
   display: block;
   width: 100%;
   padding: 10px;
-  background-color: #4caf50;
+  background-color: #4caf50; // Couleur du bouton
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px; // Arrondi à 20px
   cursor: pointer;
-  transition: background-color 0.3s;
 
-  &:hover {
-    background-color: #2e5830;
-    color: red;
-  }
 
-  @media (min-width: 768px) and (max-width: 1024px) {
+
+  @media (min-width: 768px) {
     padding: 12px;
-  }
 
-  @media (min-width: 1024px) {
-    padding: 15px;
+    @media (min-width: 1024px) {
+      padding: 15px;
+    }
   }
 }

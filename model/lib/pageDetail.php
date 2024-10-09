@@ -26,7 +26,7 @@ function getProductDetails($dbConnection, $idProduct) {
 
 // Récupère les avis d'un produit par son ID
 function getProductReviews($dbConnection, $idProduct) {
-    $query = 'SELECT avis.id, avis.content, avis.date, avis.idUser, user.email';
+    $query = 'SELECT avis.id, avis.content, avis.date, avis.idUser, user.email, user.nom, user.prenom';
     $query .= ' FROM avis';
     $query .= ' JOIN user ON avis.idUser = user.id'; 
     $query .= ' WHERE avis.idProduct = :idProduct';

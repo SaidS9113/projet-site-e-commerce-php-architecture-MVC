@@ -1,6 +1,5 @@
 <?php
 
-// Ajoute un Marin > Affiche le formulaire
 
 // Définit les clés de dictionnaire de la page
 $pageTitle = 'inscription';
