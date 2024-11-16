@@ -13,11 +13,7 @@
 
 </head>
 <body>
-    <!---------Barre de promotion----------->
-    <div class="promo">
-        <p>Livraison gratuite à partir de 50€</p>
-    </div>
-    
+   
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
     
     <h1 class="bvn">Inscription</h1>
@@ -46,6 +42,18 @@
             <div>
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" value="" required>
+          
+            </div>
+              <!-- Adresse -->
+              <div>
+                <label for="adresse">Adresse</label>
+                <input type="adresse" name="adresse" id="adresse" value="" required>
+          
+            </div>
+              <!-- code postale -->
+              <div>
+                <label for="code_postal">Code postale</label>
+                <input type="code_postal" name="code_postal" id="code_postal" value="" required>
           
             </div>
 

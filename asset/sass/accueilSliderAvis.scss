@@ -1,9 +1,10 @@
-.user-advice{
-    h2{
+.user-advice {
+    h2 {
         font-size: 1.6rem !important;
         font-weight: 600 !important;
     }
 }
+
 .slider2-container {
     width: 100%;
     margin-top: 20px;
@@ -23,12 +24,16 @@
 }
 
 .slide2 {
-    flex: 0 0 calc(100% / 1);
+    flex: 0 0 calc(40% / 1); /* Valeur par défaut pour les petits écrans */
     height: 100%;
 }
 
-
-
+@media only screen and (min-width: 1024px) {
+    .slide2 {
+        flex: 0 0 calc(100% / 4); /* Valeur pour les grands écrans */
+        height: 100%;
+    }
+}
 
 .slide2__text {
     cursor: context-menu;
@@ -40,12 +45,11 @@
     align-items: center;
     justify-content: center;
     cursor: context-menu;
+}
 
-    .nomProductAvis{
-        font-family: "Spectral", serif;
-        color: rgb(255, 147, 24) !important;
-    }
-
+.nomProductAvis {
+    font-family: "Spectral", serif;
+    color: rgb(255, 147, 24) !important;
 }
 
 .slider2-dots {
@@ -71,11 +75,4 @@
 
 .active {
     background-color: #dadada;
-}
-
-@media only screen and (min-width: 1024px) {
-    .slide2 {
-        flex: 0 0 calc(100% / 4);
-        height: 100%;
-    }
 }

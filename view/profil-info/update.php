@@ -16,10 +16,6 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     <title>MielQualityS | Modifier le profil</title>
 </head>
 <body>
-    <!---------Barre de promotion----------->
-<div class="promo">
-    <p>Livraison gratuite à partir de 50€</p>
-</div>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
   
 <h1 class="modifInfoProfil">Modification des informations</h1>
@@ -33,21 +29,32 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     <!-- Nom -->
     <div>
         <label for="nom">Nom</label>
-        <input type="text" name="nom" id="nom" value="<?= htmlspecialchars($userInfo['nom'] ?? '', ENT_QUOTES) ?>" required>
+        <input type="text" name="nom" id="nom" value="<?= $userInfo['nom'] ?? '' ?>" required>
     </div>
 
     <!-- Prénom -->
     <div>
         <label for="prenom">Prénom</label>
-        <input type="text" name="prenom" id="prenom" value="<?= htmlspecialchars($userInfo['prenom'] ?? '', ENT_QUOTES) ?>" required>
+        <input type="text" name="prenom" id="prenom" value="<?= $userInfo['prenom'] ?? '' ?>" required>
     </div>
 
     <!-- Email -->
     <div>
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="<?= htmlspecialchars($userInfo['email'] ?? '', ENT_QUOTES) ?>" required>
+        <input type="email" name="email" id="email" value="<?= $userInfo['email'] ?? '' ?>" required>
     </div>
 
+    <!-- Adresse -->
+    <div>
+        <label for="adresse">Adresse</label>
+        <input type="adresse" name="adresse" id="adresse" value="<?= $userInfo['adresse'] ?? '' ?>" required>
+    </div>
+    
+    <!-- Code postal -->
+    <div>
+        <label for="code_postal">Code postal</label>
+        <input type="code_postal" name="code_postal" id="code_postal" value="<?= $userInfo['code_postal'] ?? '' ?>" required>
+    </div>
     <!-- Mot de passe -->
     <div>
         <label for="password">Mot de passe</label>
@@ -116,3 +123,5 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 </script>
 
 <script src="/asset/js/cart.js"></script>
+</body>
+</html>

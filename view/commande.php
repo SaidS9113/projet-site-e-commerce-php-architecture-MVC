@@ -16,10 +16,6 @@ $sessionId = isset($_SESSION['user']); ?>
     <title>MielQualityS | Commande</title>
 </head>
 <body>
-    <!---------Barre de promotion----------->
-<div class="promo">
-    <p>Livraison gratuite à partir de 50€</p>
-</div>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 
     <h1 class="titleList">Liste des Commandes</h1>
@@ -30,6 +26,10 @@ $sessionId = isset($_SESSION['user']); ?>
                     <tr>
                         <th>idUser</th>
                         <th>Email</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Adresse</th>
+                        <th>Code postal</th>
                         <th>Commande</th>
                         <th>Poids</th>
                         <th>Quantité</th>
@@ -43,9 +43,14 @@ $sessionId = isset($_SESSION['user']); ?>
                         <tr>
                             <td><?= $commande['idUser'] ?></td>
                             <td><?= mb_substr($commande['email'], 0, 40)  ?></td>
+                            <td><?= mb_substr($commande['nom'], 0, 27)  ?></td>
+                            <td><?= mb_substr($commande['prenom'], 0, 27)  ?></td>
+                            <td><?= mb_substr($commande['adresse'], 0, 27)  ?></td>
+                            <td><?= mb_substr($commande['code_postal'], 0, 27)  ?></td>
                             <td><?= mb_substr($commande['name'], 0, 27)  ?></td>
                             <td><?= $commande['poids'] ?></td>
                             <td><?= substr($commande['quantity'], 0, 3) ?></td>
+                            
                         <td>
                             <?php 
                             $formattedTotal = number_format($commande['total'], 2); // Formater avec 2 décimales
@@ -67,6 +72,10 @@ $sessionId = isset($_SESSION['user']); ?>
                     <div class="product-info">
                         <p><strong>idUser :</strong> <?= $commande['idUser'] ?></p>
                         <p><strong>Email :</strong> <?= $commande['email'] ?></p>
+                        <p><strong>Email :</strong> <?= $commande['nom'] ?></p>
+                        <p><strong>Email :</strong> <?= $commande['prenom'] ?></p>
+                        <p><strong>Email :</strong> <?= $commande['adresse'] ?></p>
+                        <p><strong>Email :</strong> <?= $commande['code_postal'] ?></p>
                         <p><strong>Commande :</strong> <?= $commande['name'] ?></p>
                         <p><strong>Poids :</strong> <?= $commande['poids'] ?> g</p>
                         <p><strong>Quantité :</strong> <?= $commande['quantity'] ?></p>

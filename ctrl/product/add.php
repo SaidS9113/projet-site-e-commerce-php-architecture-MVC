@@ -8,8 +8,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/product/product.php';
 
 // Lire les informations depuis la requête HTTP
 $product = [];
-$product['name'] = $_POST['name'];
-$product['description'] = $_POST['description'];
+$product['name'] = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';  // Échappe le nom du produit
+$product['description'] = isset($_POST['description']) ? htmlspecialchars($_POST['description']) : '';  // Échappe la description du produit
 $product['photo_filename'] = $_FILES['file']['name'];
 
 // Crée une connexion à la base de données

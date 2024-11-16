@@ -8,8 +8,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/model/lib/user.php';
 
 // Lis les informations saisies dans le formulaire
 $form = [];
-$form['email'] = $_POST['email'];
-$form['password'] = $_POST['password'];
+$form['email'] = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';  // Échappe l'email
+$form['password'] = isset($_POST['password']) ? $_POST['password'] : '';  // Mot de passe non échappé
 
 // Recherche l'Utilisateur
 $dbConnection = getConnection($dbConfig);

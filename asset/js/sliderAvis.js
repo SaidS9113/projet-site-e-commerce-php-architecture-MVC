@@ -4,7 +4,7 @@ const slide2Width = slides2[0].offsetWidth;
 const totalSlides = slides2.length;
 
 // Ajuste la largeur totale du conteneur pour inclure les clones
-slider2.style.width = `${slide2Width * Math.max(totalSlides, 4)}px`; // Largeur de 4 diapositives
+slider2.style.width = `${slide2Width * Math.max(totalSlides, 1)}px`; // Largeur de 4 diapositives
 
 // Duplique les diapositives pour créer l'effet de boucle seulement si totalSlides >= 4
 if (totalSlides >= 4) {

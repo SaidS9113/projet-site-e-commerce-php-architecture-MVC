@@ -16,10 +16,7 @@ $sessionId = isset($_SESSION['user']); ?>
     <title>MielQualityS | Liste utilisateurs</title>
 </head>
 <body>
-    <!---------Barre de promotion----------->
-<div class="promo">
-    <p>Livraison gratuite à partir de 50€</p>
-</div>
+
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 
     <h1 class="titleList">Liste des utilisateurs</h1>
@@ -34,6 +31,8 @@ $sessionId = isset($_SESSION['user']); ?>
                         <th>Email</th>
                         <th>Nom</th>
                         <th>Prénom</th>
+                        <th>Adresse</th>
+                        <th>Code Postal</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -45,6 +44,8 @@ $sessionId = isset($_SESSION['user']); ?>
                     <td><?= mb_substr($user['email'], 0, 40) . (strlen($user['email']) > 40 ?  : '') ?></td>
                     <td><?= mb_substr($user['nom'], 0, 15) . (strlen($user['nom']) > 15 ?  : '') ?></td>
                     <td><?= mb_substr($user['prenom'], 0, 15) . (strlen($user['prenom']) > 15 ?  : '') ?></td>
+                    <td><?= mb_substr($user['adresse'], 0, 15) . (strlen($user['adresse']) > 15 ?  : '') ?></td>
+                    <td><?= mb_substr($user['code_postal'], 0, 15) . (strlen($user['code_postal']) > 15 ?  : '') ?></td>
                     <td>
                         <a href="/ctrl/inscription/delete.php?id=<?= $user['id'] ?>" 
                         onclick="return confirm('Confirmer la suppression de cet utilisateur (ID: <?= $user['id'] ?>) ?')">
@@ -66,7 +67,10 @@ $sessionId = isset($_SESSION['user']); ?>
                         <p><strong>ID :</strong> <?= $user['id'] ?></p>
                         <p><strong>ID Role :</strong> <?= $user['idRole'] ?></p>
                         <p><strong>Email :</strong> <?= mb_substr($user['email'], 0, 40) . (strlen($user['email']) > 40 ?  : '') ?></p>
-                        <p><strong>Password :</strong> <?= mb_substr($user['password'], 0, 15) . (strlen($user['password']) > 15 ?  : '') ?></p>
+                        <p><strong>Nom :</strong> <?= mb_substr($user['nom'], 0, 15) . (strlen($user['nom']) > 15 ?  : '') ?></p>
+                        <p><strong>Prénom :</strong> <?= mb_substr($user['prenom'], 0, 15) . (strlen($user['prenom']) > 15 ?  : '') ?></p>
+                        <p><strong>Adresse :</strong> <?= mb_substr($user['adresse'], 0, 15) . (strlen($user['adresse']) > 15 ?  : '') ?></p>
+                        <p><strong>code_postale :</strong> <?= mb_substr($user['code_postal'], 0, 15) . (strlen($user['code_postal']) > 15 ?  : '') ?></p>
                         <div class="product-actions">
                             <a href="/ctrl/inscription/delete.php?id=<?= $user['id'] ?>" 
                                onclick="return confirm('Confirmer la suppression de cet utilisateur (ID: <?= $user['id'] ?>) ?')">

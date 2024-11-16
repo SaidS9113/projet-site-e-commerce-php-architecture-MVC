@@ -20,3 +20,5 @@ function getProductStock($dbConnection, $idProduct) {
     
     return $statementStock->fetchAll(PDO::FETCH_ASSOC);
 }
+
+update gestion_projet set nomChef 

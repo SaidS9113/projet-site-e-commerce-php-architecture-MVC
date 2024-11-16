@@ -1,6 +1,4 @@
 <?php
-
-
 // Définit les clés de dictionnaire de la page
 $pageTitle = 'inscription';
 

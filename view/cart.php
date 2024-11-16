@@ -16,10 +16,7 @@ $sessionId = isset($_SESSION['user']); ?>
     <title>MielQualityS | Panier</title>
 </head>
 <body>
-    <!---------Barre de promotion----------->
-<div class="promo">
-    <p>Livraison gratuite à partir de 50€</p>
-</div>
+ 
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 
     <h1 class="titleList">Mon Panier</h1>

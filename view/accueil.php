@@ -7,6 +7,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="/asset/img/logoSiteEcommerce.png">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,10 +21,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     <title><?=$titreSite?></title>
 </head>
 <body class="bodyAccueil" id="">
-    <!---------Barre de promotion----------->
-<div class="promo">
-    <p>Livraison gratuite à partir de 50€</p>
-</div>
+
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
  <!--------Accueil----------->
  <section class="accueil">
@@ -78,11 +76,11 @@ foreach ($listProduct as $product) {
             <?php foreach ($listAvis as $avis) { ?>
                 <div class="slide2">
                 <div class="slide2__name">
-                        <h3><?= htmlspecialchars($avis['nom']) ?> <?= htmlspecialchars($avis['prenom']) ?></h3>
+                        <h3><?= $avis['nom'] ?> <?= $avis['prenom'] ?></h3>
                     </div>
                    
                     <p class="slide2__text">
-                        <?= htmlspecialchars($avis['content']) ?>
+                        <?= $avis['content'] ?>
                         
                     </p>
                     <div class="slide2__name">

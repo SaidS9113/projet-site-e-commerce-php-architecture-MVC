@@ -20,18 +20,12 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 </head>
 
 <body class="bodyArticleDetail">
-    <!---------Barre de promotion----------->
-<div class="promoBootstraps">
-    <p>Livraison gratuite à partir de 50€</p>
-</div>
+
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
-   
-   
-  
     <section class="container sproduct my-5 pt-0">
     <div style="border-bottom: 2px solid #fff" class="row mt-5">
         <div class="col-lg-5 col-md-12 col-12">
-            <img class="img-fluid w-100" src="../../upload/<?= htmlspecialchars($product['photo_filename']) ?>" alt="">
+            <img class="img-fluid w-100" src="../../upload/<?= $product['photo_filename'] ?>" alt="">
             <div class="small-img-group">
                 <!-- Small images -->
                 <div class="small-img-col">
@@ -50,21 +44,21 @@ $isLoggedIn = isset($_SESSION['user']); ?>
         </div>
 
         <div class="col-lg-6 col-md-12 col-12">
-            <h6 class="arboPageDetail">Accueil / Page détail / <?= htmlspecialchars($product['name']) ?></h6>
-            <h3 class="product-title"><?= htmlspecialchars($product['name']) ?></h3>
-            <p class="description"><?= htmlspecialchars($product['description']) ?></p>
+            <h6 class="arboPageDetail">Accueil / Page détail / <?= $product['name'] ?></h6>
+            <h3 class="product-title"><?= $product['name'] ?></h3>
+            <p class="description"><?= $product['description'] ?></p>
 
     <!-- Formulaire pour sélectionner le poids -->
 <form class="formPoids" action="" method="get">
-    <input type="hidden" name="id" value="<?= htmlspecialchars($product['id']) ?>">
+    <input type="hidden" name="id" value="<?= $product['id'] ?>">
     <label for="poids">Choisissez le poids :</label>
     <select name="poids" id="poids" onchange="this.form.submit()">
         <?php foreach ($productPoids as $poids): ?>
-            <option value="<?= htmlspecialchars($poids['poids']) ?>"
+            <option value="<?= $poids['poids'] ?>"
                     <?= (isset($_GET['poids']) && $_GET['poids'] == $poids['poids']) ? 'selected' : '' ?>
-                    data-price="<?= htmlspecialchars($poids['price']) ?>"
-                    data-quantity="<?= htmlspecialchars($poids['quantity']) ?>">
-                <?= htmlspecialchars($poids['poids']) ?>
+                    data-price="<?= $poids['price'] ?>"
+                    data-quantity="<?= $poids['quantity'] ?>">
+                <?= $poids['poids'] ?>
             </option>
         <?php endforeach; ?>
     </select>
@@ -79,11 +73,11 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 <!-- Formulaire d'ajout au panier -->
 <form action="/ctrl/cart/add.php" method="get" id="add-to-cart-form">
     <!-- Champs cachés pour envoyer les données -->
-    <input type="hidden" name="idProduct" value="<?= htmlspecialchars($_GET['id'] ?? $product['id']) ?>">
-    <input type="hidden" name="poids" value="<?= htmlspecialchars($_GET['poids'] ?? $productPoids[0]['poids']) ?>">
-    <input type="hidden" name="price" value="<?= htmlspecialchars($_GET['price'] ?? $productPoids[0]['price']) ?>">
+    <input type="hidden" name="idProduct" value="<?= $_GET['id'] ?? $product['id'] ?>">
+    <input type="hidden" name="poids" value="<?= $_GET['poids'] ?? $productPoids[0]['poids'] ?>">
+    <input type="hidden" name="price" value="<?= $_GET['price'] ?? $productPoids[0]['price'] ?>">
     <!-- Identifiant de la session pour les utilisateurs non connectés -->
-    <input type="hidden" name="sessionId" value="<?= htmlspecialchars($_GET['sessionId'] ?? $sessionId['sessionId']) ?>">
+    <input type="hidden" name="sessionId" value="<?= $_GET['sessionId'] ?? $sessionId['sessionId'] ?>">
 
     <!-- Quantité à ajouter au panier -->
     <label for="quantity">Quantité :</label>
@@ -97,7 +91,7 @@ $isLoggedIn = isset($_SESSION['user']); ?>
 <?php
 // Affichage du message flash
 if (isset($_SESSION['flash_message'])) {
-    echo '<div class="alert alert-danger">' . htmlspecialchars($_SESSION['flash_message']) . '</div>';
+    echo '<div class="alert alert-danger">' . $_SESSION['flash_message'] . '</div>';
     unset($_SESSION['flash_message']); // Supprimer le message après affichage
 }
 ?>
@@ -146,12 +140,12 @@ document.addEventListener('DOMContentLoaded', updateProductInfo);
     </div>
     
     <!-- Champ caché pour envoyer l'id du produit -->
-    <input type="hidden" name="idProduct" value="<?= htmlspecialchars($product['id']) ?>">
-    <input type="hidden" name="poids" value="<?= htmlspecialchars($productPoids[0]['poids']) ?>">
-    <input type="hidden" name="price" value="<?= htmlspecialchars($productPoids[0]['price']) ?>">
+    <input type="hidden" name="idProduct" value="<?= $product['id'] ?>">
+    <input type="hidden" name="poids" value="<?= $productPoids[0]['poids'] ?>">
+    <input type="hidden" name="price" value="<?= $productPoids[0]['price'] ?>">
 
     <!-- Champ caché pour envoyer l'id de l'utilisateur (si l'utilisateur est connecté, sinon à gérer en back-end) -->
-    <input type="hidden" name="idUser" value="<?= htmlspecialchars($idUser) ?>">
+    <input type="hidden" name="idUser" value="<?= $idUser ?>">
 
     <div class="boiteAjtCommentaire">
         <button type="submit">Valider</button>
@@ -162,19 +156,19 @@ document.addEventListener('DOMContentLoaded', updateProductInfo);
     <div class="container-commentaire">
         <h5 class="user-commentaire">
             <!-- Affichage de l'email ou du nom de l'utilisateur qui a posté l'avis -->
-            <?= htmlspecialchars($avis['nom']) ?>  <?= htmlspecialchars($avis['prenom']) ?> 
-            <span class="date-commentaire"><?= htmlspecialchars($avis['date']) ?></span>
+            <?= $avis['nom'] ?>  <?= $avis['prenom'] ?> 
+            <span class="date-commentaire"><?= $avis['date'] ?></span>
         </h5>
-        <p class="commentaire"><?= htmlspecialchars($avis['content']) ?></p>
+        <p class="commentaire"><?= $avis['content'] ?></p>
     </div>
     <form class="formCommentaire" action="/ctrl/avis/delete.php" method="post" enctype="multipart/form-data">
     <!-- Champs cachés pour les informations du produit -->
-    <input type="hidden" name="idProduct" value="<?= htmlspecialchars($product['id']) ?>">
-    <input type="hidden" name="poids" value="<?= htmlspecialchars($productPoids[0]['poids']) ?>">
-    <input type="hidden" name="price" value="<?= htmlspecialchars($productPoids[0]['price']) ?>">
+    <input type="hidden" name="idProduct" value="<?= $product['id'] ?>">
+    <input type="hidden" name="poids" value="<?= $productPoids[0]['poids'] ?>">
+    <input type="hidden" name="price" value="<?= $productPoids[0]['price'] ?>">
     
     <!-- Champ caché pour l'identifiant de l'avis à supprimer -->
-    <input type="hidden" name="idAvis" value="<?= htmlspecialchars($avis['id']) ?>">
+    <input type="hidden" name="idAvis" value="<?= $avis['id'] ?>">
 
     <!-- Affichage du bouton de suppression si l'utilisateur est autorisé -->
     <?php if ($isLoggedIn && ($_SESSION['user']['idRole'] == '10' || $avis['idUser'] == $_SESSION['user']['id'])): ?>

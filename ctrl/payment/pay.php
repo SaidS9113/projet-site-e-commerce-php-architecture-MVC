@@ -1,6 +1,7 @@
 <?php
 // Sauvegarde de la session
 session_start();
+$idRole = isset($_SESSION['user']['idRole']) ? $_SESSION['user']['idRole'] : null;
 if (!isset($_SESSION['sessionId'])) {
     $_SESSION['sessionId'] = session_id();
 }

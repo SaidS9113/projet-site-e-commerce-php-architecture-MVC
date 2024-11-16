@@ -12,7 +12,7 @@ function addFlashMessage($message) {
 
 // Récupérer les données depuis l'URL (GET)
 $idProduct = isset($_GET['idProduct']) ? intval($_GET['idProduct']) : 0;
-$poids = isset($_GET['poids']) ? $_GET['poids'] : '';
+$poids = isset($_GET['poids']) ? htmlspecialchars($_GET['poids'], ENT_QUOTES, 'UTF-8') : ''; // htmlspecialchars
 $quantity = isset($_GET['quantity']) ? intval($_GET['quantity']) : 1;
 
 // Assurer que les données sont valides
@@ -34,6 +34,7 @@ if ($stock === false) {
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;
 }
+
 
 // Si la quantité en stock est 0, afficher un message de rupture de stock
 if ($stock <= 0) {

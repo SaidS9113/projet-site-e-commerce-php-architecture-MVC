@@ -20,7 +20,7 @@ function addToCart(?int $userId, int $productId, string $poids, int $quantity, P
         $statementSelectCartItem->bindParam(':productId', $productId, PDO::PARAM_INT);
         $statementSelectCartItem->bindParam(':poids', $poids, PDO::PARAM_STR);
         $statementSelectCartItem->execute();
-
+    
         if ($statementSelectCartItem->rowCount() > 0) {
             // Le produit est déjà dans le panier, on met à jour la quantité
             $cartItemId = $statementSelectCartItem->fetchColumn();

@@ -21,9 +21,12 @@ function clearCommandeTables($dbConnection) {
 
 // Récupère toutes les commandes et leurs détails
 function getAllCommandes($dbConnection) {
-    $query = 'SELECT commande_info.idUser, commande_info.email, commande_product.name, commande_product.poids, commande_product.quantity, commande_info.total, commande_info.status, commande_info.order_date';
-    $query .= ' FROM commande_info';
-    $query .= ' LEFT JOIN commande_product ON commande_info.id = commande_product.idCommande_info';
+    $query = 'SELECT commande_info.idUser, commande_info.email, commande_product.name, commande_product.poids, commande_product.quantity, ';
+    $query .= 'commande_info.total, commande_info.status, commande_info.order_date, ';
+    $query .= 'user.nom, user.prenom, user.adresse, user.code_postal ';
+    $query .= 'FROM commande_info ';
+    $query .= 'LEFT JOIN commande_product ON commande_info.id = commande_product.idCommande_info ';
+    $query .= 'LEFT JOIN user ON commande_info.idUser = user.id';
     
     $statement = $dbConnection->prepare($query);
     $statement->execute();

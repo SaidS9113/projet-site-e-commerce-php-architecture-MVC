@@ -15,10 +15,6 @@ $isLoggedIn = isset($_SESSION['user']); ?>
     <title>MielQualityS | Ajout d'un produit</title>
 </head>
 <body>
-    <!---------Barre de promotion----------->
-<div class="promo">
-    <p>Livraison gratuite à partir de 50€</p>
-</div>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 
     <section class="sectionAjtProduct">

@@ -10,12 +10,14 @@ $dbConnection = getConnection($dbConfig);
 
 // Lis les informations depuis la requête HTTP
 $user = [];
-$user['id'] = $_POST['id'];
-$user['nom'] = $_POST['nom'];
-$user['prenom'] = $_POST['prenom'];
-$user['email'] = $_POST['email'];
-$user['password'] = $_POST['password'];
-$password_confirm = $_POST['password_confirm']; // Champ de confirmation du mot de passe
+$user['id'] = isset($_POST['id']) ? htmlspecialchars($_POST['id']) : '';
+$user['nom'] = isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : '';
+$user['prenom'] = isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : '';
+$user['email'] = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
+$user['password'] = isset($_POST['password']) ? htmlspecialchars($_POST['password']) : '';
+$user['adresse'] = isset($_POST['adresse']) ? htmlspecialchars($_POST['adresse']) : '';
+$user['code_postal'] = isset($_POST['code_postal']) ? htmlspecialchars($_POST['code_postal']) : '';
+$password_confirm = isset($_POST['password_confirm']) ? htmlspecialchars($_POST['password_confirm']) : ''; // Champ de confirmation du mot de passe
 
 // Vérifiez si la méthode de la requête est POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -36,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user']['nom'] = $user['nom'];
             $_SESSION['user']['prenom'] = $user['prenom'];
             $_SESSION['user']['email'] = $user['email'];
+            $_SESSION['user']['adresse'] = $user['adresse'];
+            $_SESSION['user']['code_postal'] = $user['code_postal'];
             // Note : ne pas stocker le mot de passe en session pour des raisons de sécurité
 
             sleep(1); // Temporisation d'une seconde pour simuler un traitement

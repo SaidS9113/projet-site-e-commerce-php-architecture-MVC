@@ -23,10 +23,6 @@ $productInfo['quantity'] = $_GET['quantity'] ?? '';
     <title>MielQualityS | Modifier le produit</title>
 </head>
 <body>
-    <!---------Barre de promotion----------->
-<div class="promo">
-    <p>Livraison gratuite à partir de 50€</p>
-</div>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php'; ?>
     <main>
 
@@ -36,21 +32,21 @@ $productInfo['quantity'] = $_GET['quantity'] ?? '';
             <!-- Nom -->
             <div>
                 <label for="name">Nom</label>
-                <input type="text" name="name" id="name" value="<?= htmlspecialchars($productInfo['name'] ?? '', ENT_QUOTES) ?>" required>
+                <input type="text" name="name" id="name" value="<?= $productInfo['name'] ?? '' ?>" required>
             </div>
 
             <!-- Description -->
             <div>
                 <label for="description">Description</label>
-                <textarea name="description" id="description" required><?= htmlspecialchars($productInfo['description'] ?? '', ENT_QUOTES) ?></textarea>
+                <textarea name="description" id="description" required><?= $productInfo['description'] ?? '' ?></textarea>
             </div>
 
             
             <!-- Poids -->
 <div>
     <label for="poids">Poids</label>
-    <input type="hidden" name="poids" id="poids" value="<?= htmlspecialchars($productInfo['poids'], ENT_QUOTES) ?>">
-    <p class="poids"><?= htmlspecialchars($productInfo['poids'], ENT_QUOTES) ?></p> <!-- Affichage en texte -->
+    <input type="hidden" name="poids" id="poids" value="<?= $productInfo['poids'] ?>">
+    <p class="poids"><?= $productInfo['poids'] ?></p> <!-- Affichage en texte -->
 </div>
 
 
@@ -61,13 +57,13 @@ $productInfo['quantity'] = $_GET['quantity'] ?? '';
                     <!-- Prix -->
                     <div>
                         <label for="price">Prix</label>
-                        <input type="text" name="price" id="price" value="<?= htmlspecialchars($info['price'], ENT_QUOTES) ?>" required>
+                        <input type="text" name="price" id="price" value="<?= $info['price'] ?>" required>
                     </div>
 
                     <!-- Quantité -->
                     <div>
                         <label for="quantity">Quantité</label>
-                        <input type="number" name="quantity" id="quantity" value="<?= htmlspecialchars($info['quantity'], ENT_QUOTES) ?>" required>
+                        <input type="number" name="quantity" id="quantity" value="<?= $info['quantity'] ?>" required>
                     </div>
                 <?php }
             } ?>

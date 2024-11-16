@@ -3,6 +3,10 @@
 $isLoggedIn = isset($_SESSION['user']); 
 $bienvenue = "Bienvenue,";
 ?>
+    <!---------Barre de promotion----------->
+<div class="promo">
+    <p>Livraison gratuite à partir de 50€</p>
+</div>
 <!---------En-tête de page----------->
 <header class="header" id="header">
     <!-- Section de connexion si l'utilisateur est connecté -->
@@ -11,23 +15,23 @@ $bienvenue = "Bienvenue,";
 
         <!-- Menu défilant pour mobile et tablette -->
         <nav class="mobile-first">
-            <span id="close-btn" style="float:right; cursor:pointer;">&times;</span>
+        <span id="close-btn" style="float:right; cursor:pointer;">&times;</span>
             <div class="flex-column">
             <!-- Logo du site -->
-            <a class="logoNavbar" href="/ctrl/accueil.php"><img src="/asset/img/logoSiteEcommerce.png" alt=""></a>
+            <a class="logoNavbar" href="/ctrl/accueil.php"><img src="/asset/img/logoHorizontale.png" alt=""></a>
             <!-- Liste des pages du site -->
             <ul class="listSite">
                 <!-- Affichage de "Accueil" et "Produits" pour tous les utilisateurs sauf ceux ayant le rôle 10 -->
         <?php if (!($isLoggedIn && $_SESSION['user']['idRole'] == '10')) : ?>
             <li><a href="/ctrl/accueil.php">Accueil</a></li>
-            <li><a href="/ctrl/catalogue.php">Produits</a></li>
+            <li><a href="/ctrl/catalogue.php">Nos Miels</a></li>
         <?php endif; ?>
-
         <!-- Options supplémentaires visibles uniquement pour l'utilisateur avec le rôle 10 -->
         <?php if ($isLoggedIn && $_SESSION['user']['idRole'] == '10') : ?>
             <li><a href="/ctrl/product/list.php">Produits</a></li>
             <li><a href="/ctrl/commande.php">Commandes</a></li>
             <li><a href="/ctrl/inscription/list.php">Utilisateurs</a></li>
+            <li><a href="/ctrl/profil-info/update-display.php">Modifier le profil</a></li>
         <?php endif; ?>
                 <!-- Lien Connexion visible si l'utilisateur n'est pas connecté -->
                 <?php if (!$isLoggedIn) : ?>
@@ -37,14 +41,14 @@ $bienvenue = "Bienvenue,";
             </ul>
             <!-- Affichage de la boîte de connexion pour mobile si l'utilisateur est connecté -->
             <?php if ($isLoggedIn) : ?>
-            <div class="boiteLogin-mobile-first">
-                <span class="infoUser"><?=$bienvenue?> <?= htmlspecialchars($_SESSION['user']['nom']) ?> <?= htmlspecialchars($_SESSION['user']['prenom']) ?></span>
+                <div class="boiteLogin-mobile-first">
+    <span class="infoUser"><?=$bienvenue?> <?= $_SESSION['user']['prenom'] ?> <?= strtoupper($_SESSION['user']['nom']) ?></span>
 
-                <div class="boiteDeconnexion">
-                    <a href="/ctrl/login/logout.php" class="btnDeconnexion"><i class='bx bx-exit'></i></a>
-                    <span class="nameDeconnexion">Déconnexion</span>
-                </div>
-            </div>
+    <div class="boiteDeconnexion">
+        <a href="/ctrl/login/logout.php" class="btnDeconnexion"><i class='bx bx-exit'></i></a>
+        <span class="nameDeconnexion">Déconnexion</span>
+    </div>
+</div>
             <?php endif; ?>
      <!-- Liste des réseaux sociaux -->
      <div class="boiteReseauxScl">
@@ -66,7 +70,7 @@ $bienvenue = "Bienvenue,";
         <!-- Icône du panier -->
        <a href="/ctrl/cart/cart.php">
     <i class='bx bx-shopping-bag' id="cart-icon-first">
-        <sup id="cart-count"><?php echo htmlspecialchars($totalQuantity2); ?></sup>
+        <sup id="cart-count"><?php echo $totalQuantity2; ?></sup>
     </i>
 </a>
     </div>
@@ -74,16 +78,17 @@ $bienvenue = "Bienvenue,";
     <?php if ($isLoggedIn) : ?>
     <div class="boiteLogin">
         <p class="bienvenueUser"><?=$bienvenue?></p>
-        <span class="infoUser"><?= htmlspecialchars($_SESSION['user']['nom']) ?> <?= htmlspecialchars($_SESSION['user']['prenom']) ?></span>
+        <span class="infoUser"><?= $_SESSION['user']['prenom'] ?> <?= strtoupper($_SESSION['user']['nom']) ?></span>
     </div>
-    <?php endif; ?>
+<?php endif; ?>
+
     <!--------Menu pour la version PC----------->
     <nav class="version-desktop">
     <ul>
         <!-- Affichage de "Accueil" et "Produits" pour tous les utilisateurs sauf ceux ayant le rôle 10 -->
         <?php if (!($isLoggedIn && $_SESSION['user']['idRole'] == '10')) : ?>
             <li><a href="/ctrl/accueil.php">Accueil</a></li>
-            <li><a href="/ctrl/catalogue.php">Produits</a></li>
+            <li><a href="/ctrl/catalogue.php">Nos Miels</a></li>
         <?php endif; ?>
 
         <!-- Options supplémentaires visibles uniquement pour l'utilisateur avec le rôle 10 -->
@@ -166,7 +171,7 @@ userPopup.addEventListener('mouseout', function(event) {
          <!-- Icône du panier -->
     <a href="/ctrl/cart/cart.php">
     <i class='bx bx-shopping-bag' id="cart-icon">
-        <sup id="cart-count"><?php echo htmlspecialchars($totalQuantity); ?></sup>
+        <sup id="cart-count"><?php echo $totalQuantity; ?></sup>
     </i>
 </a>
         </div>

@@ -1,8 +1,8 @@
 <?php
 // Supprime une option de produit spécifique (par exemple, 250g) sans supprimer tout le produit
 // Lis les informations depuis la requête HTTP (id du produit et option spécifique)
-$idProduct = $_GET['id'];  // ID du produit
-$poids = $_GET['poids'];  // Option spécifique (par ex : 250g)
+$idProduct = isset($_GET['id']) ? htmlspecialchars($_GET['id']) : '';  // ID du produit
+$poids = isset($_GET['poids']) ? htmlspecialchars($_GET['poids']) : '';  // Option spécifique (par ex : 250g)
 
 // Ouvre une connexion à la Base de données
 require_once $_SERVER['DOCUMENT_ROOT'] . '/cfg/db.php';

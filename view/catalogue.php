@@ -12,10 +12,7 @@
     <title>MielQualityS | Boutique</title>
 </head>
 <body class="bodyArticle">
-    <!---------Barre de promotion----------->
-<div class="promo">
-    <p>Livraison gratuite à partir de 50€</p>
-</div>
+
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
 <section class="products">
         <h2>NOS PRODUITS</h2>

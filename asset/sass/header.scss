@@ -5,18 +5,18 @@
     text-align: center;
     padding: 10px;
     font-family: "Spectral", serif;
-
+    p{
+    margin-bottom: 0;
+    }
 }
-
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     background-color: #ffffff;
-    border-bottom: 1px solid #a8a8a8 !important;
+    border-bottom: 1px solid #a8a8a8;
    
-
     .version-desktop {
         display: none;
       
@@ -37,9 +37,10 @@ header {
                 height: 100px;  
             }
     }
+   
 }
-    
-    border-bottom: 0.5px solid #e7e7e7;
+
+
     nav {
         display: flex;
         align-items: center;
@@ -53,7 +54,6 @@ header {
                 display: flex;
                 justify-content: space-between;
                 width: 210px;
-               
             }
             li {
                 display: flex;
@@ -189,15 +189,14 @@ header {
     
     // Logo en haut
     .logoNavbar {
-
         display: flex;
         justify-content: center;
-        width: 100%;
-        
+        width: 60%;
+        margin-left: 70px;
     }
     .mobile-first img {
-        width: 130px;
-        height: auto;
+        width: 250px;
+        height: 100px;
     }
     // Style des liens de la liste
     .mobile-first .listSite {
@@ -235,6 +234,7 @@ header {
         right: 20px;
         color: #5b5b5b;
         font-weight: 600;
+        z-index: 200;
     }
     
     
@@ -285,18 +285,7 @@ header {
 }
 
 
-@media only screen and (min-width: 762px) and (max-width: 1341px) {
-    .header-top_container{
-       display: none;
-    }
-    .header-top_container-destock{
-        margin: auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 30px;
-    }
-    
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
     header {
         display: block;
         .container-logo{
@@ -313,7 +302,6 @@ header {
                 }
         }
     }
-        
         .header-version-m-t-p {
             display: flex;
             width: auto !important;
@@ -326,6 +314,7 @@ header {
                display: flex;
                justify-content: center;
                align-items: center;
+               
                 h1 {
                     width: 400px;
                     height: 150px;
@@ -449,7 +438,7 @@ header {
     }
 }
 
-@media only screen and (min-width: 1330px) {
+@media only screen and (min-width: 1024px) {
     .header-top_container{
         display: none;
      }
@@ -482,7 +471,7 @@ header {
             font-family: "Spectral", serif; 
            }
         }
-        
+       
 
         .header-version-m-t-p {
             display: flex;

@@ -17,7 +17,7 @@ CREATE TABLE role (
     code VARCHAR(250) NOT NULL,
     label VARCHAR(100) NOT NULL
 );
-
+-- Table des utilisateurs
 CREATE TABLE user (
     id INT PRIMARY KEY AUTO_INCREMENT,
     password VARCHAR(100) NOT NULL,
@@ -25,8 +25,10 @@ CREATE TABLE user (
     idRole INT,
     photo LONGBLOB,
     photo_filename VARCHAR(255),
-    nom VARCHAR(50) NOT NULL,     -- Ajout de la colonne pour le prénom
-    prenom VARCHAR(50) NOT NULL   -- Ajout de la colonne pour le nom de famille
+    nom VARCHAR(50) NOT NULL, 
+    prenom VARCHAR(50) NOT NULL,
+    adresse VARCHAR(255),
+    code_postal VARCHAR(10)
 );
 -- Table des produits
 CREATE TABLE product (
@@ -37,7 +39,6 @@ CREATE TABLE product (
     photo longblob,
     photo_filename varchar(255)
 );
-
 -- Table de gestion du stock de produits
 CREATE TABLE product_stock (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -50,8 +51,8 @@ CREATE TABLE product_stock (
 -- Table du panier (pour les utilisateurs connectés et non connectés)
 CREATE TABLE cart_product (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    idUser INT NULL,  -- Optionnel pour les utilisateurs connectés
-    sessionId VARCHAR(255) NULL,  -- Optionnel pour les utilisateurs non connectés
+    idUser INT NULL,  
+    sessionId VARCHAR(255) NULL,  
     idProduct INT NOT NULL,
     poids VARCHAR(50) NOT NULL,
     quantity INT NOT NULL,
@@ -61,14 +62,13 @@ CREATE TABLE cart_product (
 -- Table des informations de commande (modifiée pour inclure sessionId)
 CREATE TABLE commande_info (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    idUser INT NULL,  -- Optionnel pour les utilisateurs non connectés
-    sessionId VARCHAR(255) NULL,  -- Nouveau champ pour les utilisateurs non connectés
+    idUser INT NULL, 
+    sessionId VARCHAR(255) NULL,  
     email VARCHAR(100) NOT NULL,
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     total DECIMAL(10, 2) NOT NULL,
     status VARCHAR(50) DEFAULT 'Pending'
 );
-
 -- Table des produits dans les commandes
 CREATE TABLE commande_product (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -79,7 +79,6 @@ CREATE TABLE commande_product (
     quantity INT NOT NULL,
     price DECIMAL(10, 2) NOT NULL
 );
-
 -- Table des avis produits
 CREATE TABLE avis (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -110,10 +109,10 @@ ALTER TABLE product
 -- Contraintes sur la table 'product_stock'
 ALTER TABLE product_stock
     ADD CONSTRAINT `fk_product_stock_product` FOREIGN KEY(idProduct) REFERENCES product(id);
-
+    
 -- Contraintes sur la table 'avis'
 ALTER TABLE avis
-    ADD CONSTRAINT `fk_avis_product` FOREIGN KEY(idProduct) REFERENCES product(id),
+    ADD CONSTRAINT `fk_avis_product` FOREIGN KEY(idProduct) REFERENCES product(id) ON DELETE CASCADE,
     ADD CONSTRAINT `fk_avis_user` FOREIGN KEY(idUser) REFERENCES user(id) ON DELETE CASCADE;
 
 -- Contraintes sur la table 'cart_product'

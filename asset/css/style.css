@@ -21,6 +21,9 @@ body {
   padding: 10px;
   font-family: "Spectral", serif;
 }
+.promo p {
+  margin-bottom: 0;
+}
 
 header {
   display: flex;
@@ -28,8 +31,7 @@ header {
   align-items: center;
   padding: 10px;
   background-color: #ffffff;
-  border-bottom: 1px solid #a8a8a8 !important;
-  border-bottom: 0.5px solid #e7e7e7;
+  border-bottom: 1px solid #a8a8a8;
 }
 header .version-desktop {
   display: none;
@@ -51,6 +53,7 @@ header .container-logo h1 img {
   width: 250px;
   height: 100px;
 }
+
 header nav {
   display: flex;
   align-items: center;
@@ -177,11 +180,12 @@ header .mobile-first .boiteLogin-mobile-first .boiteDeconnexion .btnDeconnexion 
 header .logoNavbar {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 60%;
+  margin-left: 70px;
 }
 header .mobile-first img {
-  width: 130px;
-  height: auto;
+  width: 250px;
+  height: 100px;
 }
 header .mobile-first .listSite {
   list-style: none;
@@ -213,6 +217,7 @@ header #close-btn {
   right: 20px;
   color: #5b5b5b;
   font-weight: 600;
+  z-index: 200;
 }
 header .header-version-m-t-p {
   display: flex;
@@ -254,17 +259,7 @@ header .boiteLogin {
   display: none;
 }
 
-@media only screen and (min-width: 762px) and (max-width: 1341px) {
-  .header-top_container {
-    display: none;
-  }
-  .header-top_container-destock {
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-  }
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
   header {
     display: block;
   }
@@ -395,7 +390,7 @@ header .boiteLogin {
     display: none;
   }
 }
-@media only screen and (min-width: 1330px) {
+@media only screen and (min-width: 1024px) {
   .header-top_container {
     display: none;
   }
@@ -1149,10 +1144,16 @@ header .boiteLogin {
 }
 
 .slide2 {
-  flex: 0 0 100%;
+  flex: 0 0 40%; /* Valeur par défaut pour les petits écrans */
   height: 100%;
 }
 
+@media only screen and (min-width: 1024px) {
+  .slide2 {
+    flex: 0 0 25%; /* Valeur pour les grands écrans */
+    height: 100%;
+  }
+}
 .slide2__text {
   cursor: context-menu;
   padding: 20px;
@@ -1164,7 +1165,8 @@ header .boiteLogin {
   justify-content: center;
   cursor: context-menu;
 }
-.slide2__name .nomProductAvis {
+
+.nomProductAvis {
   font-family: "Spectral", serif;
   color: rgb(255, 147, 24) !important;
 }
@@ -1194,12 +1196,6 @@ header .boiteLogin {
   background-color: #dadada;
 }
 
-@media only screen and (min-width: 1024px) {
-  .slide2 {
-    flex: 0 0 25%;
-    height: 100%;
-  }
-}
 .products {
   padding-bottom: 20px;
 }

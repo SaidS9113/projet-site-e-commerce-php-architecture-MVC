@@ -16,13 +16,8 @@ $sessionId = isset($_SESSION['user']); ?>
     <title>MielQualityS | Pay</title>
 </head>
 <body>
-    <!---------Barre de promotion----------->
-<div class="promo">
-    <p>Livraison gratuite à partir de 50€</p>
-</div>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partial/header.php' ?>
     <h1>Formulaire de Paiement</h1>
-
 <!-- Affichage du statut du paiement si défini -->
 <?php if (isset($paymentSuccess)) : ?>
     <?php if ($paymentSuccess) : ?>
@@ -32,8 +27,23 @@ $sessionId = isset($_SESSION['user']); ?>
     <?php endif; ?>
 <?php endif; ?>
 
-<!-- Formulaire de paiement -->
 <form class="formPay" action="?action=processPayment" method="post">
+<?php if ($idRole !== 10 && $idRole !== 20): ?>
+        <!-- Affichez ces champs uniquement pour les utilisateurs connectés avec un rôle différent de 10 ou 20 -->
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom">
+
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom">
+
+        <label for="adress">Adresse :</label>
+        <input type="text" id="adresse" name="adresse">
+
+        <label for="code_posta">Code Postal :</label>
+        <input type="text" id="code_postal" name="code_postal">
+    <?php endif; ?>
+
+
     <label for="cardNumber">Numéro de Carte :</label>
     <input type="text" id="cardNumber" name="cardNumber" required>
 
@@ -45,6 +55,8 @@ $sessionId = isset($_SESSION['user']); ?>
 
     <label for="cvv">CVV :</label>
     <input type="text" id="cvv" name="cvv" required>
+
+
 
     <button type="submit">Procéder au Paiement</button>
 </form>

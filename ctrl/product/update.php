@@ -8,12 +8,12 @@ $dbConnection = getConnection($dbConfig);
 
 // Lis les informations depuis la requête HTTP
 $product = [];
-$product['id'] = $_POST['id'];
-$product['name'] = $_POST['name'];
-$product['description'] = $_POST['description'];
-$product['poids'] = $_POST['poids'];
-$product['price'] = $_POST['price'];
-$product['quantity'] = $_POST['quantity'];
+$product['id'] = isset($_POST['id']) ? htmlspecialchars($_POST['id']) : '';
+$product['name'] = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
+$product['description'] = isset($_POST['description']) ? htmlspecialchars($_POST['description']) : '';
+$product['poids'] = isset($_POST['poids']) ? htmlspecialchars($_POST['poids']) : '';
+$product['price'] = isset($_POST['price']) ? htmlspecialchars($_POST['price']) : '';
+$product['quantity'] = isset($_POST['quantity']) ? htmlspecialchars($_POST['quantity']) : '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {

@@ -57,22 +57,24 @@ function getRole(string $code, PDO $db): ?array
  * 
  */
 
- function create(string $email, string $password, string $idRole, string $nom, string $prenom, PDO $db): bool
- {
-     // Prépare la requête SQL pour insérer un nouvel utilisateur
-     $query = 'INSERT INTO user (email, password, idRole, nom, prenom) VALUES (:email, :password, :idRole, :nom, :prenom)';
-     $statement = $db->prepare($query);
-     
-     // Lie les paramètres à la requête préparée
-     $statement->bindParam(':email', $email);
-     $statement->bindParam(':password', $password);
-     $statement->bindParam(':idRole', $idRole);
-     $statement->bindParam(':nom', $nom);
-     $statement->bindParam(':prenom', $prenom);
-     
-     
-     // Exécute la requête et retourne le succès ou l'échec
-     $successOrFailure = $statement->execute();
- 
-     return $successOrFailure;
- }
+ function create(string $email, string $password, string $idRole, string $nom, string $prenom, string $adresse, string $code_postal, PDO $db): bool
+{
+    // Prépare la requête SQL pour insérer un nouvel utilisateur
+    $query = 'INSERT INTO user (email, password, idRole, nom, prenom, adresse, code_postal) VALUES (:email, :password, :idRole, :nom, :prenom, :adresse, :code_postal)';
+    $statement = $db->prepare($query);
+    
+    // Lie les paramètres à la requête préparée
+    $statement->bindParam(':email', $email);
+    $statement->bindParam(':password', $password);
+    $statement->bindParam(':idRole', $idRole);
+    $statement->bindParam(':nom', $nom);
+    $statement->bindParam(':prenom', $prenom);
+    $statement->bindParam(':adresse', $adresse);
+    $statement->bindParam(':code_postal', $code_postal);
+    
+    // Exécute la requête et retourne le succès ou l'échec
+    $successOrFailure = $statement->execute();
+
+    return $successOrFailure;
+}
+
